@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Data.Sqlite;
 
 namespace SAMSv1.Data
 {
@@ -32,26 +33,35 @@ namespace SAMSv1.Data
             Directory.CreateDirectory(DataFolder);
 
             if (!File.Exists(TemplateDb))
-                throw new FileNotFoundException("Template database not found. Cannot create runtime DB.");
+                throw new FileNotFoundException("Template database not found.");
 
-            // No local DB yet — copy template
             if (!File.Exists(LocalDb))
             {
                 File.Copy(TemplateDb, LocalDb);
                 return LocalDb;
             }
 
-            // Template is newer than local DB — replace it
-            var templateModified = File.GetLastWriteTime(TemplateDb);
-            var localModified = File.GetLastWriteTime(LocalDb);
-
-            if (templateModified > localModified)
+            // Compare schema versions instead of timestamps
+            if (GetSchemaVersion(TemplateDb) > GetSchemaVersion(LocalDb))
             {
                 File.Delete(LocalDb);
                 File.Copy(TemplateDb, LocalDb);
             }
 
             return LocalDb;
+        }
+
+        private static int GetSchemaVersion(string dbPath)
+        {
+            using (var conn = new SqliteConnection($"Data Source={dbPath}"))
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "PRAGMA user_version";
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
         }
 
         public static string GetConnectionString()
