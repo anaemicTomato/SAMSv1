@@ -1,32 +1,16 @@
 ﻿using System;
+using System.Data.SQLite;
 using System.IO;
-using Microsoft.Data.Sqlite;
 
 namespace SAMSv1.Data
 {
     public static class DBHelper
     {
         private static readonly string DataFolder = Path.Combine(
-            GetProjectRoot(), "Data"
+            AppDomain.CurrentDomain.BaseDirectory, "Data"
         );
-
-        private static readonly string TemplateDb = Path.Combine(DataFolder, "sams_template.db");
+        private static readonly string TemplateDb = Path.Combine(DataFolder, "samsDB_Template.db");
         private static readonly string LocalDb = Path.Combine(DataFolder, "sams.db");
-
-        private static string GetProjectRoot()
-        {
-            var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-
-            while (directory != null)
-            {
-                if (directory.GetFiles("*.csproj").Length > 0)
-                    return directory.FullName;
-
-                directory = directory.Parent;
-            }
-
-            throw new DirectoryNotFoundException("Could not locate project root.");
-        }
 
         public static string GetProjectDbPath()
         {
@@ -41,7 +25,6 @@ namespace SAMSv1.Data
                 return LocalDb;
             }
 
-            // Compare schema versions instead of timestamps
             if (GetSchemaVersion(TemplateDb) > GetSchemaVersion(LocalDb))
             {
                 File.Delete(LocalDb);
@@ -53,7 +36,7 @@ namespace SAMSv1.Data
 
         private static int GetSchemaVersion(string dbPath)
         {
-            using (var conn = new SqliteConnection($"Data Source={dbPath}"))
+            using (var conn = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
@@ -66,7 +49,7 @@ namespace SAMSv1.Data
 
         public static string GetConnectionString()
         {
-            return $"Data Source={GetProjectDbPath()}";
+            return $"Data Source={GetProjectDbPath()};Version=3;";
         }
     }
 }
