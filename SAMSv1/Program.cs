@@ -19,7 +19,7 @@ namespace SAMSv1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminFormv2());
+            Application.Run(new AdminFormV3());
         }
     }
 }

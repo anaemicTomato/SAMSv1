@@ -42,6 +42,7 @@
     <Reference Include="DevExpress.Data.v23.2" />
     <Reference Include="DevExpress.Utils.v23.2" />
     <Reference Include="DevExpress.Sparkline.v23.2.Core" />
+    <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v23.2" />
     <Reference Include="DevExpress.Printing.v23.2.Core" />
     <Reference Include="DevExpress.Drawing.v23.2" />
@@ -76,7 +77,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlForms\Scan\ScanFace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\Scan\ScanFace.Designer.cs">
+      <DependentUpon>ScanFace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlForms\Scan\ScanRFID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\Scan\ScanRFID.Designer.cs">
+      <DependentUpon>ScanRFID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\StudentRepository.cs" />
+    <Compile Include="Login\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForms\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +127,24 @@
     <Compile Include="MainForms\AdminFormv2.Designer.cs">
       <DependentUpon>AdminFormv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForms\AdminFormV3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\AdminFormV3.Designer.cs">
+      <DependentUpon>AdminFormV3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CtrlForms\Scan\ScanFace.resx">
+      <DependentUpon>ScanFace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlForms\Scan\ScanRFID.resx">
+      <DependentUpon>ScanRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\AdminFormv2.resx">
       <DependentUpon>AdminFormv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\AdminFormV3.resx">
+      <DependentUpon>AdminFormV3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

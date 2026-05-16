@@ -42,5 +42,15 @@ namespace SAMSv1.MainForms
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
+         
+        public static implicit operator AdminFormv2(AdminForm v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

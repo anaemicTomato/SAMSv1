@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using SAMSv1.CtrlForms.Scan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,5 +18,13 @@ namespace SAMSv1.CtrlForms
         {
             InitializeComponent();
         }
+
+
+        private void AttendanceControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

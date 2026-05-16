@@ -23,27 +23,11 @@ namespace SAMSv1.CtrlForms
             LoadStudents();
         }
 
-
-        //=== Kyle things ======
-        private void panelControl2_Paint(object sender, PaintEventArgs e)
-        {
-
-
-        }
-
         private void RegisterStudentsControl_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(200, 230, 220);
+ 
         }
 
-        protected override void OnPaintBackground(PaintEventArgs e) // opacity sa pindot
-        {
-            using (SolidBrush brush = new SolidBrush(Color.FromArgb(10, 255, 255, 255)))
-
-            {
-                e.Graphics.FillRectangle(brush, this.ClientRectangle);
-            }
-        }
 
         private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -53,33 +37,38 @@ namespace SAMSv1.CtrlForms
 
         private void LoadStudents()
         {
-            gcStudent.DataSource = _repo.GetAllStudents().ToList();
+            //gcStudent.DataSource = _repo.GetAllStudents().ToList();
         }
 
         private void btnRegisterStudent_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFullname.Text) ||
-                string.IsNullOrWhiteSpace(txtCourse.Text) ||
-                string.IsNullOrWhiteSpace(txtIdNumber.Text))
-            {
-                MessageBox.Show("Please fill in all fields.");
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(txtFullname.Text) ||
+            //    string.IsNullOrWhiteSpace(txtCourse.Text) ||
+            //    string.IsNullOrWhiteSpace(txtIdNumber.Text))
+            //{
+            //    MessageBox.Show("Please fill in all fields.");
+            //    return;
+            //}
 
-            var student = new Student
-            {
-                FullName = txtFullname.Text.Trim(),
-                Course = txtCourse.Text.Trim(),
-                IdNumber = txtIdNumber.Text.Trim()
-            };
+            //var student = new Student
+            //{
+            //    FullName = txtFullname.Text.Trim(),
+            //    Course = txtCourse.Text.Trim(),
+            //    IdNumber = txtIdNumber.Text.Trim()
+            //};
 
-            _repo.RegisterStudent(student);
+            //_repo.RegisterStudent(student);
 
-            txtFullname.Clear();
-            txtCourse.Clear();
-            txtIdNumber.Clear();
+            //txtFullname.Clear();
+            //txtCourse.Clear();
+            //txtIdNumber.Clear();
 
             LoadStudents();
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
