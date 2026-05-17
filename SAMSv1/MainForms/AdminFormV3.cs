@@ -38,5 +38,35 @@ namespace SAMSv1.MainForms
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
+
+       
+
+        private void accordionControlElement4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement1_Click_1(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear(); // remove previous page
+            AttendanceLogControl page = new AttendanceLogControl();
+            page.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(page);
+        }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

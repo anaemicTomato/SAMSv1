@@ -77,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlForms\AttendanceLogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\AttendanceLogControl.Designer.cs">
+      <DependentUpon>AttendanceLogControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlForms\Scan\ScanFace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CtrlForms\AttendanceLogControl.resx">
+      <DependentUpon>AttendanceLogControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\Scan\ScanFace.resx">
       <DependentUpon>ScanFace.cs</DependentUpon>
     </EmbeddedResource>
