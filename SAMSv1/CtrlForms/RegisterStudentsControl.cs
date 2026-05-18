@@ -66,9 +66,5 @@ namespace SAMSv1.CtrlForms
             LoadStudents();
         }
 
-        private void labelControl1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
