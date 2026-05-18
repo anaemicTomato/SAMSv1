@@ -32,5 +32,7 @@ namespace SAMSv1.CtrlForms
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
+
+      
     }
 }

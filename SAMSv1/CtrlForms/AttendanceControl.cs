@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using SAMSv1.CtrlForms.Scan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,5 +18,26 @@ namespace SAMSv1.CtrlForms
         {
             InitializeComponent();
         }
+
+
+        private void AttendanceControl_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void btnStartAttendance_Click(object sender, EventArgs e)
+        {
+            btnStopAttendance.Visible = true;
+            btnStartAttendance.Visible = false;
+        }
+
+        private void btnStopAttendance_Click(object sender, EventArgs e)
+        {
+            btnStartAttendance.Visible = true;
+            btnStopAttendance.Visible = false;
+        }
+
+       
     }
-}
+    }
