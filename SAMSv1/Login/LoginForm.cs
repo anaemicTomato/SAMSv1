@@ -1,7 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraReports.UI;
 using SAMSv1.MainForms;
 using SAMSv1.Models;
+using SAMSv1.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,6 +100,13 @@ namespace SAMSv1.Login
 
 
             }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            StudentRPT report = new StudentRPT();
+            //report.DataSource = ""query
+            report.ShowPreviewDialog();
         }
     }
 }

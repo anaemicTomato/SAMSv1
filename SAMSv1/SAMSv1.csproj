@@ -33,22 +33,55 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v23.2" />
+    <Reference Include="DevExpress.Charts.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v23.2" />
     <Reference Include="DevExpress.Data.v23.2" />
+    <Reference Include="DevExpress.DataAccess.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v23.2.Export, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v23.2" />
     <Reference Include="DevExpress.Sparkline.v23.2.Core" />
+    <Reference Include="DevExpress.Utils.v23.2.UI, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v23.2" />
     <Reference Include="DevExpress.Printing.v23.2.Core" />
     <Reference Include="DevExpress.Drawing.v23.2" />
+    <Reference Include="DevExpress.XtraGauges.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v23.2.Extensions, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -77,11 +110,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CHCNetSDK.cs" />
     <Compile Include="CtrlForms\AttendanceLogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CtrlForms\AttendanceLogControl.Designer.cs">
       <DependentUpon>AttendanceLogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlForms\RegisterStudentsV2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\RegisterStudentsV2.Designer.cs">
+      <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
     </Compile>
     <Compile Include="CtrlForms\Scan\ScanFace.cs">
       <SubType>UserControl</SubType>
@@ -114,12 +154,6 @@
     <Compile Include="CtrlForms\AttendanceControl.Designer.cs">
       <DependentUpon>AttendanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CtrlForms\RegisterStudentsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\RegisterStudentsControl.Designer.cs">
-      <DependentUpon>RegisterStudentsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="CtrlForms\ReportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,11 +173,60 @@
     <Compile Include="MainForms\AdminFormV3.Designer.cs">
       <DependentUpon>AdminFormV3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\StudentRPT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\StudentRPT.Designer.cs">
+      <DependentUpon>StudentRPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AttendanceDevice.cs" />
+    <Compile Include="Services\DeviceManager.cs" />
+    <Compile Include="Services\DeviceStudent.cs" />
+    <Compile Include="Services\FaceService.cs" />
+    <Compile Include="Services\HikvisionDevice.cs" />
+    <Compile Include="Services\Interfaces\IAttendanceDevice.cs" />
+    <Content Include="HCNetSDK\HCCore.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HCNetSDK\HCNetSDK.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HCNetSDK\HCNetSDKCom\AnalyzeData.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\AudioIntercom.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\AudioRender.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCAlarm.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCCoreDevCfg.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCDisplay.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCGeneralCfgMgr.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCIndustry.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCPlayBack.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCPreview.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\HCVoiceTalk.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\libiconv2.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\OpenAL32.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\StreamTransClient.dll" />
+    <Content Include="HCNetSDK\HCNetSDKCom\SystemTransform.dll" />
+    <Content Include="HCNetSDK\hpr.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HCNetSDK\libcrypto-1_1-x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HCNetSDK\libssl-1_1-x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HCNetSDK\zlib1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="CtrlForms\AttendanceLogControl.resx">
       <DependentUpon>AttendanceLogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlForms\RegisterStudentsV2.resx">
+      <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\Scan\ScanFace.resx">
       <DependentUpon>ScanFace.cs</DependentUpon>
@@ -159,9 +242,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\AttendanceControl.resx">
       <DependentUpon>AttendanceControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\RegisterStudentsControl.resx">
-      <DependentUpon>RegisterStudentsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\ReportControl.resx">
       <DependentUpon>ReportControl.cs</DependentUpon>
@@ -182,10 +262,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\StudentRPT.resx">
+      <DependentUpon>StudentRPT.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <Content Include="Data\sams.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="HCNetSDK\HCNetSDKCom\HCAlarm.lib" />
+    <None Include="HCNetSDK\HCNetSDKCom\HCGeneralCfgMgr.lib" />
+    <None Include="HCNetSDK\HCNetSDKCom\HCPreview.lib" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

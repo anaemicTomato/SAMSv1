@@ -114,6 +114,7 @@
             this.Controls.Add(this.accordionControl1);
             this.MinimumSize = new System.Drawing.Size(720, 600);
             this.Name = "AdminFormV3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminFormV3";
             this.Load += new System.EventHandler(this.AdminFormV3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();

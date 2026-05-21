@@ -32,7 +32,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gcRegisteredStudents = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.cbAllYears = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.cbAllCourses = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -101,7 +101,7 @@
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRegisteredStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbAllYears.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbAllCourses.Properties)).BeginInit();
@@ -199,7 +199,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.gridControl1);
+            this.groupControl1.Controls.Add(this.gcRegisteredStudents);
             this.groupControl1.Controls.Add(this.cbAllYears);
             this.groupControl1.Controls.Add(this.cbAllCourses);
             this.groupControl1.Controls.Add(this.sbAttendanceSearch);
@@ -210,22 +210,22 @@
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "Attendanve Log";
             // 
-            // gridControl1
+            // gcRegisteredStudents
             // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gcRegisteredStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(5, 71);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(998, 257);
-            this.gridControl1.TabIndex = 3;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gcRegisteredStudents.Location = new System.Drawing.Point(5, 71);
+            this.gcRegisteredStudents.MainView = this.gridView1;
+            this.gcRegisteredStudents.Name = "gcRegisteredStudents";
+            this.gcRegisteredStudents.Size = new System.Drawing.Size(998, 257);
+            this.gcRegisteredStudents.TabIndex = 3;
+            this.gcRegisteredStudents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GridControl = this.gcRegisteredStudents;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -318,6 +318,7 @@
             this.btnImportImage.Size = new System.Drawing.Size(179, 60);
             this.btnImportImage.TabIndex = 0;
             this.btnImportImage.Text = "Import Student";
+            this.btnImportImage.Click += new System.EventHandler(this.btnImportImage_Click);
             // 
             // panelControl2
             // 
@@ -396,6 +397,7 @@
             this.btnRegisterStudent.StyleController = this.layoutControl4;
             this.btnRegisterStudent.TabIndex = 9;
             this.btnRegisterStudent.Text = "Register Student";
+            this.btnRegisterStudent.Click += new System.EventHandler(this.btnRegisterStudent_Click);
             // 
             // layoutControlGroup3
             // 
@@ -859,7 +861,7 @@
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRegisteredStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbAllYears.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbAllCourses.Properties)).EndInit();
@@ -983,7 +985,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gcRegisteredStudents;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.CheckedComboBoxEdit cbAllYears;
         private DevExpress.XtraEditors.ComboBoxEdit cbAllCourses;

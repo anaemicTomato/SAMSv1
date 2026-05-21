@@ -1,6 +1,7 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using SAMSv1.Login;
 using SAMSv1.MainForms;
 using System;
 using System.Collections.Generic;

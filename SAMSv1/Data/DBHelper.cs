@@ -10,9 +10,17 @@ namespace SAMSv1.Data
             AppDomain.CurrentDomain.BaseDirectory, "Data", "sams.db"
         );
 
-        public static string GetConnectionString()
+        // ── Add this ──
+        public static readonly string ConnectionString =
+            $"Data Source={DbPath};Version=3;";
+
+        public static SQLiteConnection GetConnection()
         {
-            return $"Data Source={DbPath};Version=3;";
+            var conn = new SQLiteConnection(ConnectionString);
+            conn.Open();
+            return conn;
         }
+
+        public static string GetConnectionString() => ConnectionString;
     }
 }
