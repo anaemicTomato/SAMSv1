@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
+using SAMSv1.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +35,12 @@ namespace SAMSv1.CtrlForms
         private void gridControl1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            var report = new StudentRPT();
+            report.ShowPreviewDialog();
         }
     }
 }
