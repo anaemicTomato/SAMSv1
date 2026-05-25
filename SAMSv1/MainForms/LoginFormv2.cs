@@ -46,9 +46,9 @@ namespace SAMSv1.MainForms
 
                         this.Hide();
 
-                        adminform.FormClosed += (s, args) => this.Close();
+                        adminform.ShowDialog();
 
-                        adminform.Show();
+                        this.Show();
                     }
                     else
                     {
