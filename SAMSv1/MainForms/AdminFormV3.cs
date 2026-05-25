@@ -2,6 +2,7 @@
 using SAMSv1.CtrlForms;
 using SAMSv1.Data;
 using SAMSv1.Services;
+using SAMSv1.Models;
 using System;
 using System.Windows.Forms;
 
@@ -9,10 +10,17 @@ namespace SAMSv1.MainForms
 {
     public partial class AdminFormV3 : DevExpress.XtraEditors.XtraForm
     {
-        public AdminFormV3()
+        private User _currentUser; //para ni sa role detection.
+
+        public AdminFormV3() { InitializeComponent(); } //temporary rani aron ma call ni nga form sa Program.cs kuhaon ra if ganahan namo mag login2
+
+        public AdminFormV3(User user)
         {
             InitializeComponent();
+
+            _currentUser = user;
         }
+        
 
         private void AdminFormV3_Load(object sender, EventArgs e)
         {
