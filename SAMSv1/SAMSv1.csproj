@@ -141,6 +141,12 @@
     <Compile Include="CtrlForms\StudentAttendanceControl.Designer.cs">
       <DependentUpon>StudentAttendanceControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlForms\UserManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\UserManagementControl.Designer.cs">
+      <DependentUpon>UserManagementControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlForms\UserManagementTestControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\StudentAttendanceControl.resx">
       <DependentUpon>StudentAttendanceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlForms\UserManagementControl.resx">
+      <DependentUpon>UserManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\UserManagementTestControl.resx">
       <DependentUpon>UserManagementTestControl.cs</DependentUpon>

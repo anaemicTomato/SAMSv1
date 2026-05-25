@@ -66,10 +66,11 @@ namespace SAMSv1.MainForms
             mainPanel.Controls.Add(page);
         }
 
+        // ── User Management module ──────────────────────────────────────
         private void ManageUsersModule_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            UserManagementTestControl page = new UserManagementTestControl();
+            UserManagementControl page = new UserManagementControl();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
