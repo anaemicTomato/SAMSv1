@@ -42,5 +42,30 @@ namespace SAMSv1.CtrlForms
             var report = new StudentRPT();
             report.ShowPreviewDialog();
         }
+
+        private void panelControl6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void calendarControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void calendarControl1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

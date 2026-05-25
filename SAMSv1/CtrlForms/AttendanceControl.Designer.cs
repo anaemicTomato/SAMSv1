@@ -31,6 +31,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.grpEvent = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cbAttendanceType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
@@ -51,7 +52,6 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -85,7 +85,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1108, 437, 812, 500);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1074, 746);
+            this.layoutControl1.Size = new System.Drawing.Size(1337, 811);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -101,7 +101,7 @@
             this.dataLayoutControl1.Name = "dataLayoutControl1";
             this.dataLayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1108, 393, 812, 500);
             this.dataLayoutControl1.Root = this.layoutControlGroup1;
-            this.dataLayoutControl1.Size = new System.Drawing.Size(1042, 714);
+            this.dataLayoutControl1.Size = new System.Drawing.Size(1305, 779);
             this.dataLayoutControl1.TabIndex = 4;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
@@ -116,9 +116,21 @@
             this.grpEvent.Location = new System.Drawing.Point(16, 76);
             this.grpEvent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.grpEvent.Name = "grpEvent";
-            this.grpEvent.Size = new System.Drawing.Size(625, 160);
+            this.grpEvent.Size = new System.Drawing.Size(788, 180);
             this.grpEvent.TabIndex = 12;
             this.grpEvent.Text = "Events";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl3.Location = new System.Drawing.Point(30, 133);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(96, 16);
+            this.labelControl3.TabIndex = 8;
+            this.labelControl3.Text = "Attendance Type";
             // 
             // cbAttendanceType
             // 
@@ -145,7 +157,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(321, 34);
+            this.dateEdit1.Size = new System.Drawing.Size(484, 34);
             this.dateEdit1.TabIndex = 6;
             // 
             // textEdit1
@@ -156,7 +168,7 @@
             this.textEdit1.Location = new System.Drawing.Point(133, 46);
             this.textEdit1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(321, 34);
+            this.textEdit1.Size = new System.Drawing.Size(484, 34);
             this.textEdit1.TabIndex = 4;
             // 
             // labelControl5
@@ -187,11 +199,11 @@
             // 
             this.panelControl1.Controls.Add(this.btnStartAttendance);
             this.panelControl1.Controls.Add(this.btnStopAttendance);
-            this.panelControl1.Location = new System.Drawing.Point(647, 76);
+            this.panelControl1.Location = new System.Drawing.Point(810, 76);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl1.MinimumSize = new System.Drawing.Size(0, 100);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(379, 160);
+            this.panelControl1.Size = new System.Drawing.Size(479, 180);
             this.panelControl1.TabIndex = 10;
             // 
             // btnStartAttendance
@@ -203,7 +215,7 @@
             this.btnStartAttendance.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnStartAttendance.Name = "btnStartAttendance";
             this.btnStartAttendance.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnStartAttendance.Size = new System.Drawing.Size(368, 128);
+            this.btnStartAttendance.Size = new System.Drawing.Size(468, 148);
             this.btnStartAttendance.TabIndex = 1;
             this.btnStartAttendance.Text = "Start Attendance";
             this.btnStartAttendance.Click += new System.EventHandler(this.btnStartAttendance_Click);
@@ -218,7 +230,7 @@
             this.btnStopAttendance.MinimumSize = new System.Drawing.Size(0, 90);
             this.btnStopAttendance.Name = "btnStopAttendance";
             this.btnStopAttendance.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnStopAttendance.Size = new System.Drawing.Size(380, 150);
+            this.btnStopAttendance.Size = new System.Drawing.Size(480, 170);
             this.btnStopAttendance.TabIndex = 0;
             this.btnStopAttendance.Text = "Stop";
             this.btnStopAttendance.Visible = false;
@@ -228,7 +240,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(16, 242);
+            this.labelControl2.Location = new System.Drawing.Point(16, 262);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(163, 23);
@@ -239,11 +251,11 @@
             // gcLiveAttendanceLog
             // 
             this.gcLiveAttendanceLog.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.gcLiveAttendanceLog.Location = new System.Drawing.Point(16, 271);
+            this.gcLiveAttendanceLog.Location = new System.Drawing.Point(16, 291);
             this.gcLiveAttendanceLog.MainView = this.gridView1;
             this.gcLiveAttendanceLog.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcLiveAttendanceLog.Name = "gcLiveAttendanceLog";
-            this.gcLiveAttendanceLog.Size = new System.Drawing.Size(1010, 427);
+            this.gcLiveAttendanceLog.Size = new System.Drawing.Size(1273, 472);
             this.gcLiveAttendanceLog.TabIndex = 7;
             this.gcLiveAttendanceLog.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -276,7 +288,7 @@
             this.layoutControlItem3,
             this.layoutControlItem7});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1042, 714);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1305, 779);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem2
@@ -284,25 +296,25 @@
             this.layoutControlItem2.Control = this.labelControl1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1016, 60);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1279, 60);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.gcLiveAttendanceLog;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 255);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 275);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(1016, 433);
+            this.layoutControlItem5.Size = new System.Drawing.Size(1279, 478);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.labelControl2;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 226);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 246);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(1016, 29);
+            this.layoutControlItem6.Size = new System.Drawing.Size(1279, 29);
             this.layoutControlItem6.Text = "Live Attendance View";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
@@ -310,9 +322,9 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.panelControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(631, 60);
+            this.layoutControlItem3.Location = new System.Drawing.Point(794, 60);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(385, 166);
+            this.layoutControlItem3.Size = new System.Drawing.Size(485, 186);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -321,7 +333,7 @@
             this.layoutControlItem7.Control = this.grpEvent;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(631, 166);
+            this.layoutControlItem7.Size = new System.Drawing.Size(794, 186);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -332,7 +344,7 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1074, 746);
+            this.Root.Size = new System.Drawing.Size(1337, 811);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -340,21 +352,9 @@
             this.layoutControlItem1.Control = this.dataLayoutControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1048, 720);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1311, 785);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl3.Location = new System.Drawing.Point(30, 133);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(96, 16);
-            this.labelControl3.TabIndex = 8;
-            this.labelControl3.Text = "Attendance Type";
             // 
             // AttendanceControl
             // 
@@ -364,7 +364,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "AttendanceControl";
-            this.Size = new System.Drawing.Size(1074, 746);
+            this.Size = new System.Drawing.Size(1337, 811);
             this.Load += new System.EventHandler(this.AttendanceControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
