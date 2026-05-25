@@ -135,7 +135,14 @@
     <Compile Include="CtrlForms\Scan\ScanRFID.Designer.cs">
       <DependentUpon>ScanRFID.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlForms\UserManagementTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\UserManagementTestControl.Designer.cs">
+      <DependentUpon>UserManagementTestControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\StudentRepository.cs" />
+    <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\Scan\ScanRFID.resx">
       <DependentUpon>ScanRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlForms\UserManagementTestControl.resx">
+      <DependentUpon>UserManagementTestControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
