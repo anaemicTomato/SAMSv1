@@ -43,7 +43,7 @@ namespace SAMSv1.MainForms
         private void AttendanceModule_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            AttendanceControl page = new AttendanceControl();
+            StudentAttendanceControl page = new StudentAttendanceControl();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
