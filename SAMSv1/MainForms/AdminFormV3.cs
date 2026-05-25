@@ -66,6 +66,14 @@ namespace SAMSv1.MainForms
             mainPanel.Controls.Add(page);
         }
 
+        private void ManageUsersModule_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            UserManagementTestControl page = new UserManagementTestControl();
+            page.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(page);
+        }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             HikvisionDevice.SDKCleanup();
@@ -73,5 +81,7 @@ namespace SAMSv1.MainForms
         }
 
         private void accordionControl1_Click(object sender, EventArgs e) { }
+
+        
     }
 }
