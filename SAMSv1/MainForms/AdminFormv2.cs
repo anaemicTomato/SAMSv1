@@ -30,7 +30,7 @@ namespace SAMSv1.MainForms
         private void btnRegisterStudent_Click(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear(); // remove previous page
-            RegisterStudentsControl page = new RegisterStudentsControl();
+                RegisterStudentsV2 page = new RegisterStudentsV2();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
