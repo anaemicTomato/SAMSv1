@@ -33,7 +33,9 @@
             this.AttendanceModule = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.RegisterStudentModule = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.ManageUsersModule = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
+            this.btnLogout = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             this.SuspendLayout();
@@ -44,10 +46,12 @@
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.AttendanceModule,
             this.RegisterStudentModule,
-            this.accordionControlElement1});
+            this.accordionControlElement1,
+            this.ManageUsersModule});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(275, 744);
+            this.accordionControl1.Size = new System.Drawing.Size(354, 884);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             this.accordionControl1.Click += new System.EventHandler(this.accordionControl1_Click);
@@ -97,23 +101,51 @@
             this.accordionControlElement1.Text = "Attendance Log";
             this.accordionControlElement1.Click += new System.EventHandler(this.accordionControlElement1_Click_1);
             // 
+            // ManageUsersModule
+            // 
+            this.ManageUsersModule.Appearance.Default.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.ManageUsersModule.Appearance.Default.Options.UseFont = true;
+            this.ManageUsersModule.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ManageUsersModule.ImageOptions.SvgImage")));
+            this.ManageUsersModule.Name = "ManageUsersModule";
+            this.ManageUsersModule.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.ManageUsersModule.Text = "Manage Users";
+            this.ManageUsersModule.Click += new System.EventHandler(this.ManageUsersModule_Click);
+            // 
             // mainPanel
             // 
+            this.mainPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(275, 0);
+            this.mainPanel.Location = new System.Drawing.Point(354, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(925, 744);
+            this.mainPanel.Size = new System.Drawing.Size(1189, 884);
             this.mainPanel.TabIndex = 1;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogout.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnLogout.Appearance.Options.UseFont = true;
+            this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
+            this.btnLogout.Location = new System.Drawing.Point(28, 797);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(146, 57);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // AdminFormV3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 744);
+            this.ClientSize = new System.Drawing.Size(1543, 884);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(720, 600);
             this.Name = "AdminFormV3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminFormV3";
             this.Load += new System.EventHandler(this.AdminFormV3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
@@ -129,5 +161,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement AttendanceModule;
         private DevExpress.XtraBars.Navigation.AccordionControlElement RegisterStudentModule;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement ManageUsersModule;
+        private DevExpress.XtraEditors.SimpleButton btnLogout;
     }
 }

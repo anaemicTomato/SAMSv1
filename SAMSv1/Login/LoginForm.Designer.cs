@@ -36,6 +36,7 @@
             this.tePassword = new DevExpress.XtraEditors.TextEdit();
             this.teStudentID = new DevExpress.XtraEditors.TextEdit();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelBackground)).BeginInit();
             this.panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             this.panelBackground.Appearance.BackColor = System.Drawing.Color.White;
             this.panelBackground.Appearance.Options.UseBackColor = true;
+            this.panelBackground.Controls.Add(this.simpleButton1);
             this.panelBackground.Controls.Add(this.btnLogin);
             this.panelBackground.Controls.Add(this.labelAdminLogin);
             this.panelBackground.Controls.Add(this.tePassword);
@@ -122,6 +124,15 @@
             this.teStudentID.TabIndex = 2;
             this.teStudentID.EditValueChanged += new System.EventHandler(this.teStudentID_EditValueChanged);
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(21, 243);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(94, 29);
+            this.simpleButton1.TabIndex = 5;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -150,5 +161,6 @@
         private DevExpress.XtraEditors.TextEdit tePassword;
         private DevExpress.XtraEditors.SimpleButton btnLogin;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

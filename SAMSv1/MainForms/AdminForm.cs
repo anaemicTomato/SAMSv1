@@ -29,7 +29,7 @@ namespace SAMSv1
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            LoadControl(new RegisterStudentsControl());
+            LoadControl(new RegisterStudentsV2());
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)
