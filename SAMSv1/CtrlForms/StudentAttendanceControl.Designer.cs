@@ -35,20 +35,22 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.topPanel = new DevExpress.XtraEditors.PanelControl();
             this.topLayoutControl = new DevExpress.XtraLayout.LayoutControl();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.labelForDebug = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelTotal = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelIncomplete = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.textTemporaryDisplay = new DevExpress.XtraEditors.TextEdit();
+            this.labelAbsent = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.txtForDebug = new DevExpress.XtraEditors.TextEdit();
+            this.labelPresent = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -101,8 +103,10 @@
             this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textTemporaryDisplay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtForDebug.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
@@ -203,7 +207,7 @@
             // 
             // topLayoutControl
             // 
-            this.topLayoutControl.Controls.Add(this.labelControl12);
+            this.topLayoutControl.Controls.Add(this.labelForDebug);
             this.topLayoutControl.Controls.Add(this.panelControl2);
             this.topLayoutControl.Controls.Add(this.labelControl3);
             this.topLayoutControl.Controls.Add(this.panelControl1);
@@ -218,25 +222,25 @@
             this.topLayoutControl.TabIndex = 0;
             this.topLayoutControl.Text = "layoutControl1";
             // 
-            // labelControl12
+            // labelForDebug
             // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Gray;
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Appearance.Options.UseForeColor = true;
-            this.labelControl12.Location = new System.Drawing.Point(911, 69);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(117, 23);
-            this.labelControl12.StyleController = this.topLayoutControl;
-            this.labelControl12.TabIndex = 11;
-            this.labelControl12.Text = "Loading Debug";
+            this.labelForDebug.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelForDebug.Appearance.ForeColor = System.Drawing.Color.Gray;
+            this.labelForDebug.Appearance.Options.UseFont = true;
+            this.labelForDebug.Appearance.Options.UseForeColor = true;
+            this.labelForDebug.Location = new System.Drawing.Point(911, 69);
+            this.labelForDebug.Name = "labelForDebug";
+            this.labelForDebug.Size = new System.Drawing.Size(117, 23);
+            this.labelForDebug.StyleController = this.topLayoutControl;
+            this.labelForDebug.TabIndex = 11;
+            this.labelForDebug.Text = "Loading Debug";
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.layoutControl1);
-            this.panelControl2.Location = new System.Drawing.Point(16, 179);
+            this.panelControl2.Location = new System.Drawing.Point(16, 184);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1012, 147);
+            this.panelControl2.Size = new System.Drawing.Size(1012, 142);
             this.panelControl2.TabIndex = 9;
             // 
             // layoutControl1
@@ -249,7 +253,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(2, 2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup2;
-            this.layoutControl1.Size = new System.Drawing.Size(1008, 143);
+            this.layoutControl1.Size = new System.Drawing.Size(1008, 138);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -258,24 +262,24 @@
             this.panelControl6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(92)))));
             this.panelControl6.Appearance.Options.UseBackColor = true;
             this.panelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl6.Controls.Add(this.labelControl11);
+            this.panelControl6.Controls.Add(this.labelTotal);
             this.panelControl6.Controls.Add(this.labelControl7);
             this.panelControl6.Location = new System.Drawing.Point(752, 16);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(240, 111);
+            this.panelControl6.Size = new System.Drawing.Size(240, 106);
             this.panelControl6.TabIndex = 7;
             // 
-            // labelControl11
+            // labelTotal
             // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(14, 37);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(70, 81);
-            this.labelControl11.TabIndex = 4;
-            this.labelControl11.Text = "00";
+            this.labelTotal.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelTotal.Appearance.Options.UseFont = true;
+            this.labelTotal.Appearance.Options.UseForeColor = true;
+            this.labelTotal.Location = new System.Drawing.Point(14, 37);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(70, 81);
+            this.labelTotal.TabIndex = 4;
+            this.labelTotal.Text = "00";
             // 
             // labelControl7
             // 
@@ -294,24 +298,24 @@
             this.panelControl5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(146)))), ((int)(((byte)(216)))));
             this.panelControl5.Appearance.Options.UseBackColor = true;
             this.panelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl5.Controls.Add(this.labelControl10);
+            this.panelControl5.Controls.Add(this.labelIncomplete);
             this.panelControl5.Controls.Add(this.labelControl6);
             this.panelControl5.Location = new System.Drawing.Point(507, 16);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(239, 111);
+            this.panelControl5.Size = new System.Drawing.Size(239, 106);
             this.panelControl5.TabIndex = 6;
             // 
-            // labelControl10
+            // labelIncomplete
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Appearance.Options.UseForeColor = true;
-            this.labelControl10.Location = new System.Drawing.Point(17, 37);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(70, 81);
-            this.labelControl10.TabIndex = 3;
-            this.labelControl10.Text = "00";
+            this.labelIncomplete.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIncomplete.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelIncomplete.Appearance.Options.UseFont = true;
+            this.labelIncomplete.Appearance.Options.UseForeColor = true;
+            this.labelIncomplete.Location = new System.Drawing.Point(17, 37);
+            this.labelIncomplete.Name = "labelIncomplete";
+            this.labelIncomplete.Size = new System.Drawing.Size(70, 81);
+            this.labelIncomplete.TabIndex = 3;
+            this.labelIncomplete.Text = "00";
             // 
             // labelControl6
             // 
@@ -330,24 +334,33 @@
             this.panelControl4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(81)))), ((int)(((byte)(81)))));
             this.panelControl4.Appearance.Options.UseBackColor = true;
             this.panelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl4.Controls.Add(this.labelControl9);
+            this.panelControl4.Controls.Add(this.textTemporaryDisplay);
+            this.panelControl4.Controls.Add(this.labelAbsent);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Location = new System.Drawing.Point(261, 16);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(240, 111);
+            this.panelControl4.Size = new System.Drawing.Size(240, 106);
             this.panelControl4.TabIndex = 5;
             // 
-            // labelControl9
+            // textTemporaryDisplay
             // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(12, 37);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(70, 81);
-            this.labelControl9.TabIndex = 2;
-            this.labelControl9.Text = "00";
+            this.textTemporaryDisplay.Location = new System.Drawing.Point(99, 4);
+            this.textTemporaryDisplay.Name = "textTemporaryDisplay";
+            this.textTemporaryDisplay.Size = new System.Drawing.Size(125, 34);
+            this.textTemporaryDisplay.TabIndex = 3;
+            this.textTemporaryDisplay.Visible = false;
+            // 
+            // labelAbsent
+            // 
+            this.labelAbsent.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAbsent.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelAbsent.Appearance.Options.UseFont = true;
+            this.labelAbsent.Appearance.Options.UseForeColor = true;
+            this.labelAbsent.Location = new System.Drawing.Point(12, 37);
+            this.labelAbsent.Name = "labelAbsent";
+            this.labelAbsent.Size = new System.Drawing.Size(70, 81);
+            this.labelAbsent.TabIndex = 2;
+            this.labelAbsent.Text = "00";
             // 
             // labelControl5
             // 
@@ -366,24 +379,33 @@
             this.panelControl3.Appearance.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl3.Controls.Add(this.labelControl8);
+            this.panelControl3.Controls.Add(this.txtForDebug);
+            this.panelControl3.Controls.Add(this.labelPresent);
             this.panelControl3.Controls.Add(this.labelControl4);
             this.panelControl3.Location = new System.Drawing.Point(16, 16);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(239, 111);
+            this.panelControl3.Size = new System.Drawing.Size(239, 106);
             this.panelControl3.TabIndex = 4;
             // 
-            // labelControl8
+            // txtForDebug
             // 
-            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(11, 37);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(70, 81);
-            this.labelControl8.TabIndex = 1;
-            this.labelControl8.Text = "00";
+            this.txtForDebug.Location = new System.Drawing.Point(87, 4);
+            this.txtForDebug.Name = "txtForDebug";
+            this.txtForDebug.Size = new System.Drawing.Size(125, 34);
+            this.txtForDebug.TabIndex = 2;
+            this.txtForDebug.Visible = false;
+            // 
+            // labelPresent
+            // 
+            this.labelPresent.Appearance.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPresent.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelPresent.Appearance.Options.UseFont = true;
+            this.labelPresent.Appearance.Options.UseForeColor = true;
+            this.labelPresent.Location = new System.Drawing.Point(11, 37);
+            this.labelPresent.Name = "labelPresent";
+            this.labelPresent.Size = new System.Drawing.Size(70, 81);
+            this.labelPresent.TabIndex = 1;
+            this.labelPresent.Text = "00";
             // 
             // labelControl4
             // 
@@ -407,7 +429,7 @@
             this.layoutControlItem13,
             this.layoutControlItem14});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1008, 143);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1008, 138);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem11
@@ -415,7 +437,7 @@
             this.layoutControlItem11.Control = this.panelControl3;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(245, 117);
+            this.layoutControlItem11.Size = new System.Drawing.Size(245, 112);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -424,7 +446,7 @@
             this.layoutControlItem12.Control = this.panelControl4;
             this.layoutControlItem12.Location = new System.Drawing.Point(245, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(246, 117);
+            this.layoutControlItem12.Size = new System.Drawing.Size(246, 112);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
@@ -433,7 +455,7 @@
             this.layoutControlItem13.Control = this.panelControl5;
             this.layoutControlItem13.Location = new System.Drawing.Point(491, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(245, 117);
+            this.layoutControlItem13.Size = new System.Drawing.Size(245, 112);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -442,7 +464,7 @@
             this.layoutControlItem14.Control = this.panelControl6;
             this.layoutControlItem14.Location = new System.Drawing.Point(736, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(246, 117);
+            this.layoutControlItem14.Size = new System.Drawing.Size(246, 112);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -520,7 +542,7 @@
             // 
             // txtEventName
             // 
-            this.txtEventName.Location = new System.Drawing.Point(16, 128);
+            this.txtEventName.Location = new System.Drawing.Point(16, 133);
             this.txtEventName.MinimumSize = new System.Drawing.Size(0, 45);
             this.txtEventName.Name = "txtEventName";
             this.txtEventName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -533,7 +555,7 @@
             // 
             // cbAttendanceType
             // 
-            this.cbAttendanceType.Location = new System.Drawing.Point(743, 128);
+            this.cbAttendanceType.Location = new System.Drawing.Point(743, 133);
             this.cbAttendanceType.MinimumSize = new System.Drawing.Size(0, 45);
             this.cbAttendanceType.Name = "cbAttendanceType";
             this.cbAttendanceType.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -607,7 +629,7 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtEventName;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 112);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 117);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(708, 51);
             this.layoutControlItem8.Text = "Event Name";
@@ -618,16 +640,16 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.panelControl2;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 163);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(1018, 153);
+            this.layoutControlItem10.Size = new System.Drawing.Size(1018, 148);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.cbAttendanceType;
-            this.layoutControlItem9.Location = new System.Drawing.Point(727, 112);
+            this.layoutControlItem9.Location = new System.Drawing.Point(727, 117);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(291, 51);
             this.layoutControlItem9.Text = "Attendance  Stype";
@@ -638,7 +660,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(708, 112);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(708, 117);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(19, 51);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -655,7 +677,7 @@
             // 
             this.layoutControlItem15.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem15.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem15.Control = this.labelControl12;
+            this.layoutControlItem15.Control = this.labelForDebug;
             this.layoutControlItem15.Location = new System.Drawing.Point(895, 53);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(123, 29);
@@ -668,7 +690,7 @@
             this.emptySpaceItem6.AllowHotTrack = false;
             this.emptySpaceItem6.Location = new System.Drawing.Point(0, 82);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(1018, 30);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(1018, 35);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Root
@@ -754,6 +776,7 @@
             this.Controls.Add(this.BaseLayout);
             this.Name = "StudentAttendanceControl";
             this.Size = new System.Drawing.Size(1080, 720);
+            this.Load += new System.EventHandler(this.StudentAttendanceControl_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.BaseLayout)).EndInit();
             this.BaseLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
@@ -776,9 +799,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textTemporaryDisplay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtForDebug.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
@@ -856,17 +881,19 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelAbsent;
+        private DevExpress.XtraEditors.LabelControl labelPresent;
+        private DevExpress.XtraEditors.LabelControl labelTotal;
+        private DevExpress.XtraEditors.LabelControl labelIncomplete;
         private DevExpress.XtraEditors.SimpleButton btnStopAttendance;
         private DevExpress.XtraEditors.SimpleButton btnStartAttendance;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl labelForDebug;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+        private DevExpress.XtraEditors.TextEdit txtForDebug;
+        private DevExpress.XtraEditors.TextEdit textTemporaryDisplay;
     }
 }

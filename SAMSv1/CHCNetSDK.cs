@@ -152,6 +152,23 @@ namespace FaceManagement
             }
         }
 
+        //
+
+        public delegate void MSGCallBack_V31(int lCommand, ref NET_DVR_ALARMER pAlarmer, IntPtr pAlarmInfo, uint dwBufLen, IntPtr pUser);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NET_DVR_ALARMER
+        {
+            public int lUserID;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+            public byte[] sDeviceIP;
+
+            public byte byDeviceType;
+        }
+
+        //
+        
         [StructLayout(LayoutKind.Sequential)]
         public struct NET_DVR_DEVICEINFO_V40
         {
@@ -300,6 +317,13 @@ namespace FaceManagement
 
         #endregion
 
+        [DllImport(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        public static extern bool NET_DVR_SetDVRMessageCallBack_V31(MSGCallBack_V31 fMessageCallBack, IntPtr pUser);
+
+        [DllImport(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        public static extern bool NET_DVR_SetupAlarmChan_V41(int lUserID, ref NET_DVR_ALARMER lpAlarmer);
+
+        //
 
         #region  HCNetSDK.dll function definition
         [DllImport(@"..\..\..\HCNetSDK\HCNetSDK.dll")]

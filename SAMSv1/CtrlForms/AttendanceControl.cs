@@ -156,8 +156,7 @@ namespace SAMSv1.CtrlForms
 
                     try
                     {
-                        FaceService.SaveAttendance(
-                            studentId, evt.Date, evt.TimeIn, evt.Status);
+                      
 
                         SafeInvoke(() =>
                         {
