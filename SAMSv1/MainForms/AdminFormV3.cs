@@ -117,5 +117,10 @@ namespace SAMSv1.MainForms
             e.Cancel = false;
             Application.Exit();
         }
+
+        private void accordionContentContainer1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

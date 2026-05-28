@@ -103,5 +103,25 @@ namespace SAMSv1.CtrlForms
             var report = new Reports.StudentRPT();
             report.ShowPreviewDialog();
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxYears_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
