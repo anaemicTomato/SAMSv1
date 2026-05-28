@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterStudentsV2));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnClearFields = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gcRegisteredStudents = new DevExpress.XtraGrid.GridControl();
@@ -63,6 +65,7 @@
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -95,8 +98,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.barAndDockingController1 = new DevExpress.XtraBars.BarAndDockingController(this.components);
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnClearFields = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -128,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
@@ -157,7 +159,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -186,6 +187,27 @@
             this.layoutControl1.Size = new System.Drawing.Size(1074, 746);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnClearFields
+            // 
+            this.btnClearFields.Appearance.BackColor = System.Drawing.Color.DarkGray;
+            this.btnClearFields.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearFields.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btnClearFields.Appearance.Options.UseBackColor = true;
+            this.btnClearFields.Appearance.Options.UseFont = true;
+            this.btnClearFields.Appearance.Options.UseForeColor = true;
+            this.btnClearFields.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btnClearFields.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnClearFields.ImageOptions.ImageToTextIndent = 20;
+            this.btnClearFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClearFields.ImageOptions.SvgImage")));
+            this.btnClearFields.Location = new System.Drawing.Point(540, 212);
+            this.btnClearFields.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.btnClearFields.MinimumSize = new System.Drawing.Size(0, 60);
+            this.btnClearFields.Name = "btnClearFields";
+            this.btnClearFields.Size = new System.Drawing.Size(256, 60);
+            this.btnClearFields.StyleController = this.layoutControl1;
+            this.btnClearFields.TabIndex = 16;
+            this.btnClearFields.Text = "Clear";
             // 
             // labelControl3
             // 
@@ -318,8 +340,14 @@
             // 
             this.btnDeleteStudent.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(81)))), ((int)(((byte)(81)))));
             this.btnDeleteStudent.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteStudent.Appearance.ForeColor = System.Drawing.Color.White;
             this.btnDeleteStudent.Appearance.Options.UseBackColor = true;
             this.btnDeleteStudent.Appearance.Options.UseFont = true;
+            this.btnDeleteStudent.Appearance.Options.UseForeColor = true;
+            this.btnDeleteStudent.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btnDeleteStudent.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnDeleteStudent.ImageOptions.ImageToTextIndent = 20;
+            this.btnDeleteStudent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDeleteStudent.ImageOptions.SvgImage")));
             this.btnDeleteStudent.Location = new System.Drawing.Point(802, 212);
             this.btnDeleteStudent.MinimumSize = new System.Drawing.Size(0, 60);
             this.btnDeleteStudent.Name = "btnDeleteStudent";
@@ -333,8 +361,14 @@
             // 
             this.btnUpdateStudent.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(146)))), ((int)(((byte)(216)))));
             this.btnUpdateStudent.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateStudent.Appearance.ForeColor = System.Drawing.Color.White;
             this.btnUpdateStudent.Appearance.Options.UseBackColor = true;
             this.btnUpdateStudent.Appearance.Options.UseFont = true;
+            this.btnUpdateStudent.Appearance.Options.UseForeColor = true;
+            this.btnUpdateStudent.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btnUpdateStudent.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnUpdateStudent.ImageOptions.ImageToTextIndent = 20;
+            this.btnUpdateStudent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUpdateStudent.ImageOptions.SvgImage")));
             this.btnUpdateStudent.Location = new System.Drawing.Point(278, 212);
             this.btnUpdateStudent.MinimumSize = new System.Drawing.Size(0, 60);
             this.btnUpdateStudent.Name = "btnUpdateStudent";
@@ -378,8 +412,14 @@
             // 
             this.btnRegisterStudent.Appearance.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRegisterStudent.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegisterStudent.Appearance.ForeColor = System.Drawing.Color.White;
             this.btnRegisterStudent.Appearance.Options.UseBackColor = true;
             this.btnRegisterStudent.Appearance.Options.UseFont = true;
+            this.btnRegisterStudent.Appearance.Options.UseForeColor = true;
+            this.btnRegisterStudent.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btnRegisterStudent.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnRegisterStudent.ImageOptions.ImageToTextIndent = 20;
+            this.btnRegisterStudent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRegisterStudent.ImageOptions.SvgImage")));
             this.btnRegisterStudent.Location = new System.Drawing.Point(16, 212);
             this.btnRegisterStudent.MinimumSize = new System.Drawing.Size(0, 60);
             this.btnRegisterStudent.Name = "btnRegisterStudent";
@@ -556,6 +596,15 @@
             this.layoutControlItem22.Size = new System.Drawing.Size(162, 29);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
+            // 
+            // layoutControlItem27
+            // 
+            this.layoutControlItem27.Control = this.btnClearFields;
+            this.layoutControlItem27.Location = new System.Drawing.Point(524, 196);
+            this.layoutControlItem27.Name = "layoutControlItem27";
+            this.layoutControlItem27.Size = new System.Drawing.Size(262, 66);
+            this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem27.TextVisible = false;
             // 
             // comboBoxEdit11
             // 
@@ -875,30 +924,6 @@
             this.emptySpaceItem9.Size = new System.Drawing.Size(1048, 10);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnClearFields
-            // 
-            this.btnClearFields.Appearance.BackColor = System.Drawing.Color.DarkGray;
-            this.btnClearFields.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearFields.Appearance.Options.UseBackColor = true;
-            this.btnClearFields.Appearance.Options.UseFont = true;
-            this.btnClearFields.Location = new System.Drawing.Point(540, 212);
-            this.btnClearFields.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.btnClearFields.MinimumSize = new System.Drawing.Size(0, 60);
-            this.btnClearFields.Name = "btnClearFields";
-            this.btnClearFields.Size = new System.Drawing.Size(256, 60);
-            this.btnClearFields.StyleController = this.layoutControl1;
-            this.btnClearFields.TabIndex = 16;
-            this.btnClearFields.Text = "Clear";
-            // 
-            // layoutControlItem27
-            // 
-            this.layoutControlItem27.Control = this.btnClearFields;
-            this.layoutControlItem27.Location = new System.Drawing.Point(524, 196);
-            this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(262, 66);
-            this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem27.TextVisible = false;
-            // 
             // RegisterStudentsV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -909,7 +934,6 @@
             this.Size = new System.Drawing.Size(1074, 746);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            this.layoutControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcRegisteredStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -940,6 +964,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
@@ -969,7 +994,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             this.ResumeLayout(false);
 
         }

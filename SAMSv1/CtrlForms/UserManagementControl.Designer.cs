@@ -284,7 +284,7 @@
             this.btnClearFields.Appearance.Options.UseForeColor = true;
             this.btnClearFields.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.btnClearFields.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnClearFields.ImageOptions.ImageToTextIndent = 10;
+            this.btnClearFields.ImageOptions.ImageToTextIndent = 20;
             this.btnClearFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClearFields.ImageOptions.SvgImage")));
             this.btnClearFields.Location = new System.Drawing.Point(525, 116);
             this.btnClearFields.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -306,7 +306,7 @@
             this.btnDeleteUser.Appearance.Options.UseForeColor = true;
             this.btnDeleteUser.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.btnDeleteUser.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnDeleteUser.ImageOptions.ImageToTextIndent = 10;
+            this.btnDeleteUser.ImageOptions.ImageToTextIndent = 20;
             this.btnDeleteUser.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDeleteUser.ImageOptions.SvgImage")));
             this.btnDeleteUser.Location = new System.Drawing.Point(779, 116);
             this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -328,7 +328,7 @@
             this.btnUpdateUser.Appearance.Options.UseForeColor = true;
             this.btnUpdateUser.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.btnUpdateUser.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnUpdateUser.ImageOptions.ImageToTextIndent = 10;
+            this.btnUpdateUser.ImageOptions.ImageToTextIndent = 20;
             this.btnUpdateUser.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUpdateUser.ImageOptions.SvgImage")));
             this.btnUpdateUser.Location = new System.Drawing.Point(270, 116);
             this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -352,7 +352,7 @@
             this.btnAddUser.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.btnAddUser.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.btnAddUser.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnAddUser.ImageOptions.ImageToTextIndent = 10;
+            this.btnAddUser.ImageOptions.ImageToTextIndent = 20;
             this.btnAddUser.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAddUser.ImageOptions.SvgImage")));
             this.btnAddUser.Location = new System.Drawing.Point(16, 116);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
