@@ -15,7 +15,7 @@ namespace SAMSv1.Services
         {
             var conn = new SQLiteConnection(_connString);
             conn.Open();
-            return conn;
+            return           conn;
         }
 
         // ── GET STUDENT BY ID NUMBER ──────────────────────────────
@@ -358,190 +358,7 @@ namespace SAMSv1.Services
             return list;
         }
 
-        // ── GRID ROW MODEL ────────────────────────────────────────
 
-        // ── GET ALL EVENT NAMES FOR COMBOBOX ─────────────────────
-        public static List<string> GetAllEventNames()
-        {
-            var list = new List<string>();
-            const string sql = @"
-        SELECT DISTINCT EventName FROM EventsTable
-        ORDER BY EventName";
-
-            using (var conn = OpenConn())
-            using (var cmd = new SQLiteCommand(sql, conn))
-            using (var r = cmd.ExecuteReader())
-                while (r.Read())
-                    list.Add(r.GetString(0));
-
-            return list;
-        }
-
-        // ── GET ATTENDANCE LOGS WITH FILTERS ─────────────────────
-        public static List<AttendanceLogRow> GetAttendanceLogs(
-            string eventName, string nameSearch, string course, string yearLevel, string session, string eventDescription)
-        {
-            var list = new List<AttendanceLogRow>();
-
-            const string sql = @"
-            SELECT
-                a.AttendanceID,
-                s.IdNumber,
-                s.FullName,
-                s.Course,
-                s.YearLevel,
-                e.EventName,
-                a.Session,
-                a.EventDescription,
-                a.Date,
-                a.TimeIn,
-                a.TimeOut,
-                a.AttendanceType,
-                a.Status
-            FROM AttendanceTable a
-            INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-            INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-            WHERE 1=1
-              AND (@eventName        IS NULL OR e.EventName        = @eventName)
-              AND (@nameSearch       IS NULL OR s.FullName         LIKE '%' || @nameSearch || '%'
-                                            OR s.IdNumber          LIKE '%' || @nameSearch || '%')
-              AND (@course           IS NULL OR s.Course           = @course)
-              AND (@yearLevel        IS NULL OR s.YearLevel        = @yearLevel)
-              AND (@session          IS NULL OR a.Session          = @session)          -- ← add
-              AND (@eventDescription IS NULL OR a.EventDescription = @eventDescription) -- ← add
-            ORDER BY a.Date DESC, a.TimeIn DESC";
-
-            using (var conn = OpenConn())
-            using (var cmd = new SQLiteCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@nameSearch", (object)nameSearch ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@course", (object)course ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@yearLevel", (object)yearLevel ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@session", (object)session ?? DBNull.Value); // ← add
-                cmd.Parameters.AddWithValue("@eventDescription", (object)eventDescription ?? DBNull.Value); // ← add
-
-                using (var r = cmd.ExecuteReader())
-                {
-                    while (r.Read())
-                    {
-                        list.Add(new AttendanceLogRow
-                        {
-                            AttendanceID = r.GetInt32(0),
-                            IdNumber = r.IsDBNull(1) ? "" : r.GetString(1),
-                            FullName = r.IsDBNull(2) ? "" : r.GetString(2),
-                            Course = r.IsDBNull(3) ? "" : r.GetString(3),
-                            YearLevel = r.IsDBNull(4) ? "" : r.GetString(4),
-                            EventName = r.IsDBNull(5) ? "" : r.GetString(5),
-                            Session = r.IsDBNull(6) ? "" : r.GetString(6),
-                            EventDescription = r.IsDBNull(7) ? "" : r.GetString(7),
-                            Date = r.IsDBNull(8) ? "" : r.GetString(8),
-                            TimeIn = r.IsDBNull(9) ? "" : r.GetString(9),
-                            TimeOut = r.IsDBNull(10) ? "" : r.GetString(10),
-                            AttendanceType = r.IsDBNull(11) ? "" : r.GetString(11),
-                            Status = r.IsDBNull(12) ? "" : r.GetString(12),
-                        });
-                    }
-                }
-            }
-            return list;
-        }
-
-        public static AttendanceSummary GetAttendanceSummary(
-    string eventName, string course, string yearLevel)
-        {
-            // TotalAttendance = total scan slots used
-            //   Complete = 2 (both TimeIn + TimeOut filled)
-            //   Time-In only OR Time-Out only = 1
-            //   No record = 0
-            const string attendanceSql = @"
-        SELECT SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
-        FROM AttendanceTable a
-        INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-        INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-        WHERE 1=1
-          AND (@eventName IS NULL OR e.EventName = @eventName)
-          AND (@course    IS NULL OR s.Course    = @course)
-          AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)";
-
-            // TotalPresent = present scan slots
-            //   Complete = 2 present slots
-            //   Incomplete (Time-In or Time-Out only) = 1 present slot
-            //   No record = 0 present slots
-            const string presentSql = @"
-        SELECT SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
-        FROM AttendanceTable a
-        INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-        INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-        WHERE 1=1
-          AND (@eventName IS NULL OR e.EventName = @eventName)
-          AND (@course    IS NULL OR s.Course    = @course)
-          AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)";
-
-            // TotalAbsent:
-            //   Each event has 2 slots per student (Time-In + Time-Out)
-            //   Complete = 0 absent slots
-            //   Incomplete = 1 absent slot
-            //   No record = 2 absent slots
-            const string absentSql = @"
-        SELECT
-            -- Total possible slots for ALL students in this event
-            (
-                SELECT COUNT(*) * 2
-                FROM StudentsTable s2
-                WHERE (@course    IS NULL OR s2.Course    = @course)
-                  AND (@yearLevel IS NULL OR s2.YearLevel = @yearLevel)
-            )
-            -
-            -- Subtract present slots already counted
-            (
-                SELECT COALESCE(SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END), 0)
-                FROM AttendanceTable a
-                INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-                INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-                WHERE 1=1
-                  AND (@eventName IS NULL OR e.EventName = @eventName)
-                  AND (@course    IS NULL OR s.Course    = @course)
-                  AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)
-            )";
-
-            var summary = new AttendanceSummary();
-
-            using (var conn = OpenConn())
-            {
-                using (var cmd = new SQLiteCommand(attendanceSql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@course", (object)course ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@yearLevel", (object)yearLevel ?? DBNull.Value);
-                    var result = cmd.ExecuteScalar();
-                    summary.TotalAttendance = result == DBNull.Value || result == null
-                        ? 0 : Convert.ToInt32(result);
-                }
-
-                using (var cmd = new SQLiteCommand(presentSql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@course", (object)course ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@yearLevel", (object)yearLevel ?? DBNull.Value);
-                    var result = cmd.ExecuteScalar();
-                    summary.TotalPresent = result == DBNull.Value || result == null
-                        ? 0 : Convert.ToInt32(result);
-                }
-
-                using (var cmd = new SQLiteCommand(absentSql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@course", (object)course ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@yearLevel", (object)yearLevel ?? DBNull.Value);
-                    var result = cmd.ExecuteScalar();
-                    summary.TotalAbsent = result == DBNull.Value || result == null
-                        ? 0 : Math.Max(0, Convert.ToInt32(result));
-                }
-            }
-
-            return summary;
-        }
 
         // ── GET STUDENT ATTENDANCE SUMMARY ───────────────────────
         // TotalAttendance = sum across all events this student attended
@@ -550,7 +367,7 @@ namespace SAMSv1.Services
         // TotalPresent   = distinct events where student has a Complete row
         // TotalAbsent    = total events in DB minus events student attended at all
         public static (int TotalAttendance, int TotalPresent, int TotalAbsent)
-    GetStudentSummary(int studentId)
+            GetStudentSummary(int studentId)
         {
             // Total attendance slots = number of events × 2 (each event has Time-In + Time-Out)
             const string totalSlotsSql = @"
@@ -618,6 +435,107 @@ namespace SAMSv1.Services
                     list.Add(r.GetString(0));
 
             return list;
+        }
+
+        // ── UPDATE STUDENT ────────────────────────────────────────
+        public static void UpdateStudent(string newIdNumber, string fullName,
+                                          string course, string yearLevel,
+                                          string oldIdNumber)
+        {
+            const string sql = @"
+        UPDATE StudentsTable
+        SET    IdNumber  = @newId,
+               FullName  = @name,
+               Course    = @course,
+               YearLevel = @year
+        WHERE  IdNumber  = @oldId";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@newId", newIdNumber.Trim());
+                cmd.Parameters.AddWithValue("@name", fullName ?? "");
+                cmd.Parameters.AddWithValue("@course", course ?? "");
+                cmd.Parameters.AddWithValue("@year", yearLevel ?? "");
+                cmd.Parameters.AddWithValue("@oldId", oldIdNumber.Trim());
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // ── GET ATTENDANCE RECORDS FOR A SPECIFIC STUDENT ────────
+        public static List<AttendanceLogRow> GetAttendanceByStudent(int studentId)
+        {
+            var list = new List<AttendanceLogRow>();
+
+            // LEFT JOIN — returns ALL events, with NULL attendance columns
+            // for events the student never attended
+            const string sql = @"
+        SELECT
+            a.AttendanceID,
+            s.IdNumber,
+            s.FullName,
+            s.Course,
+            s.YearLevel,
+            e.EventName,
+            a.Session,
+            a.EventDescription,
+            e.EventDate,
+            a.TimeIn,
+            a.TimeOut,
+            a.AttendanceType,
+            a.Status
+        FROM EventsTable e
+        CROSS JOIN StudentsTable s
+        LEFT JOIN AttendanceTable a
+               ON a.EventID   = e.EventID
+              AND a.StudentID = s.StudentID
+        WHERE s.StudentID = @sid
+        ORDER BY e.EventDate DESC, e.EventID DESC";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@sid", studentId);
+                using (var r = cmd.ExecuteReader())
+                {
+                    while (r.Read())
+                    {
+                        bool isAbsent = r.IsDBNull(0); // AttendanceID is NULL = no record
+
+                        list.Add(new AttendanceLogRow
+                        {
+                            AttendanceID = isAbsent ? 0 : r.GetInt32(0),
+                            IdNumber = r.IsDBNull(1) ? "" : r.GetString(1),
+                            FullName = r.IsDBNull(2) ? "" : r.GetString(2),
+                            Course = r.IsDBNull(3) ? "" : r.GetString(3),
+                            YearLevel = r.IsDBNull(4) ? "" : r.GetString(4),
+                            EventName = r.IsDBNull(5) ? "" : r.GetString(5),
+                            Session = r.IsDBNull(6) ? "" : r.GetString(6),
+                            EventDescription = r.IsDBNull(7) ? "No description" : r.GetString(7),
+                            Date = r.IsDBNull(8) ? "" : r.GetString(8),
+                            TimeIn = isAbsent ? "—" : (r.IsDBNull(9) ? "—" : r.GetString(9)),
+                            TimeOut = isAbsent ? "—" : (r.IsDBNull(10) ? "—" : r.GetString(10)),
+                            AttendanceType = isAbsent ? "Absent" : (r.IsDBNull(11) ? "" : r.GetString(11)),
+                            Status = isAbsent ? "Absent" : (r.IsDBNull(12) ? "" : r.GetString(12)),
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        // ── DELETE STUDENT ────────────────────────────────────────
+        public static void DeleteStudent(string idNumber)
+        {
+            const string sql = @"
+        DELETE FROM StudentsTable WHERE IdNumber = @id";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", idNumber.Trim());
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }

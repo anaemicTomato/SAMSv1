@@ -117,5 +117,25 @@ namespace SAMSv1.MainForms
             e.Cancel = false;
             Application.Exit();
         }
+
+        private void accordionContentContainer1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

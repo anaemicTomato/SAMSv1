@@ -19,6 +19,8 @@ namespace SAMSv1.Services
         public abstract bool Connect();
         public abstract void Disconnect();
         public abstract long GetLatestSerialNo();
+
+        public abstract bool DeleteStudent(string idNumber);
         public abstract List<Attendance> PollNewEvents(
             long afterSerialNo, int windowMinutes = 2);
 

@@ -166,15 +166,16 @@ namespace SAMSv1
                 string desc = string.IsNullOrWhiteSpace(txtEVENTDESC.Text)
                                     ? null : txtEVENTDESC.Text.Trim();
 
-               // FaceService.SaveAttendance(
-             //       studentId: studentItem.Id,
-               //     date: today,
-              //      time: now,
-               //     attendanceType: type,
-               //     eventId: eventItem.Id,
-               //     session: session,
-               //     eventDescription: desc
-             //   );
+                FaceService.SaveAttendance(
+                    studentId: studentItem.Id,
+                    date: today,
+                    time: now,
+                    attendanceType: type,
+                    eventId: eventItem.Id,
+                    session: session,
+                    eventDescription: desc,
+                    semester: "1st"
+                );
 
                 XtraMessageBox.Show("Attendance record saved!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
