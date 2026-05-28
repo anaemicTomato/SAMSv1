@@ -53,6 +53,7 @@
             // mainPanel
             // 
             this.mainPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.mainPanel.ContentImage = ((System.Drawing.Image)(resources.GetObject("mainPanel.ContentImage")));
             this.mainPanel.ContentImageAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(275, 0);

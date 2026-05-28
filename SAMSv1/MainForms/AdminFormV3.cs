@@ -1,8 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using SAMSv1.CtrlForms;
 using SAMSv1.Data;
-using SAMSv1.Services;
+using SAMSv1.Login;
 using SAMSv1.Models;
+using SAMSv1.Services;
 using System;
 using System.Windows.Forms;
 
@@ -95,6 +96,7 @@ namespace SAMSv1.MainForms
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
 

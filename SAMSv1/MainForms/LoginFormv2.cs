@@ -67,9 +67,6 @@ namespace SAMSv1.MainForms
             }
         }
 
-        private void txtUsername_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

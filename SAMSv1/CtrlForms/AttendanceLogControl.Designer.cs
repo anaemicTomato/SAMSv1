@@ -405,12 +405,14 @@
             this.cbSearchEvent.Location = new System.Drawing.Point(16, 24);
             this.cbSearchEvent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbSearchEvent.Name = "cbSearchEvent";
+            this.cbSearchEvent.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSearchEvent.Properties.Appearance.Options.UseFont = true;
             this.cbSearchEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbSearchEvent.Properties.Items.AddRange(new object[] {
             "Pasiklaban",
             "Founders"});
-            this.cbSearchEvent.Size = new System.Drawing.Size(293, 34);
+            this.cbSearchEvent.Size = new System.Drawing.Size(293, 36);
             this.cbSearchEvent.TabIndex = 7;
             // 
             // panelControl9

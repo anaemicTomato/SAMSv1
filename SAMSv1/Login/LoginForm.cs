@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraReports.UI;
+using SAMSv1.Data;
 using SAMSv1.MainForms;
 using SAMSv1.Models;
 using SAMSv1.Reports;
@@ -14,6 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace SAMSv1.Login
 {
@@ -74,33 +77,56 @@ namespace SAMSv1.Login
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            string studentID = teStudentID.Text.Trim();
-            string password = tePassword.Text.Trim();
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            if (studentID == "admin" && password == "1234")
+            try
             {
-                MessageBox.Show(
-                    "Login Successful!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                using (var connection = DBHelper.GetConnection())
+                {
+                    string query = @"
+                        SELECT *
+                        FROM UserTable
+                        WHERE Username = @Username
+                        AND Password = @Password";
 
-                AdminFormv2 dashboard = new AdminFormv2();
-                dashboard.Show();
+                    var user = connection.QueryFirstOrDefault<User>(
+                        query,
+                        new
+                        {
+                            Username = username,
+                            Password = password
+                        });
 
-                this.Hide();
+                    if (user != null)
+                    {
+                        MessageBox.Show("Login Successful!");
+
+                        AdminFormV3 adminform = new AdminFormV3(user);
+
+                        this.Hide();
+
+                        adminform.ShowDialog();
+
+                        this.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Invalid username or password.",
+                            "Login Failed",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Invalid Student ID or Password",
-                    "Login Failed",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-
+                MessageBox.Show(ex.Message);
             }
         }
+        
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
