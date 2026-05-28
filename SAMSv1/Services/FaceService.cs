@@ -1,5 +1,4 @@
-﻿using SAMSv1.CtrlForms;
-using SAMSv1.Models;
+﻿using SAMSv1.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -95,6 +94,37 @@ namespace SAMSv1.Services
             }
         }
 
+        // ── GET ATTENDANCE COUNT FOR EVENT ───────────────────────
+        // Used to check if an event has any records before deleting it
+        public static int GetAttendanceCountForEvent(int eventId)
+        {
+            const string sql = @"
+        SELECT COUNT(*) FROM AttendanceTable
+        WHERE EventID = @eid";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@eid", eventId);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        // ── DELETE EVENT ──────────────────────────────────────────
+        // Only called when event has zero attendance records
+        public static void DeleteEvent(int eventId)
+        {
+            const string sql = @"
+        DELETE FROM EventsTable WHERE EventID = @eid";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@eid", eventId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         // ── SAVE ATTENDANCE RECORD ────────────────────────────────
         // Time-In  → INSERT new row (TimeIn filled, TimeOut null, Status = Present)
         // Time-Out → find open Time-In row for same student + event
@@ -102,16 +132,19 @@ namespace SAMSv1.Services
         //            → if no open row found, insert standalone Time-Out row
         //            → auto-close event when all Time-In rows have TimeOut filled
         public static void SaveAttendance(
-            int studentId, string date, string time,
-            string attendanceType, int eventId)
+        int studentId, string date, string time,
+        string attendanceType, int eventId,
+        string session, string eventDescription, string semester)
         {
             if (attendanceType == "Time-In")
             {
                 const string sql = @"
-                    INSERT INTO AttendanceTable
-                        (StudentID, Date, TimeIn, TimeOut, Status, AttendanceType, EventID)
-                    VALUES
-                        (@sid, @date, @time, NULL, 'Present', 'Time-In', @eid)";
+            INSERT INTO AttendanceTable
+                (StudentID, Date, TimeIn, TimeOut, Status, AttendanceType,
+                 EventID, Session, EventDescription, Semester)
+            VALUES
+                (@sid, @date, @time, NULL, 'Present', 'Time-In',
+                 @eid, @session, @desc, @semester)";
 
                 using (var conn = OpenConn())
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -120,25 +153,23 @@ namespace SAMSv1.Services
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@time", time);
                     cmd.Parameters.AddWithValue("@eid", eventId);
+                    cmd.Parameters.AddWithValue("@session", (object)session ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@desc", (object)eventDescription ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@semester", (object)semester ?? DBNull.Value);
                     cmd.ExecuteNonQuery();
                 }
-
-                System.Diagnostics.Debug.WriteLine(
-                    $"[FaceService] Time-In saved — StudentID={studentId} " +
-                    $"Date={date} Time={time} EventID={eventId}");
             }
             else if (attendanceType == "Time-Out")
             {
-                // Look for an open Time-In row for this student + event today
                 const string findSql = @"
-                    SELECT AttendanceID FROM AttendanceTable
-                    WHERE  StudentID       = @sid
-                      AND  EventID         = @eid
-                      AND  Date            = @date
-                      AND  AttendanceType  = 'Time-In'
-                      AND  TimeOut         IS NULL
-                    ORDER  BY AttendanceID DESC
-                    LIMIT  1";
+            SELECT AttendanceID FROM AttendanceTable
+            WHERE  StudentID      = @sid
+              AND  EventID        = @eid
+              AND  Date           = @date
+              AND  AttendanceType = 'Time-In'
+              AND  TimeOut        IS NULL
+            ORDER  BY AttendanceID DESC
+            LIMIT  1";
 
                 int existingId = -1;
                 using (var conn = OpenConn())
@@ -153,12 +184,11 @@ namespace SAMSv1.Services
 
                 if (existingId >= 0)
                 {
-                    // Fill TimeOut, mark Status and AttendanceType as Complete
                     const string updateSql = @"
-                        UPDATE AttendanceTable
-                        SET    TimeOut        = @time,
-                               AttendanceType = 'Complete'
-                        WHERE  AttendanceID   = @id";
+                UPDATE AttendanceTable
+                SET    TimeOut        = @time,
+                       AttendanceType = 'Complete'
+                WHERE  AttendanceID   = @id";
 
                     using (var conn = OpenConn())
                     using (var cmd = new SQLiteCommand(updateSql, conn))
@@ -168,16 +198,11 @@ namespace SAMSv1.Services
                         cmd.ExecuteNonQuery();
                     }
 
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[FaceService] Time-Out filled — AttendanceID={existingId} " +
-                        $"TimeOut={time}");
-
-                    // Auto-close event if no more open Time-In rows remain
                     const string checkSql = @"
-                        SELECT COUNT(*) FROM AttendanceTable
-                        WHERE  EventID        = @eid
-                          AND  AttendanceType = 'Time-In'
-                          AND  TimeOut        IS NULL";
+                SELECT COUNT(*) FROM AttendanceTable
+                WHERE  EventID        = @eid
+                  AND  AttendanceType = 'Time-In'
+                  AND  TimeOut        IS NULL";
 
                     int openCount = 0;
                     using (var conn = OpenConn())
@@ -188,20 +213,17 @@ namespace SAMSv1.Services
                     }
 
                     if (openCount == 0)
-                    {
                         CloseEvent(eventId, time);
-                        System.Diagnostics.Debug.WriteLine(
-                            $"[FaceService] Event auto-closed — EventID={eventId} EndTime={time}");
-                    }
                 }
                 else
                 {
-                    // No open Time-In found — insert standalone Time-Out row
                     const string sql = @"
-                        INSERT INTO AttendanceTable
-                            (StudentID, Date, TimeIn, TimeOut, Status, AttendanceType, EventID)
-                        VALUES
-                            (@sid, @date, NULL, @time, 'Present', 'Time-Out', @eid)";
+                INSERT INTO AttendanceTable
+                    (StudentID, Date, TimeIn, TimeOut, Status, AttendanceType,
+                     EventID, Session, EventDescription, Semester)
+                VALUES
+                    (@sid, @date, NULL, @time, 'Present', 'Time-Out',
+                     @eid, @session, @desc, @semester)";
 
                     using (var conn = OpenConn())
                     using (var cmd = new SQLiteCommand(sql, conn))
@@ -210,12 +232,11 @@ namespace SAMSv1.Services
                         cmd.Parameters.AddWithValue("@date", date);
                         cmd.Parameters.AddWithValue("@time", time);
                         cmd.Parameters.AddWithValue("@eid", eventId);
+                        cmd.Parameters.AddWithValue("@session", (object)session ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@desc", (object)eventDescription ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@semester", (object)semester ?? DBNull.Value);
                         cmd.ExecuteNonQuery();
                     }
-
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[FaceService] Standalone Time-Out inserted — " +
-                        $"StudentID={studentId} TimeOut={time}");
                 }
             }
         }
@@ -309,9 +330,9 @@ namespace SAMSv1.Services
         }
 
         // ── GET ALL STUDENTS FOR GRID ─────────────────────────────
-        public static List<StudentGridRow> GetAllStudents()
+        public static List<Student> GetAllStudents()
         {
-            var list = new List<StudentGridRow>();
+            var list = new List<Student>();
 
             const string sql = @"
                 SELECT StudentID, FullName, IdNumber, Course, YearLevel
@@ -324,7 +345,7 @@ namespace SAMSv1.Services
             {
                 while (r.Read())
                 {
-                    list.Add(new StudentGridRow
+                    list.Add(new Student
                     {
                         StudentID = r.GetInt32(0),
                         FullName = r.GetString(1),
@@ -357,34 +378,38 @@ namespace SAMSv1.Services
         }
 
         // ── GET ATTENDANCE LOGS WITH FILTERS ─────────────────────
-        public static List<AttendanceLogControl.AttendanceLogRow> GetAttendanceLogs(
-            string eventName, string nameSearch, string course, string yearLevel)
+        public static List<AttendanceLogRow> GetAttendanceLogs(
+            string eventName, string nameSearch, string course, string yearLevel, string session, string eventDescription)
         {
-            var list = new List<AttendanceLogControl.AttendanceLogRow>();
+            var list = new List<AttendanceLogRow>();
 
             const string sql = @"
-        SELECT
-            a.AttendanceID,
-            s.IdNumber,
-            s.FullName,
-            s.Course,
-            s.YearLevel,
-            e.EventName,
-            a.Date,
-            a.TimeIn,
-            a.TimeOut,
-            a.AttendanceType,
-            a.Status
-        FROM AttendanceTable a
-        INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-        INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-        WHERE 1=1
-          AND (@eventName  IS NULL OR e.EventName  = @eventName)
-          AND (@nameSearch IS NULL OR s.FullName   LIKE '%' || @nameSearch || '%'
-                                  OR s.IdNumber    LIKE '%' || @nameSearch || '%')
-          AND (@course     IS NULL OR s.Course     = @course)
-          AND (@yearLevel  IS NULL OR s.YearLevel  = @yearLevel)
-        ORDER BY a.Date DESC, a.TimeIn DESC";
+            SELECT
+                a.AttendanceID,
+                s.IdNumber,
+                s.FullName,
+                s.Course,
+                s.YearLevel,
+                e.EventName,
+                a.Session,
+                a.EventDescription,
+                a.Date,
+                a.TimeIn,
+                a.TimeOut,
+                a.AttendanceType,
+                a.Status
+            FROM AttendanceTable a
+            INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
+            INNER JOIN EventsTable   e ON e.EventID   = a.EventID
+            WHERE 1=1
+              AND (@eventName        IS NULL OR e.EventName        = @eventName)
+              AND (@nameSearch       IS NULL OR s.FullName         LIKE '%' || @nameSearch || '%'
+                                            OR s.IdNumber          LIKE '%' || @nameSearch || '%')
+              AND (@course           IS NULL OR s.Course           = @course)
+              AND (@yearLevel        IS NULL OR s.YearLevel        = @yearLevel)
+              AND (@session          IS NULL OR a.Session          = @session)          -- ← add
+              AND (@eventDescription IS NULL OR a.EventDescription = @eventDescription) -- ← add
+            ORDER BY a.Date DESC, a.TimeIn DESC";
 
             using (var conn = OpenConn())
             using (var cmd = new SQLiteCommand(sql, conn))
@@ -393,12 +418,14 @@ namespace SAMSv1.Services
                 cmd.Parameters.AddWithValue("@nameSearch", (object)nameSearch ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@course", (object)course ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@yearLevel", (object)yearLevel ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@session", (object)session ?? DBNull.Value); // ← add
+                cmd.Parameters.AddWithValue("@eventDescription", (object)eventDescription ?? DBNull.Value); // ← add
 
                 using (var r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
-                        list.Add(new AttendanceLogControl.AttendanceLogRow
+                        list.Add(new AttendanceLogRow
                         {
                             AttendanceID = r.GetInt32(0),
                             IdNumber = r.IsDBNull(1) ? "" : r.GetString(1),
@@ -406,11 +433,13 @@ namespace SAMSv1.Services
                             Course = r.IsDBNull(3) ? "" : r.GetString(3),
                             YearLevel = r.IsDBNull(4) ? "" : r.GetString(4),
                             EventName = r.IsDBNull(5) ? "" : r.GetString(5),
-                            Date = r.IsDBNull(6) ? "" : r.GetString(6),
-                            TimeIn = r.IsDBNull(7) ? "" : r.GetString(7),
-                            TimeOut = r.IsDBNull(8) ? "" : r.GetString(8),
-                            AttendanceType = r.IsDBNull(9) ? "" : r.GetString(9),
-                            Status = r.IsDBNull(10) ? "" : r.GetString(10),
+                            Session = r.IsDBNull(6) ? "" : r.GetString(6),
+                            EventDescription = r.IsDBNull(7) ? "" : r.GetString(7),
+                            Date = r.IsDBNull(8) ? "" : r.GetString(8),
+                            TimeIn = r.IsDBNull(9) ? "" : r.GetString(9),
+                            TimeOut = r.IsDBNull(10) ? "" : r.GetString(10),
+                            AttendanceType = r.IsDBNull(11) ? "" : r.GetString(11),
+                            Status = r.IsDBNull(12) ? "" : r.GetString(12),
                         });
                     }
                 }
@@ -418,23 +447,15 @@ namespace SAMSv1.Services
             return list;
         }
 
-        // ── ATTENDANCE SUMMARY COUNTS ─────────────────────────────
-        public class AttendanceSummary
-        {
-            public int TotalAttendance { get; set; } // Complete=2, single=1
-            public int TotalPresent { get; set; } // Complete=2, single=1
-            public int TotalAbsent { get; set; } // registered - distinct present students
-        }
-
         public static AttendanceSummary GetAttendanceSummary(
-            string eventName, string course, string yearLevel)
+    string eventName, string course, string yearLevel)
         {
-            // TotalAttendance:
-            //   Complete row counts as 2 (has both TimeIn + TimeOut)
-            //   Time-In only or Time-Out only counts as 1
+            // TotalAttendance = total scan slots used
+            //   Complete = 2 (both TimeIn + TimeOut filled)
+            //   Time-In only OR Time-Out only = 1
+            //   No record = 0
             const string attendanceSql = @"
-        SELECT
-            SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
+        SELECT SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
         FROM AttendanceTable a
         INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
         INNER JOIN EventsTable   e ON e.EventID   = a.EventID
@@ -443,12 +464,12 @@ namespace SAMSv1.Services
           AND (@course    IS NULL OR s.Course    = @course)
           AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)";
 
-            // TotalPresent:
-            //   Complete = 2 present slots (Time-In filled + Time-Out filled)
-            //   Single Time-In or Time-Out = 1 present slot
+            // TotalPresent = present scan slots
+            //   Complete = 2 present slots
+            //   Incomplete (Time-In or Time-Out only) = 1 present slot
+            //   No record = 0 present slots
             const string presentSql = @"
-        SELECT
-            SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
+        SELECT SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END)
         FROM AttendanceTable a
         INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
         INNER JOIN EventsTable   e ON e.EventID   = a.EventID
@@ -458,28 +479,36 @@ namespace SAMSv1.Services
           AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)";
 
             // TotalAbsent:
-            //   Total registered students (filtered by course/year)
-            //   minus distinct students who appear in attendance for this filter
+            //   Each event has 2 slots per student (Time-In + Time-Out)
+            //   Complete = 0 absent slots
+            //   Incomplete = 1 absent slot
+            //   No record = 2 absent slots
             const string absentSql = @"
         SELECT
-            (SELECT COUNT(*) FROM StudentsTable s2
-             WHERE (@course    IS NULL OR s2.Course    = @course)
-               AND (@yearLevel IS NULL OR s2.YearLevel = @yearLevel))
+            -- Total possible slots for ALL students in this event
+            (
+                SELECT COUNT(*) * 2
+                FROM StudentsTable s2
+                WHERE (@course    IS NULL OR s2.Course    = @course)
+                  AND (@yearLevel IS NULL OR s2.YearLevel = @yearLevel)
+            )
             -
-            (SELECT COUNT(DISTINCT a.StudentID)
-             FROM AttendanceTable a
-             INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
-             INNER JOIN EventsTable   e ON e.EventID   = a.EventID
-             WHERE 1=1
-               AND (@eventName IS NULL OR e.EventName = @eventName)
-               AND (@course    IS NULL OR s.Course    = @course)
-               AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel))";
+            -- Subtract present slots already counted
+            (
+                SELECT COALESCE(SUM(CASE WHEN a.AttendanceType = 'Complete' THEN 2 ELSE 1 END), 0)
+                FROM AttendanceTable a
+                INNER JOIN StudentsTable s ON s.StudentID = a.StudentID
+                INNER JOIN EventsTable   e ON e.EventID   = a.EventID
+                WHERE 1=1
+                  AND (@eventName IS NULL OR e.EventName = @eventName)
+                  AND (@course    IS NULL OR s.Course    = @course)
+                  AND (@yearLevel IS NULL OR s.YearLevel = @yearLevel)
+            )";
 
             var summary = new AttendanceSummary();
 
             using (var conn = OpenConn())
             {
-                // Total attendance
                 using (var cmd = new SQLiteCommand(attendanceSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
@@ -490,7 +519,6 @@ namespace SAMSv1.Services
                         ? 0 : Convert.ToInt32(result);
                 }
 
-                // Total present
                 using (var cmd = new SQLiteCommand(presentSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
@@ -501,7 +529,6 @@ namespace SAMSv1.Services
                         ? 0 : Convert.ToInt32(result);
                 }
 
-                // Total absent
                 using (var cmd = new SQLiteCommand(absentSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@eventName", (object)eventName ?? DBNull.Value);
@@ -516,13 +543,82 @@ namespace SAMSv1.Services
             return summary;
         }
 
-        public class StudentGridRow
+        // ── GET STUDENT ATTENDANCE SUMMARY ───────────────────────
+        // TotalAttendance = sum across all events this student attended
+        //   Complete row (has TimeIn + TimeOut) = 2
+        //   Time-In only OR Time-Out only       = 1
+        // TotalPresent   = distinct events where student has a Complete row
+        // TotalAbsent    = total events in DB minus events student attended at all
+        public static (int TotalAttendance, int TotalPresent, int TotalAbsent)
+    GetStudentSummary(int studentId)
         {
-            public int StudentID { get; set; }
-            public string FullName { get; set; }
-            public string IdNumber { get; set; }
-            public string Course { get; set; }
-            public string YearLevel { get; set; }
+            // Total attendance slots = number of events × 2 (each event has Time-In + Time-Out)
+            const string totalSlotsSql = @"
+        SELECT COUNT(*) * 2 FROM EventsTable";
+
+            // Present slots:
+            //   Complete row = 2 present (both Time-In and Time-Out done)
+            //   Time-In only or Time-Out only = 1 present
+            const string presentSql = @"
+        SELECT COALESCE(SUM(
+            CASE WHEN AttendanceType = 'Complete' THEN 2 ELSE 1 END
+        ), 0)
+        FROM AttendanceTable
+        WHERE StudentID = @sid";
+
+            using (var conn = OpenConn())
+            {
+                int totalSlots, totalPresent;
+
+                using (var cmd = new SQLiteCommand(totalSlotsSql, conn))
+                    totalSlots = Convert.ToInt32(cmd.ExecuteScalar());
+
+                using (var cmd = new SQLiteCommand(presentSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sid", studentId);
+                    var r = cmd.ExecuteScalar();
+                    totalPresent = r == null || r == DBNull.Value ? 0 : Convert.ToInt32(r);
+                }
+
+                int totalAbsent = Math.Max(0, totalSlots - totalPresent);
+
+                return (totalSlots, totalPresent, totalAbsent);
+            }
         }
+
+        public static List<string> GetAllSessions()
+        {
+            var list = new List<string>();
+            const string sql = @"
+        SELECT DISTINCT Session FROM AttendanceTable
+        WHERE Session IS NOT NULL
+        ORDER BY Session";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            using (var r = cmd.ExecuteReader())
+                while (r.Read())
+                    list.Add(r.GetString(0));
+
+            return list;
+        }
+
+        public static List<string> GetAllEventDescriptions()
+        {
+            var list = new List<string>();
+            const string sql = @"
+        SELECT DISTINCT EventDescription FROM AttendanceTable
+        WHERE EventDescription IS NOT NULL
+        ORDER BY EventDescription";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            using (var r = cmd.ExecuteReader())
+                while (r.Read())
+                    list.Add(r.GetString(0));
+
+            return list;
+        }
+
     }
 }

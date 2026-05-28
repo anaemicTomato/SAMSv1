@@ -20,17 +20,14 @@ namespace SAMSv1.MainForms
 
             _currentUser = user;
         }
-        
+
 
         private void AdminFormV3_Load(object sender, EventArgs e)
         {
-
             try
             {
                 FaceService.Init(DBHelper.ConnectionString);
-                DeviceManager.Initialize(
-                    new HikvisionDevice("192.168.1.65", 8000, "admin", "DMC2026#")
-                );
+                DeviceManager.Initialize();
             }
             catch (Exception ex)
             {
@@ -39,9 +36,25 @@ namespace SAMSv1.MainForms
             }
         }
 
+        private bool CanSwitchModule()
+        {
+            if (StudentAttendanceControl.IsLiveRunning)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "Live attendance is currently running.\n\n" +
+                    "Please click STOP on the Attendance module before switching.",
+                    "Live Attendance Active",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
         // ── Attendance module ──────────────────────────────────────────
         private void AttendanceModule_Click(object sender, EventArgs e)
         {
+            // No guard here — user is going TO attendance, always allow
             mainPanel.Controls.Clear();
             StudentAttendanceControl page = new StudentAttendanceControl();
             page.Dock = DockStyle.Fill;
@@ -51,6 +64,7 @@ namespace SAMSv1.MainForms
         // ── Register Students module ───────────────────────────────────
         private void RegisterStudentModule_Click(object sender, EventArgs e)
         {
+            if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
             RegisterStudentsV2 page = new RegisterStudentsV2();
             page.Dock = DockStyle.Fill;
@@ -60,6 +74,7 @@ namespace SAMSv1.MainForms
         // ── Attendance Log module ──────────────────────────────────────
         private void accordionControlElement1_Click_1(object sender, EventArgs e)
         {
+            if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
             AttendanceLogAvian page = new AttendanceLogAvian();
             page.Dock = DockStyle.Fill;
@@ -69,6 +84,7 @@ namespace SAMSv1.MainForms
         // ── User Management module ──────────────────────────────────────
         private void ManageUsersModule_Click(object sender, EventArgs e)
         {
+            if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
             UserManagementControl page = new UserManagementControl();
             page.Dock = DockStyle.Fill;
@@ -80,14 +96,26 @@ namespace SAMSv1.MainForms
         {
             this.Close();
         }
-        protected override void OnFormClosing(FormClosingEventArgs e)
+
+
+        private async void AdminFormV3_FormClosing(object sender, FormClosingEventArgs e)
         {
-            HikvisionDevice.SDKCleanup();
-            base.OnFormClosing(e);
+            e.Cancel = true; // hold the close
+
+            // Find the attendance control if it's currently loaded
+            foreach (Control ctrl in mainPanel.Controls)
+            {
+                if (ctrl is StudentAttendanceControl attendance)
+                {
+                    await attendance.StopAsync();
+                    break;
+                }
+            }
+
+            DeviceManager.Shutdown();
+
+            e.Cancel = false;
+            Application.Exit();
         }
-
-        private void accordionControl1_Click(object sender, EventArgs e) { }
-
-        
     }
 }

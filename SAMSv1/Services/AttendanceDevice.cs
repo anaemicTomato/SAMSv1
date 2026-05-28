@@ -38,21 +38,5 @@ namespace SAMSv1.Services
         /// </summary>
         public abstract bool RegisterStudent(string idNumber, string fullName);
 
-        // ── Shared utility (Inheritance benefit) ──────────────────
-        protected static string MapStatus(string deviceStatus)
-        {
-            switch (deviceStatus)
-            {
-                case "checkIn": return "Check In";
-                case "checkOut": return "Check Out";
-                case "breakOut": return "Break Out";
-                case "breakIn": return "Break In";
-                case "overtimeIn": return "Overtime In";
-                case "undefined": return "Check In";
-                default:
-                    return string.IsNullOrWhiteSpace(deviceStatus)
-                        ? "Check In" : deviceStatus;
-            }
-        }
     }
 }
