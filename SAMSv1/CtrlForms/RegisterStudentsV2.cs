@@ -1,5 +1,6 @@
 ﻿using SAMSv1.Services;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using SAMSv1.Models;
@@ -8,8 +9,11 @@ namespace SAMSv1.CtrlForms
 {
     public partial class RegisterStudentsV2 : DevExpress.XtraEditors.XtraUserControl
     {
-        // POLYMORPHISM: typed as abstract base — same pattern as AttendanceControl
         private AttendanceDevice _device => DeviceManager.Device;
+
+        // Tracks which student is selected in the grid
+        private int _selectedStudentID = -1;
+        private string _selectedIdNumber = string.Empty;
 
         public RegisterStudentsV2()
         {
@@ -24,10 +28,35 @@ namespace SAMSv1.CtrlForms
         {
             PopulateDropdowns();
             SetupGrid();
-
-            // Sync from device + load local DB in background
-            // so the UI doesn't freeze on startup
             System.Threading.ThreadPool.QueueUserWorkItem(_ => SyncAndLoadStudents());
+
+            // Wire grid click — fills form fields when row is selected
+            gridView1.FocusedRowChanged += GridView1_FocusedRowChanged;
+        }
+
+        // ═════════════════════════════════════════════════════════
+        // GRID ROW CLICK — auto-fill form fields
+        // ═════════════════════════════════════════════════════════
+        private void GridView1_FocusedRowChanged(
+            object sender,
+            DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            int row = gridView1.FocusedRowHandle;
+            if (row < 0) return;
+
+            // Get the Student object bound to this row
+            var student = gridView1.GetRow(row) as Student;
+            if (student == null) return;
+
+            // Store selected student for Update/Delete
+            _selectedStudentID = student.StudentID;
+            _selectedIdNumber = student.IdNumber;
+
+            // Fill form fields
+            txtFullName.Text = student.FullName;
+            txtIdNumber.Text = student.IdNumber;
+            cbProgram.EditValue = student.Course;
+            cbYearLevel.EditValue = student.YearLevel;
         }
 
         // ═════════════════════════════════════════════════════════
@@ -58,48 +87,20 @@ namespace SAMSv1.CtrlForms
             gridView1.OptionsView.ShowAutoFilterRow = true;
 
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            {
-                FieldName = "StudentID",
-                Caption = "#",
-                Visible = true,
-                Width = 50
-            });
+            { FieldName = "StudentID", Caption = "#", Visible = true, Width = 50 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            {
-                FieldName = "IdNumber",
-                Caption = "ID Number",
-                Visible = true,
-                Width = 130
-            });
+            { FieldName = "IdNumber", Caption = "ID Number", Visible = true, Width = 130 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            {
-                FieldName = "FullName",
-                Caption = "Full Name",
-                Visible = true,
-                Width = 220
-            });
+            { FieldName = "FullName", Caption = "Full Name", Visible = true, Width = 220 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            {
-                FieldName = "Course",
-                Caption = "Course",
-                Visible = true,
-                Width = 120
-            });
+            { FieldName = "Course", Caption = "Course", Visible = true, Width = 120 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            {
-                FieldName = "YearLevel",
-                Caption = "Year Level",
-                Visible = true,
-                Width = 100
-            });
+            { FieldName = "YearLevel", Caption = "Year Level", Visible = true, Width = 100 });
         }
 
         // ═════════════════════════════════════════════════════════
         // SYNC FROM DEVICE + LOAD LOCAL DB
         // ═════════════════════════════════════════════════════════
-
-        // POLYMORPHISM: calls GetEnrolledStudents() on abstract type —
-        // resolves to HikvisionDevice.GetEnrolledStudents() at runtime
         private void SyncAndLoadStudents()
         {
             try
@@ -111,11 +112,8 @@ namespace SAMSv1.CtrlForms
                         FaceService.SaveStudentFromDevice(s.IdNumber, s.FullName);
                 }
             }
-            catch { /* device offline — still show local DB records */ }
-            finally
-            {
-                RefreshGrid();
-            }
+            catch { }
+            finally { RefreshGrid(); }
         }
 
         private void RefreshGrid()
@@ -130,58 +128,45 @@ namespace SAMSv1.CtrlForms
             });
         }
 
+        private void ClearForm()
+        {
+            txtFullName.Text = string.Empty;
+            txtIdNumber.Text = string.Empty;
+            cbProgram.EditValue = null;
+            cbYearLevel.EditValue = null;
+            _selectedStudentID = -1;
+            _selectedIdNumber = string.Empty;
+        }
+
         // ═════════════════════════════════════════════════════════
-        // REGISTER BUTTON
+        // REGISTER BUTTON — adds a new student
         // ═════════════════════════════════════════════════════════
         private void btnRegisterStudent_Click(object sender, EventArgs e)
         {
+            if (!ValidateForm()) return;
+
             string fullName = txtFullName.Text.Trim();
             string idNumber = txtIdNumber.Text.Trim();
             string course = cbProgram.Text.Trim();
             string yearLevel = cbYearLevel.Text.Trim();
 
-            if (string.IsNullOrEmpty(fullName) ||
-                string.IsNullOrEmpty(idNumber) ||
-                string.IsNullOrEmpty(course) ||
-                string.IsNullOrEmpty(yearLevel))
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "All fields are required.",
-                    "Validation",
-                    System.Windows.Forms.MessageBoxButtons.OK,
-                    System.Windows.Forms.MessageBoxIcon.Warning);
-                return;
-            }
-
             btnRegisterStudent.Enabled = false;
             btnRegisterStudent.Text = "Registering...";
 
-            // Capture values for background thread
-            string capName = fullName;
-            string capId = idNumber;
-            string capCourse = course;
-            string capYearLevel = yearLevel;
-
             System.Threading.ThreadPool.QueueUserWorkItem(_ =>
-                RegisterStudent(capId, capName, capCourse, capYearLevel));
+                RegisterStudent(idNumber, fullName, course, yearLevel));
         }
 
         private void RegisterStudent(string idNumber, string fullName,
                                      string course, string yearLevel)
         {
             bool deviceOk = false;
-
             try
             {
-                // POLYMORPHISM: RegisterStudent() resolves to
-                // HikvisionDevice.RegisterStudent() at runtime
                 if (_device != null)
                     deviceOk = _device.RegisterStudent(idNumber, fullName);
 
-                // Always save to local DB regardless of device response
                 FaceService.SaveStudentFull(idNumber, fullName, course, yearLevel);
-
-                // Refresh grid with new data
                 RefreshGrid();
 
                 SafeInvoke(() =>
@@ -192,22 +177,13 @@ namespace SAMSv1.CtrlForms
                         : $"✓ {fullName} saved to database.\n" +
                           "⚠ Device registration failed — check connection.";
 
-                    DevExpress.XtraEditors.XtraMessageBox.Show(
-                        msg,
-                        "Registration",
-                        System.Windows.Forms.MessageBoxButtons.OK,
-                        deviceOk
-                            ? System.Windows.Forms.MessageBoxIcon.Information
-                            : System.Windows.Forms.MessageBoxIcon.Warning);
+                    DevExpress.XtraEditors.XtraMessageBox.Show(msg, "Registration",
+                        MessageBoxButtons.OK,
+                        deviceOk ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
 
-                    // Clear form fields after success
-                    txtFullName.Clear();
-                    txtIdNumber.Clear();
-                    cbProgram.EditValue = null;
-                    cbYearLevel.EditValue = null;
-
+                    ClearForm();
                     btnRegisterStudent.Enabled = true;
-                    btnRegisterStudent.Text = "Register Student";
+                    btnRegisterStudent.Text = "REGISTER";
                 });
             }
             catch (Exception ex)
@@ -215,18 +191,186 @@ namespace SAMSv1.CtrlForms
                 SafeInvoke(() =>
                 {
                     DevExpress.XtraEditors.XtraMessageBox.Show(
-                        "Error: " + ex.Message,
-                        "Registration Error",
-                        System.Windows.Forms.MessageBoxButtons.OK,
-                        System.Windows.Forms.MessageBoxIcon.Error);
-
+                        "Error: " + ex.Message, "Registration Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnRegisterStudent.Enabled = true;
-                    btnRegisterStudent.Text = "Register Student";
+                    btnRegisterStudent.Text = "REGISTER";
                 });
             }
         }
 
-        // ================= SAFE INVOKE =================
+        // ═════════════════════════════════════════════════════════
+        // UPDATE BUTTON — updates selected student
+        // ═════════════════════════════════════════════════════════
+        private void btnUpdateStudent_Click(object sender, EventArgs e)
+        {
+            if (_selectedStudentID < 0)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "Please select a student from the list first.",
+                    "No Student Selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidateForm()) return;
+
+            string fullName = txtFullName.Text.Trim();
+            string idNumber = txtIdNumber.Text.Trim();
+            string course = cbProgram.Text.Trim();
+            string yearLevel = cbYearLevel.Text.Trim();
+
+            btnUpdateStudent.Enabled = false;
+            btnUpdateStudent.Text = "Updating...";
+
+            string oldIdNumber = _selectedIdNumber;
+
+            System.Threading.ThreadPool.QueueUserWorkItem(_ =>
+                UpdateStudent(oldIdNumber, idNumber, fullName, course, yearLevel));
+        }
+
+        private void UpdateStudent(string oldIdNumber, string newIdNumber,
+                                   string fullName, string course, string yearLevel)
+        {
+            bool deviceOk = false;
+            try
+            {
+                // Update on device — delete old + register new if ID changed
+                if (_device != null)
+                {
+                    if (oldIdNumber != newIdNumber)
+                        _device.DeleteStudent(oldIdNumber);
+                    deviceOk = _device.RegisterStudent(newIdNumber, fullName);
+                }
+
+                // Update in local DB
+                FaceService.UpdateStudent(newIdNumber, fullName, course, yearLevel, oldIdNumber);
+                RefreshGrid();
+
+                SafeInvoke(() =>
+                {
+                    string msg = deviceOk
+                        ? $"✓ {fullName} updated successfully."
+                        : $"✓ {fullName} updated in database.\n" +
+                          "⚠ Device update failed — check connection.";
+
+                    DevExpress.XtraEditors.XtraMessageBox.Show(msg, "Update",
+                        MessageBoxButtons.OK,
+                        deviceOk ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+
+                    ClearForm();
+                    btnUpdateStudent.Enabled = true;
+                    btnUpdateStudent.Text = "UPDATE";
+                });
+            }
+            catch (Exception ex)
+            {
+                SafeInvoke(() =>
+                {
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Error: " + ex.Message, "Update Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnUpdateStudent.Enabled = true;
+                    btnUpdateStudent.Text = "UPDATE";
+                });
+            }
+        }
+
+        // ═════════════════════════════════════════════════════════
+        // DELETE BUTTON — removes selected student
+        // ═════════════════════════════════════════════════════════
+        private void btnDeleteStudent_Click(object sender, EventArgs e)
+        {
+            if (_selectedStudentID < 0)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "Please select a student from the list first.",
+                    "No Student Selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string name = txtFullName.Text.Trim();
+            var confirm = DevExpress.XtraEditors.XtraMessageBox.Show(
+                $"Are you sure you want to delete {name}?\n\n" +
+                "This will remove them from the device and the database.",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes) return;
+
+            btnDeleteStudent.Enabled = false;
+            btnDeleteStudent.Text = "Deleting...";
+
+            string idToDelete = _selectedIdNumber;
+
+            System.Threading.ThreadPool.QueueUserWorkItem(_ =>
+                DeleteStudent(idToDelete, name));
+        }
+
+        private void DeleteStudent(string idNumber, string fullName)
+        {
+            bool deviceOk = false;
+            try
+            {
+                if (_device != null)
+                    deviceOk = _device.DeleteStudent(idNumber);
+
+                FaceService.DeleteStudent(idNumber);
+                RefreshGrid();
+
+                SafeInvoke(() =>
+                {
+                    string msg = deviceOk
+                        ? $"✓ {fullName} deleted successfully."
+                        : $"✓ {fullName} removed from database.\n" +
+                          "⚠ Device deletion failed — check connection.";
+
+                    DevExpress.XtraEditors.XtraMessageBox.Show(msg, "Delete",
+                        MessageBoxButtons.OK,
+                        deviceOk ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+
+                    ClearForm();
+                    btnDeleteStudent.Enabled = true;
+                    btnDeleteStudent.Text = "DELETE";
+                });
+            }
+            catch (Exception ex)
+            {
+                SafeInvoke(() =>
+                {
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Error: " + ex.Message, "Delete Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnDeleteStudent.Enabled = true;
+                    btnDeleteStudent.Text = "DELETE";
+                });
+            }
+        }
+
+        // ═════════════════════════════════════════════════════════
+        // VALIDATION
+        // ═════════════════════════════════════════════════════════
+        private bool ValidateForm()
+        {
+            if (string.IsNullOrWhiteSpace(txtFullName.Text) ||
+                string.IsNullOrWhiteSpace(txtIdNumber.Text) ||
+                string.IsNullOrWhiteSpace(cbProgram.Text) ||
+                string.IsNullOrWhiteSpace(cbYearLevel.Text))
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "All fields are required.",
+                    "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        // ═════════════════════════════════════════════════════════
+        // HELPERS
+        // ═════════════════════════════════════════════════════════
         private void SafeInvoke(Action action)
         {
             if (IsDisposed || !IsHandleCreated) return;
@@ -234,19 +378,9 @@ namespace SAMSv1.CtrlForms
             catch { }
         }
 
-        // ================= DESTROY =================
         protected override void OnHandleDestroyed(EventArgs e)
         {
             base.OnHandleDestroyed(e);
-
-        }
-
-        // ═════════════════════════════════════════════════════════
-        // IMPORT IMAGE (reserved)
-        // ═════════════════════════════════════════════════════════
-        private void btnImportImage_Click(object sender, EventArgs e)
-        {
-            // Reserved for future implementation
         }
     }
 }

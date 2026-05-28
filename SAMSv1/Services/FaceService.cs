@@ -620,5 +620,44 @@ namespace SAMSv1.Services
             return list;
         }
 
+        // ── UPDATE STUDENT ────────────────────────────────────────
+        public static void UpdateStudent(string newIdNumber, string fullName,
+                                          string course, string yearLevel,
+                                          string oldIdNumber)
+        {
+            const string sql = @"
+        UPDATE StudentsTable
+        SET    IdNumber  = @newId,
+               FullName  = @name,
+               Course    = @course,
+               YearLevel = @year
+        WHERE  IdNumber  = @oldId";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@newId", newIdNumber.Trim());
+                cmd.Parameters.AddWithValue("@name", fullName ?? "");
+                cmd.Parameters.AddWithValue("@course", course ?? "");
+                cmd.Parameters.AddWithValue("@year", yearLevel ?? "");
+                cmd.Parameters.AddWithValue("@oldId", oldIdNumber.Trim());
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // ── DELETE STUDENT ────────────────────────────────────────
+        public static void DeleteStudent(string idNumber)
+        {
+            const string sql = @"
+        DELETE FROM StudentsTable WHERE IdNumber = @id";
+
+            using (var conn = OpenConn())
+            using (var cmd = new SQLiteCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", idNumber.Trim());
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

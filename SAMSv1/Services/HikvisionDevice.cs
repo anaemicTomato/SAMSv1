@@ -245,6 +245,23 @@ namespace SAMSv1.Services
             return result;
         }
 
+        public override bool DeleteStudent(string idNumber)
+        {
+            try
+            {
+                string body =
+                    "{\"UserInfoDelCond\":{" +
+                    "\"EmployeeNoList\":[{\"employeeNo\":\"" + idNumber + "\"}]" +
+                    "}}";
+
+                string response = PutISAPI(
+                    "/ISAPI/AccessControl/UserInfo/Delete?format=json", body);
+
+                return response.Contains("\"statusString\":\"OK\"") ||
+                       response.Contains("\"statusCode\":1");
+            }
+            catch { return false; }
+        }
         public override bool RegisterStudent(string idNumber, string fullName)
         {
             try

@@ -24,6 +24,11 @@ namespace SAMSv1.MainForms
 
         private void AdminFormV3_Load(object sender, EventArgs e)
         {
+            mainPanel.Controls.Clear();
+            StudentAttendanceControl page = new StudentAttendanceControl();
+            page.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(page);
+
             try
             {
                 FaceService.Init(DBHelper.ConnectionString);

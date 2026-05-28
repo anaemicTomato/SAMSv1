@@ -49,8 +49,9 @@
             this.accordionControlElement1,
             this.ManageUsersModule});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(236, 605);
+            this.accordionControl1.Size = new System.Drawing.Size(220, 745);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -113,9 +114,10 @@
             // 
             this.mainPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(236, 0);
+            this.mainPanel.Location = new System.Drawing.Point(220, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(793, 605);
+            this.mainPanel.Size = new System.Drawing.Size(980, 745);
             this.mainPanel.TabIndex = 1;
             // 
             // btnLogout
@@ -124,26 +126,28 @@
             this.btnLogout.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogout.Appearance.Options.UseFont = true;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
-            this.btnLogout.Location = new System.Drawing.Point(19, 545);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Location = new System.Drawing.Point(18, 694);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(97, 39);
+            this.btnLogout.Size = new System.Drawing.Size(113, 48);
             this.btnLogout.TabIndex = 2;
             this.btnLogout.Text = "Logout";
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // AdminFormV3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 605);
+            this.ClientSize = new System.Drawing.Size(1200, 745);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinimumSize = new System.Drawing.Size(720, 600);
             this.Name = "AdminFormV3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminFormV3";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminFormV3_FormClosing);
             this.Load += new System.EventHandler(this.AdminFormV3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
