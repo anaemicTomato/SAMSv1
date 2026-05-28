@@ -1,119 +1,204 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
 using Dapper;
 using SAMSv1.Models;
 
 namespace SAMSv1.Data
 {
-    // This class handles all database read/write operations for attendance.
-    // It follows the same pattern as your existing StudentRepository.
     public class AttendanceRepository
     {
-        private readonly string _connectionString = DBHelper.GetConnectionString();
+        private readonly string _cs = DBHelper.GetConnectionString();
 
-        // ---------------------------------------------------------------
-        // Called when a face is scanned on the Hikvision device.
-        // It records a TimeIn for the student on today's date.
-        //
-        // Logic:
-        //   - If no record exists yet today → insert a new "Time In" row.
-        //   - If a record exists but TimeOut is empty → fill in TimeOut.
-        //   - If both TimeIn and TimeOut are already filled → do nothing
-        //     (prevents duplicate scans from spamming the database).
-        // ---------------------------------------------------------------
-        public void RecordScan(int studentId, string dateTime)
+        public IEnumerable<Event> GetAllEvents()
         {
-            // dateTime comes from the device in format: "2026-05-08T14:32:00"
-            // We split it into a date part and a time part.
-            string date = dateTime.Substring(0, 10);      // "2026-05-08"
-            string time = dateTime.Substring(11, 8);      // "14:32:00"
+            using (var conn = new SQLiteConnection(_cs))
+                return conn.Query<Event>("SELECT * FROM EventsTable").ToList();
+        }
 
-            using (var conn = new SQLiteConnection(_connectionString))
+        public IEnumerable<string> GetAllCourses()
+        {
+            using (var conn = new SQLiteConnection(_cs))
+                return conn.Query<string>(
+                    "SELECT DISTINCT Course FROM StudentsTable ORDER BY Course").ToList();
+        }
+
+        public IEnumerable<string> GetAllYearLevels()
+        {
+            using (var conn = new SQLiteConnection(_cs))
+                return conn.Query<string>(
+                    "SELECT DISTINCT YearLevel FROM StudentsTable ORDER BY YearLevel").ToList();
+        }
+
+        public IEnumerable<AttendanceReportRow> GetAttendance(
+    List<string> dates,
+    int? eventId,
+    string course,
+    string yearLevel,
+    string session,
+    string semester)
+{
+    using (var conn = new SQLiteConnection(_cs))
+    {
+        conn.Open();
+
+        var param = new DynamicParameters();
+        var where = new List<string>();
+        // ─────────────────────────────────────
+        // CHECK IF SESSION EXISTS
+        // ─────────────────────────────────────
+
+        if (!string.IsNullOrEmpty(session) &&
+            session != "All")
+        {
+            int sessionExists = conn.ExecuteScalar<int>(@"
+                SELECT COUNT(*)
+                FROM AttendanceTable
+                WHERE Session = @Session",
+                new { Session = session });
+
+            // No attendance rows for this session
+            if (sessionExists == 0)
             {
-                // Check if there is already a record for this student today.
-                var existing = conn.QueryFirstOrDefault<Attendance>(
-                    @"SELECT * FROM AttendanceTable 
-                      WHERE StudentID = @StudentID AND Date = @Date",
-                    new { StudentID = studentId, Date = date });
+                return new List<AttendanceReportRow>();
+            }
+        }
 
-                if (existing == null)
+        // ─────────────────────────────────────
+        // BUILD ATTENDANCE JOIN
+        // ─────────────────────────────────────
+
+        string attendanceJoin = @"
+            LEFT JOIN AttendanceTable a
+                ON s.StudentID = a.StudentID";
+
+                // SESSION
+                if (!string.IsNullOrEmpty(session) &&
+                session != "All")
                 {
-                    // No record yet today — this is a Time In scan.
-                    conn.Execute(
-                        @"INSERT INTO AttendanceTable (StudentID, Date, TimeIn, Status)
-                          VALUES (@StudentID, @Date, @TimeIn, @Status)",
-                        new
-                        {
-                            StudentID = studentId,
-                            Date      = date,
-                            TimeIn    = time,
-                            Status    = "Present"
-                        });
+                    where.Add("a.Session = @Session");
+                    param.Add("@Session", session);
                 }
-                else if (string.IsNullOrEmpty(existing.TimeOut))
+                // EVENT
+                if (eventId.HasValue)
                 {
-                    // Record exists but no TimeOut yet — this is a Time Out scan.
-                    conn.Execute(
-                        @"UPDATE AttendanceTable 
-                          SET TimeOut = @TimeOut 
-                          WHERE AttendanceID = @AttendanceID",
-                        new
-                        {
-                            TimeOut      = time,
-                            AttendanceID = existing.AttendanceID
-                        });
+                    where.Add("a.EventID = @EventID");
+                    param.Add("@EventID", eventId.Value);
                 }
-                // If both TimeIn and TimeOut are filled, we ignore the scan.
-            }
+
+                // SEMESTER
+                if (!string.IsNullOrEmpty(semester) &&
+            semester != "All")
+        {
+            attendanceJoin += " AND a.Semester = @Semester";
+            param.Add("@Semester", semester);
         }
 
-        // ---------------------------------------------------------------
-        // Returns all attendance records joined with student info,
-        // so we can display FullName and IdNumber in the grid.
-        // ---------------------------------------------------------------
-        public IEnumerable<Attendance> GetAllAttendance()
+
+
+        // DATES
+        if (dates != null && dates.Count > 0)
         {
-            using (var conn = new SQLiteConnection(_connectionString))
-            {
-                return conn.Query<Attendance>(
-                    @"SELECT 
-                        a.AttendanceID,
-                        a.StudentID,
-                        a.Date,
-                        a.TimeIn,
-                        a.TimeOut,
-                        a.Status,
-                        s.FullName,
-                        s.IdNumber
-                      FROM AttendanceTable a
-                      JOIN StudentsTable s ON s.StudentID = a.StudentID
-                      ORDER BY a.Date DESC, a.TimeIn DESC");
-            }
+            var placeholders = string.Join(",",
+                dates.Select((d, i) =>
+                {
+                    param.Add($"@d{i}", d);
+                    return $"@d{i}";
+                }));
+
+            attendanceJoin +=
+                $" AND a.Date IN ({placeholders})";
         }
 
-        // ---------------------------------------------------------------
-        // Returns attendance for a specific date only (used for filtering).
-        // ---------------------------------------------------------------
-        public IEnumerable<Attendance> GetAttendanceByDate(string date)
+        // ─────────────────────────────────────
+        // WHERE CLAUSE
+        // ─────────────────────────────────────
+
+        
+
+        // COURSE
+        if (!string.IsNullOrEmpty(course) &&
+            course != "All")
         {
-            using (var conn = new SQLiteConnection(_connectionString))
-            {
-                return conn.Query<Attendance>(
-                    @"SELECT 
-                        a.AttendanceID,
-                        a.StudentID,
-                        a.Date,
-                        a.TimeIn,
-                        a.TimeOut,
-                        a.Status,
-                        s.FullName,
-                        s.IdNumber
-                      FROM AttendanceTable a
-                      JOIN StudentsTable s ON s.StudentID = a.StudentID
-                      WHERE a.Date = @Date
-                      ORDER BY a.TimeIn DESC",
-                    new { Date = date });
-            }
+            where.Add("s.Course = @Course");
+            param.Add("@Course", course);
         }
+
+        // YEAR LEVEL
+        if (!string.IsNullOrEmpty(yearLevel) &&
+            yearLevel != "All")
+        {
+            where.Add("s.YearLevel = @YearLevel");
+            param.Add("@YearLevel", yearLevel);
+        }
+
+        string whereClause = where.Count > 0
+            ? "WHERE " + string.Join(" AND ", where)
+            : "";
+
+                // ─────────────────────────────────────
+                // FINAL SQL
+                // ─────────────────────────────────────
+
+                string sql = $@"
+                WITH ExistingSessions AS
+                (
+                    SELECT DISTINCT Session
+                    FROM AttendanceTable
+                    WHERE Session IS NOT NULL
+                )
+
+                SELECT
+                    s.FullName,
+                    s.Course,
+                    s.YearLevel,
+                    s.IdNumber,
+
+                    COALESCE(a.TimeIn, '-') AS TimeIn,
+                    COALESCE(a.TimeOut, '-') AS TimeOut,
+
+                    CASE
+                        WHEN a.StudentID IS NULL THEN 'Absent'
+                        ELSE a.Status
+                    END AS Status,
+
+                    COALESCE(a.AttendanceType, '-') AS AttendanceType,
+
+                    es.Session AS Session,
+
+                    COALESCE(a.Semester, '-') AS Semester,
+
+                    COALESCE(a.EventDescription, '') AS EventDescription,
+
+                    COALESCE(a.Date, '') AS EventDate,
+
+                    COALESCE(e.EventName, 'No Event') AS EventName,
+                    COALESCE(e.StartTime, '') AS StartTime,
+                    COALESCE(e.EndTime, '') AS EndTime
+
+                FROM StudentsTable s
+
+                CROSS JOIN ExistingSessions es
+
+                {attendanceJoin}
+                AND a.Session = es.Session
+
+                LEFT JOIN EventsTable e
+                    ON a.EventID = e.EventID
+
+                {whereClause}
+
+                ORDER BY
+                    es.Session,
+                    s.Course,
+                    s.YearLevel,
+                    s.FullName
+                ";
+
+                return conn.Query<AttendanceReportRow>(
+            sql,
+            param).ToList();
+    }
+}
     }
 }

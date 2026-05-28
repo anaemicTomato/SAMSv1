@@ -4,18 +4,21 @@ namespace SAMSv1.Models
     // Each property maps to a column in AttendanceTable.
     public class Attendance
     {
-        public int AttendanceID { get; private set; }
-        public int StudentID    { get; private set; }
-        public string Date      { get; private set; }   // stored as "yyyy-MM-dd"
-        public string TimeIn    { get; private set; }   // stored as "HH:mm:ss"
-        public string TimeOut   { get; private set; }   // null until student scans out
-        public string Status    { get; private set; }   // "Present", "Late", etc.
-        public long SerialNo    { get; private set; }
+        public int AttendanceID { get; set; }
+        public int StudentID    { get; set; }
+        public string Date      { get; set; }   // stored as "yyyy-MM-dd"
+        public string TimeIn    { get; set; }   // stored as "HH:mm:ss"
+        public string TimeOut   { get; set; }   // null until student scans out
+        public string Status    { get; set; }   // "Present", "Late", etc.
+        public long SerialNo    { get; set; }
 
         // These two are NOT in the database — we fill them in after a JOIN
         // so the attendance grid can show the student's name and ID number.
-        public string FullName  { get; private set; }
-        public string IdNumber  { get; private set; }
+        public string FullName  { get; set; }
+        public string IdNumber  { get; set; }
+
+        public string Course { get; set; } //didungag nako para sa JOIN wala ni sila sa contstructor
+        public string YearLevel { get; set; }
 
 
         public Attendance(
