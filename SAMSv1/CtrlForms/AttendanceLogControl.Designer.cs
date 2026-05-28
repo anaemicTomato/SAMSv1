@@ -152,15 +152,15 @@
             this.simpleButton1.Appearance.BackColor = System.Drawing.Color.White;
             this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Black;
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.DimGray;
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.Appearance.Options.UseBorderColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
             this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(22, 11);
+            this.simpleButton1.Location = new System.Drawing.Point(31, 11);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(64, 50);
+            this.simpleButton1.Size = new System.Drawing.Size(58, 50);
             this.simpleButton1.TabIndex = 0;
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
             // 
@@ -170,30 +170,30 @@
             this.panelControl2.Controls.Add(this.panelControl4);
             this.panelControl2.Controls.Add(this.panelControl6);
             this.panelControl2.Controls.Add(this.panelControl3);
-            this.panelControl2.Location = new System.Drawing.Point(1520, 90);
+            this.panelControl2.Location = new System.Drawing.Point(1448, 90);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(384, 975);
+            this.panelControl2.Size = new System.Drawing.Size(456, 975);
             this.panelControl2.TabIndex = 6;
             // 
             // panelControl7
             // 
-            this.panelControl7.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panelControl7.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panelControl7.Appearance.Options.UseBackColor = true;
             this.panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl7.Controls.Add(this.labelControl7);
             this.panelControl7.Controls.Add(this.pictureEdit1);
             this.panelControl7.Controls.Add(this.labelTotalPresent);
-            this.panelControl7.Location = new System.Drawing.Point(6, 612);
+            this.panelControl7.Location = new System.Drawing.Point(6, 643);
             this.panelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(467, 127);
+            this.panelControl7.Size = new System.Drawing.Size(452, 129);
             this.panelControl7.TabIndex = 2;
             // 
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Appearance.Options.UseForeColor = true;
             this.labelControl7.Location = new System.Drawing.Point(135, 78);
@@ -209,14 +209,21 @@
             this.pictureEdit1.Location = new System.Drawing.Point(13, 22);
             this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            this.pictureEdit1.Properties.ZoomAcceleration = 10D;
+            this.pictureEdit1.Properties.ZoomPercent = 220D;
             this.pictureEdit1.Size = new System.Drawing.Size(102, 91);
             this.pictureEdit1.TabIndex = 10;
+            this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
             // labelTotalPresent
             // 
             this.labelTotalPresent.Appearance.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalPresent.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTotalPresent.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelTotalPresent.Appearance.Options.UseFont = true;
             this.labelTotalPresent.Appearance.Options.UseForeColor = true;
             this.labelTotalPresent.Location = new System.Drawing.Point(135, 22);
@@ -228,22 +235,23 @@
             // 
             // panelControl4
             // 
-            this.panelControl4.Appearance.BackColor = System.Drawing.Color.Green;
+            this.panelControl4.Appearance.BackColor = System.Drawing.Color.LightGreen;
             this.panelControl4.Appearance.Options.UseBackColor = true;
             this.panelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl4.Controls.Add(this.labelControl6);
             this.panelControl4.Controls.Add(this.pictureEdit2);
             this.panelControl4.Controls.Add(this.labelTotalAttendance);
-            this.panelControl4.Location = new System.Drawing.Point(6, 466);
+            this.panelControl4.Location = new System.Drawing.Point(6, 510);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(467, 128);
+            this.panelControl4.Size = new System.Drawing.Size(452, 129);
             this.panelControl4.TabIndex = 1;
+            this.panelControl4.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl4_Paint);
             // 
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Green;
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -256,19 +264,28 @@
             // 
             // pictureEdit2
             // 
+            this.pictureEdit2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
             this.pictureEdit2.Location = new System.Drawing.Point(13, 20);
             this.pictureEdit2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.LightGreen;
+            this.pictureEdit2.Properties.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit2.Properties.Appearance.Options.UseForeColor = true;
+            this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit2.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.pictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            this.pictureEdit2.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            this.pictureEdit2.Properties.ZoomPercent = 222D;
             this.pictureEdit2.Size = new System.Drawing.Size(102, 91);
             this.pictureEdit2.TabIndex = 12;
+            this.pictureEdit2.EditValueChanged += new System.EventHandler(this.pictureEdit2_EditValueChanged);
             // 
             // labelTotalAttendance
             // 
             this.labelTotalAttendance.Appearance.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalAttendance.Appearance.ForeColor = System.Drawing.Color.ForestGreen;
+            this.labelTotalAttendance.Appearance.ForeColor = System.Drawing.Color.Green;
             this.labelTotalAttendance.Appearance.Options.UseFont = true;
             this.labelTotalAttendance.Appearance.Options.UseForeColor = true;
             this.labelTotalAttendance.Location = new System.Drawing.Point(135, 20);
@@ -286,16 +303,16 @@
             this.panelControl6.Controls.Add(this.labelControl8);
             this.panelControl6.Controls.Add(this.pictureEdit3);
             this.panelControl6.Controls.Add(this.labelTotalAbsent);
-            this.panelControl6.Location = new System.Drawing.Point(6, 764);
+            this.panelControl6.Location = new System.Drawing.Point(6, 776);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(467, 133);
+            this.panelControl6.Size = new System.Drawing.Size(452, 129);
             this.panelControl6.TabIndex = 1;
             // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Firebrick;
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Appearance.Options.UseForeColor = true;
             this.labelControl8.Location = new System.Drawing.Point(135, 82);
@@ -311,14 +328,22 @@
             this.pictureEdit3.Location = new System.Drawing.Point(13, 27);
             this.pictureEdit3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureEdit3.Name = "pictureEdit3";
+            this.pictureEdit3.Properties.Appearance.BackColor = System.Drawing.Color.LightCoral;
+            this.pictureEdit3.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pictureEdit3.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit3.Properties.Appearance.Options.UseForeColor = true;
+            this.pictureEdit3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit3.Properties.ZoomPercent = 250D;
             this.pictureEdit3.Size = new System.Drawing.Size(102, 91);
             this.pictureEdit3.TabIndex = 8;
+            this.pictureEdit3.EditValueChanged += new System.EventHandler(this.pictureEdit3_EditValueChanged);
             // 
             // labelTotalAbsent
             // 
             this.labelTotalAbsent.Appearance.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalAbsent.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.labelTotalAbsent.Appearance.ForeColor = System.Drawing.Color.Brown;
             this.labelTotalAbsent.Appearance.Options.UseFont = true;
             this.labelTotalAbsent.Appearance.Options.UseForeColor = true;
             this.labelTotalAbsent.Location = new System.Drawing.Point(135, 27);
@@ -330,7 +355,7 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Appearance.BackColor = System.Drawing.Color.Azure;
+            this.panelControl3.Appearance.BackColor = System.Drawing.Color.Honeydew;
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl3.Controls.Add(this.comboBoxYears);
@@ -343,14 +368,15 @@
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(380, 448);
+            this.panelControl3.Size = new System.Drawing.Size(452, 504);
             this.panelControl3.TabIndex = 0;
             // 
             // comboBoxYears
             // 
-            this.comboBoxYears.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxYears.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxYears.EditValue = "All Years";
-            this.comboBoxYears.Location = new System.Drawing.Point(17, 291);
+            this.comboBoxYears.Location = new System.Drawing.Point(17, 390);
             this.comboBoxYears.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBoxYears.Name = "comboBoxYears";
             this.comboBoxYears.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -368,9 +394,10 @@
             // 
             // comboBoxCourse
             // 
-            this.comboBoxCourse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxCourse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxCourse.EditValue = "All Course";
-            this.comboBoxCourse.Location = new System.Drawing.Point(16, 224);
+            this.comboBoxCourse.Location = new System.Drawing.Point(16, 323);
             this.comboBoxCourse.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBoxCourse.Name = "comboBoxCourse";
             this.comboBoxCourse.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -402,27 +429,27 @@
             // labelControl9
             // 
             this.labelControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(17, 120);
+            this.labelControl9.Location = new System.Drawing.Point(17, 176);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(132, 17);
+            this.labelControl9.Size = new System.Drawing.Size(149, 20);
             this.labelControl9.TabIndex = 8;
             this.labelControl9.Text = "Search by name or ID";
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(16, 23);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(132, 17);
+            this.labelControl2.Size = new System.Drawing.Size(149, 20);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Search by name or ID";
             // 
@@ -452,7 +479,7 @@
             this.gcAttendanceLogs.MainView = this.gridView2;
             this.gcAttendanceLogs.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcAttendanceLogs.Name = "gcAttendanceLogs";
-            this.gcAttendanceLogs.Size = new System.Drawing.Size(1498, 975);
+            this.gcAttendanceLogs.Size = new System.Drawing.Size(1426, 975);
             this.gcAttendanceLogs.TabIndex = 5;
             this.gcAttendanceLogs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -569,16 +596,16 @@
             this.layoutControlItem4.Control = this.gcAttendanceLogs;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 74);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1504, 981);
+            this.layoutControlItem4.Size = new System.Drawing.Size(1432, 981);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.panelControl2;
-            this.layoutControlItem5.Location = new System.Drawing.Point(1504, 74);
+            this.layoutControlItem5.Location = new System.Drawing.Point(1432, 74);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(390, 981);
+            this.layoutControlItem5.Size = new System.Drawing.Size(462, 981);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -681,19 +708,7 @@
             private DevExpress.XtraGrid.Columns.GridColumn gridColumnEventName;
             private DevExpress.XtraEditors.PanelControl panelControl2;
             private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-            private DevExpress.XtraEditors.PanelControl panelControl4;
             private DevExpress.XtraEditors.PanelControl panelControl3;
-            private DevExpress.XtraEditors.PanelControl panelControl7;
-            private DevExpress.XtraEditors.PanelControl panelControl6;
-            private DevExpress.XtraEditors.PictureEdit pictureEdit3;
-            private DevExpress.XtraEditors.LabelControl labelTotalAbsent;
-            private DevExpress.XtraEditors.LabelControl labelControl7;
-            private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-            private DevExpress.XtraEditors.LabelControl labelTotalPresent;
-            private DevExpress.XtraEditors.LabelControl labelControl6;
-            private DevExpress.XtraEditors.PictureEdit pictureEdit2;
-            private DevExpress.XtraEditors.LabelControl labelTotalAttendance;
-            private DevExpress.XtraEditors.LabelControl labelControl8;
             private DevExpress.XtraEditors.ComboBoxEdit cbSearchEvent;
             private DevExpress.XtraEditors.LabelControl labelControl9;
             private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -707,5 +722,17 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.PanelControl panelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LabelControl labelTotalPresent;
+        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private DevExpress.XtraEditors.LabelControl labelTotalAttendance;
+        private DevExpress.XtraEditors.PanelControl panelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit3;
+        private DevExpress.XtraEditors.LabelControl labelTotalAbsent;
     }
     }

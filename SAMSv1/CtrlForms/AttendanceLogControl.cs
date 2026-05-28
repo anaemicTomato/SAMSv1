@@ -123,5 +123,25 @@ namespace SAMSv1.CtrlForms
         {
 
         }
+
+        private void panelControl4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

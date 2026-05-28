@@ -66,5 +66,10 @@ namespace SAMSv1.MainForms
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtUsername_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

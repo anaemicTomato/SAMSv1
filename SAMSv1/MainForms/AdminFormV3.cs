@@ -122,5 +122,20 @@ namespace SAMSv1.MainForms
         {
 
         }
+
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
