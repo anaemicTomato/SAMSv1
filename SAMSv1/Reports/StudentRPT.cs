@@ -1,6 +1,5 @@
 ﻿using SAMSv1.Data;
 using SAMSv1.Helpers;
-using SAMSv1.Models;
 using System.Collections.Generic;
 
 namespace SAMSv1.Reports
@@ -16,12 +15,17 @@ namespace SAMSv1.Reports
             List<string> dates,
             int? eventId,
             string course,
-            string yearLevel)
+            string yearLevel,
+            string session,
+            string semester,
+            string attendanceType)
         {
             InitializeComponent();
 
             var repo = new AttendanceRepository();
-            var rows = repo.GetAttendance(dates, eventId, course, yearLevel);
+            var rows = repo.GetAttendance(
+                dates, eventId, course, yearLevel,
+                session, semester, attendanceType);
 
             this.DataSource = rows.ToDataTable();
         }

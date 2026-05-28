@@ -16,6 +16,7 @@ namespace SAMSv1.CtrlForms
         private List<Event> _events = new List<Event>();
         private DateTime? _rangeStart = null;
         private DateTime? _rangeEnd = null;
+        private DateTime _loadedAt = DateTime.MinValue;
 
         public AttendanceLogAvian()
         {
@@ -27,18 +28,24 @@ namespace SAMSv1.CtrlForms
         {
             LoadEvents();
             LoadCourses();
-            LoadYearLevels();
+            //LoadYearLevels();
             EnableCalendarMultiSelect();
 
             cbEvent.SelectedIndexChanged += (s, _) => RefreshGrid();
             cbCourse.SelectedIndexChanged += (s, _) => RefreshGrid();
             cbYearLevel.SelectedIndexChanged += (s, _) => RefreshGrid();
+            cbSession.SelectedIndexChanged += (s, _) => RefreshGrid();
+            cbSemester.SelectedIndexChanged += (s, _) => RefreshGrid();
+            cbAttendanceType.SelectedIndexChanged += (s, _) => RefreshGrid();
 
             scSearchStudent.Properties.Client = gcStudentTable;
 
-            btnSetStart.Click += btnSetStart_Click;
-            btnSetEnd.Click += btnSetEnd_Click;
+            _loadedAt = DateTime.Now;
+
+            RefreshGrid();
         }
+
+        // ── Dropdown loaders ──────────────────────────────────────────
 
         private void LoadEvents()
         {
@@ -59,28 +66,28 @@ namespace SAMSv1.CtrlForms
             cbCourse.SelectedIndex = 0;
         }
 
-        private void LoadYearLevels()
-        {
-            cbYearLevel.Properties.Items.Clear();
-            cbYearLevel.Properties.Items.Add("All");
-            foreach (var y in _repo.GetAllYearLevels())
-                cbYearLevel.Properties.Items.Add(y);
-            cbYearLevel.SelectedIndex = 0;
-        }
+        //private void LoadYearLevels()
+        //{
+        //    cbYearLevel.Properties.Items.Clear();
+        //    cbYearLevel.Properties.Items.Add("All");
+        //    foreach (var y in _repo.GetAllYearLevels())
+        //        cbYearLevel.Properties.Items.Add(y);
+        //    cbYearLevel.SelectedIndex = 0;
+        //}
 
         private void EnableCalendarMultiSelect()
         {
             ccCalendar.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic;
         }
 
+        // ── Calendar date selection ───────────────────────────────────
+
         private void btnSetStart_Click(object sender, EventArgs e)
         {
             _rangeStart = ccCalendar.DateTime.Date;
-            _rangeEnd = null; // reset end whenever start changes
-
+            _rangeEnd = null;
             lblDateRange.Text = $"From: {_rangeStart:MMM dd, yyyy} — now pick end date";
             lblDateRange.ForeColor = System.Drawing.Color.DarkOrange;
-
             RefreshGrid();
         }
 
@@ -98,20 +105,18 @@ namespace SAMSv1.CtrlForms
 
             _rangeEnd = ccCalendar.DateTime.Date;
 
-            // Swap if end is before start
             if (_rangeEnd < _rangeStart)
                 (_rangeStart, _rangeEnd) = (_rangeEnd, _rangeStart);
 
-            // Same date = single day
-            if (_rangeEnd == _rangeStart)
-                lblDateRange.Text = $"Single day: {_rangeStart:MMM dd, yyyy}";
-            else
-                lblDateRange.Text = $"{_rangeStart:MMM dd, yyyy}  →  {_rangeEnd:MMM dd, yyyy}";
+            lblDateRange.Text = _rangeEnd == _rangeStart
+                ? $"Single day: {_rangeStart:MMM dd, yyyy}"
+                : $"{_rangeStart:MMM dd, yyyy}  →  {_rangeEnd:MMM dd, yyyy}";
 
             lblDateRange.ForeColor = System.Drawing.Color.Green;
-
             RefreshGrid();
         }
+
+        // ── Filter state readers ──────────────────────────────────────
 
         private List<string> GetSelectedDates()
         {
@@ -121,7 +126,6 @@ namespace SAMSv1.CtrlForms
             var dates = new List<string>();
             for (var d = _rangeStart.Value; d <= _rangeEnd.Value; d = d.AddDays(1))
                 dates.Add(d.ToString("yyyy-MM-dd"));
-
             return dates;
         }
 
@@ -139,13 +143,27 @@ namespace SAMSv1.CtrlForms
         private string GetSelectedYearLevel()
             => cbYearLevel.SelectedItem?.ToString();
 
+        private string GetSelectedSession()
+            => cbSession.SelectedItem?.ToString();
+
+        private string GetSelectedSemester()
+            => cbSemester.SelectedItem?.ToString();
+
+        private string GetSelectedAttendanceType()
+            => cbAttendanceType.SelectedItem?.ToString();
+
+        // ── Grid + Report ─────────────────────────────────────────────
+
         private void RefreshGrid()
         {
             gcStudentTable.DataSource = _repo.GetAttendance(
                 GetSelectedDates(),
                 GetSelectedEventId(),
                 GetSelectedCourse(),
-                GetSelectedYearLevel()).ToList();
+                GetSelectedYearLevel(),
+                GetSelectedSession(),
+                GetSelectedSemester(),
+                GetSelectedAttendanceType()).ToList();
         }
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
@@ -164,9 +182,17 @@ namespace SAMSv1.CtrlForms
                 GetSelectedDates(),
                 GetSelectedEventId(),
                 GetSelectedCourse(),
-                GetSelectedYearLevel());
+                GetSelectedYearLevel(),
+                GetSelectedSession(),
+                GetSelectedSemester(),
+                GetSelectedAttendanceType());
 
             report.ShowPreviewDialog();
+        }
+
+        private void lblDateRange_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
