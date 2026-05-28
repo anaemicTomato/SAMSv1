@@ -47,7 +47,6 @@
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
             this.labelTotalAbsent = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
             this.cbSearchEvent = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -77,6 +76,8 @@
             this.gridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSession = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -94,8 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl10)).BeginInit();
-            this.panelControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
@@ -113,6 +112,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -375,7 +377,9 @@
             this.panelControl3.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl3.Controls.Add(this.panelControl10);
+            this.panelControl3.Controls.Add(this.comboBoxEdit1);
+            this.panelControl3.Controls.Add(this.dateEdit1);
+            this.panelControl3.Controls.Add(this.cbSearchEvent);
             this.panelControl3.Controls.Add(this.panelControl9);
             this.panelControl3.Controls.Add(this.panelControl8);
             this.panelControl3.Controls.Add(this.panelControl5);
@@ -383,26 +387,14 @@
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(452, 402);
+            this.panelControl3.Size = new System.Drawing.Size(452, 414);
             this.panelControl3.TabIndex = 0;
-            // 
-            // panelControl10
-            // 
-            this.panelControl10.Appearance.BackColor = System.Drawing.Color.White;
-            this.panelControl10.Appearance.Options.UseBackColor = true;
-            this.panelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl10.Controls.Add(this.cbSearchEvent);
-            this.panelControl10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl10.Location = new System.Drawing.Point(0, 270);
-            this.panelControl10.Name = "panelControl10";
-            this.panelControl10.Size = new System.Drawing.Size(452, 130);
-            this.panelControl10.TabIndex = 12;
             // 
             // cbSearchEvent
             // 
             this.cbSearchEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSearchEvent.EditValue = "Semester";
-            this.cbSearchEvent.Location = new System.Drawing.Point(16, 24);
+            this.cbSearchEvent.Location = new System.Drawing.Point(18, 283);
             this.cbSearchEvent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbSearchEvent.Name = "cbSearchEvent";
             this.cbSearchEvent.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -412,7 +404,7 @@
             this.cbSearchEvent.Properties.Items.AddRange(new object[] {
             "Pasiklaban",
             "Founders"});
-            this.cbSearchEvent.Size = new System.Drawing.Size(293, 36);
+            this.cbSearchEvent.Size = new System.Drawing.Size(290, 36);
             this.cbSearchEvent.TabIndex = 7;
             // 
             // panelControl9
@@ -712,6 +704,35 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Width = 64;
             // 
+            // dateEdit1
+            // 
+            this.dateEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(172, 349);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Size = new System.Drawing.Size(139, 34);
+            this.dateEdit1.TabIndex = 12;
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxEdit1.EditValue = "";
+            this.comboBoxEdit1.Location = new System.Drawing.Point(18, 349);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            ".",
+            "."});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(148, 34);
+            this.comboBoxEdit1.TabIndex = 13;
+            // 
             // AttendanceLogControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -741,8 +762,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl10)).EndInit();
-            this.panelControl10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
             this.panelControl9.ResumeLayout(false);
@@ -762,6 +781,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -813,8 +835,9 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbSearchEvent;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxCourse;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxYears;
-        private DevExpress.XtraEditors.PanelControl panelControl10;
         private DevExpress.XtraEditors.PanelControl panelControl9;
         private DevExpress.XtraEditors.PanelControl panelControl8;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
     }
     }

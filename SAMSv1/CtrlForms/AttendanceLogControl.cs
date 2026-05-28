@@ -148,5 +148,10 @@ namespace SAMSv1.CtrlForms
         {
 
         }
+
+        private void panelControl10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

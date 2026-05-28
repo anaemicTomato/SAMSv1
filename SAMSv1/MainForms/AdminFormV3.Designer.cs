@@ -137,9 +137,9 @@
             this.AttendanceModule.Appearance.Hovered.Options.UseBackColor = true;
             this.AttendanceModule.Appearance.Hovered.Options.UseFont = true;
             this.AttendanceModule.Appearance.Hovered.Options.UseForeColor = true;
-            this.AttendanceModule.Appearance.Pressed.BackColor = System.Drawing.Color.SeaGreen;
+            this.AttendanceModule.Appearance.Pressed.BackColor = System.Drawing.Color.White;
             this.AttendanceModule.Appearance.Pressed.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AttendanceModule.Appearance.Pressed.ForeColor = System.Drawing.Color.White;
+            this.AttendanceModule.Appearance.Pressed.ForeColor = System.Drawing.Color.SeaGreen;
             this.AttendanceModule.Appearance.Pressed.Options.UseBackColor = true;
             this.AttendanceModule.Appearance.Pressed.Options.UseFont = true;
             this.AttendanceModule.Appearance.Pressed.Options.UseForeColor = true;
