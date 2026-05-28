@@ -143,5 +143,10 @@ namespace SAMSv1.CtrlForms
         {
 
         }
+
+        private void gcAttendanceLogs_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

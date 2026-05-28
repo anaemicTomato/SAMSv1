@@ -126,10 +126,10 @@
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.layoutControl1);
-            this.panelControl2.Location = new System.Drawing.Point(18, 310);
+            this.panelControl2.Location = new System.Drawing.Point(18, 309);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1044, 390);
+            this.panelControl2.Size = new System.Drawing.Size(1044, 391);
             this.panelControl2.TabIndex = 6;
             // 
             // layoutControl1
@@ -141,7 +141,7 @@
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.bottomLayout;
-            this.layoutControl1.Size = new System.Drawing.Size(1040, 386);
+            this.layoutControl1.Size = new System.Drawing.Size(1040, 387);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -152,7 +152,7 @@
             this.gcUsers.MainView = this.gvUsers;
             this.gcUsers.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gcUsers.Name = "gcUsers";
-            this.gcUsers.Size = new System.Drawing.Size(1004, 304);
+            this.gcUsers.Size = new System.Drawing.Size(1004, 305);
             this.gcUsers.TabIndex = 15;
             this.gcUsers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUsers});
@@ -223,7 +223,7 @@
             this.layoutControlItem12,
             this.layoutControlItem13});
             this.bottomLayout.Name = "bottomLayout";
-            this.bottomLayout.Size = new System.Drawing.Size(1040, 386);
+            this.bottomLayout.Size = new System.Drawing.Size(1040, 387);
             this.bottomLayout.TextVisible = false;
             // 
             // layoutControlItem12
@@ -240,7 +240,7 @@
             this.layoutControlItem13.Control = this.gcUsers;
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 42);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(1010, 312);
+            this.layoutControlItem13.Size = new System.Drawing.Size(1010, 313);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -251,7 +251,7 @@
             this.topPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.topPanel.MaximumSize = new System.Drawing.Size(0, 196);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1044, 191);
+            this.topPanel.Size = new System.Drawing.Size(1044, 190);
             this.topPanel.TabIndex = 5;
             // 
             // topLayout
@@ -269,7 +269,7 @@
             this.topLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.topLayout.Name = "topLayout";
             this.topLayout.Root = this.layoutControlGroup1;
-            this.topLayout.Size = new System.Drawing.Size(1040, 187);
+            this.topLayout.Size = new System.Drawing.Size(1040, 186);
             this.topLayout.TabIndex = 0;
             this.topLayout.Text = "layoutControl1";
             // 
@@ -279,7 +279,7 @@
             this.btnClearFields.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearFields.Appearance.Options.UseBackColor = true;
             this.btnClearFields.Appearance.Options.UseFont = true;
-            this.btnClearFields.Location = new System.Drawing.Point(523, 118);
+            this.btnClearFields.Location = new System.Drawing.Point(523, 117);
             this.btnClearFields.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnClearFields.MinimumSize = new System.Drawing.Size(0, 49);
             this.btnClearFields.Name = "btnClearFields";
@@ -295,7 +295,7 @@
             this.btnDeleteUser.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteUser.Appearance.Options.UseBackColor = true;
             this.btnDeleteUser.Appearance.Options.UseFont = true;
-            this.btnDeleteUser.Location = new System.Drawing.Point(775, 118);
+            this.btnDeleteUser.Location = new System.Drawing.Point(775, 117);
             this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnDeleteUser.MinimumSize = new System.Drawing.Size(0, 49);
             this.btnDeleteUser.Name = "btnDeleteUser";
@@ -311,7 +311,7 @@
             this.btnUpdateUser.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateUser.Appearance.Options.UseBackColor = true;
             this.btnUpdateUser.Appearance.Options.UseFont = true;
-            this.btnUpdateUser.Location = new System.Drawing.Point(270, 118);
+            this.btnUpdateUser.Location = new System.Drawing.Point(270, 117);
             this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnUpdateUser.MinimumSize = new System.Drawing.Size(0, 49);
             this.btnUpdateUser.Name = "btnUpdateUser";
@@ -323,13 +323,13 @@
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Appearance.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnAddUser.Appearance.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnAddUser.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddUser.Appearance.ForeColor = System.Drawing.Color.White;
             this.btnAddUser.Appearance.Options.UseBackColor = true;
             this.btnAddUser.Appearance.Options.UseFont = true;
             this.btnAddUser.Appearance.Options.UseForeColor = true;
-            this.btnAddUser.Location = new System.Drawing.Point(18, 118);
+            this.btnAddUser.Location = new System.Drawing.Point(18, 117);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnAddUser.MinimumSize = new System.Drawing.Size(0, 49);
             this.btnAddUser.Name = "btnAddUser";
@@ -341,7 +341,7 @@
             // 
             // cbRole
             // 
-            this.cbRole.Location = new System.Drawing.Point(832, 51);
+            this.cbRole.Location = new System.Drawing.Point(830, 51);
             this.cbRole.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cbRole.Name = "cbRole";
             this.cbRole.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -353,13 +353,13 @@
             "SSG Officer"});
             this.cbRole.Properties.NullText = "Select Role";
             this.cbRole.Properties.NullValuePrompt = "Select Role";
-            this.cbRole.Size = new System.Drawing.Size(190, 42);
+            this.cbRole.Size = new System.Drawing.Size(192, 42);
             this.cbRole.StyleController = this.topLayout;
             this.cbRole.TabIndex = 7;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(424, 51);
+            this.txtPassword.Location = new System.Drawing.Point(423, 51);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtPassword.MinimumSize = new System.Drawing.Size(0, 44);
             this.txtPassword.Name = "txtPassword";
@@ -416,7 +416,7 @@
             this.layoutControlItem10,
             this.emptySpaceItem2});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1040, 187);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1040, 186);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
@@ -442,7 +442,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtPassword;
-            this.layoutControlItem6.Location = new System.Drawing.Point(406, 31);
+            this.layoutControlItem6.Location = new System.Drawing.Point(405, 31);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(396, 52);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -453,30 +453,30 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(394, 31);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(12, 52);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(11, 52);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.cbRole;
-            this.layoutControlItem7.Location = new System.Drawing.Point(814, 31);
+            this.layoutControlItem7.Location = new System.Drawing.Point(812, 31);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(196, 52);
+            this.layoutControlItem7.Size = new System.Drawing.Size(198, 52);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(802, 31);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(801, 31);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(12, 52);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(11, 52);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnAddUser;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 98);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 97);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(252, 57);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
@@ -485,7 +485,7 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnUpdateUser;
-            this.layoutControlItem9.Location = new System.Drawing.Point(252, 98);
+            this.layoutControlItem9.Location = new System.Drawing.Point(252, 97);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(253, 57);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
@@ -494,7 +494,7 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnClearFields;
-            this.layoutControlItem11.Location = new System.Drawing.Point(505, 98);
+            this.layoutControlItem11.Location = new System.Drawing.Point(505, 97);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(252, 57);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
@@ -503,7 +503,7 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.btnDeleteUser;
-            this.layoutControlItem10.Location = new System.Drawing.Point(757, 98);
+            this.layoutControlItem10.Location = new System.Drawing.Point(757, 97);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(253, 57);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
@@ -514,7 +514,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 83);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(1010, 15);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(1010, 14);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // headerPanel
@@ -571,30 +571,31 @@
             this.layoutControlItem2.Control = this.topPanel;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 73);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1050, 199);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1050, 198);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.panelControl2;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 290);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 289);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1050, 398);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1050, 399);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 272);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 271);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(1050, 18);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // UserManagementControl
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.baseLayout);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UserManagementControl";

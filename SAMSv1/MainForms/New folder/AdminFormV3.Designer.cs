@@ -53,7 +53,6 @@
             // mainPanel
             // 
             this.mainPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.mainPanel.ContentImageAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(275, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -64,10 +63,8 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogout.Appearance.BackColor = System.Drawing.Color.White;
             this.btnLogout.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogout.Appearance.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnLogout.Appearance.Options.UseBackColor = true;
             this.btnLogout.Appearance.Options.UseFont = true;
             this.btnLogout.Appearance.Options.UseForeColor = true;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
@@ -211,9 +208,7 @@
             // 
             // accordionControlElement5
             // 
-            this.accordionControlElement5.Appearance.Default.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accordionControlElement5.Appearance.Default.ForeColor = System.Drawing.Color.SeaGreen;
-            this.accordionControlElement5.Appearance.Default.Options.UseFont = true;
+            this.accordionControlElement5.Appearance.Default.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Information;
             this.accordionControlElement5.Appearance.Default.Options.UseForeColor = true;
             this.accordionControlElement5.Name = "accordionControlElement5";
             this.accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
@@ -221,9 +216,7 @@
             // 
             // accordionControlElement6
             // 
-            this.accordionControlElement6.Appearance.Default.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accordionControlElement6.Appearance.Default.ForeColor = System.Drawing.Color.SeaGreen;
-            this.accordionControlElement6.Appearance.Default.Options.UseFont = true;
+            this.accordionControlElement6.Appearance.Default.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Information;
             this.accordionControlElement6.Appearance.Default.Options.UseForeColor = true;
             this.accordionControlElement6.Name = "accordionControlElement6";
             this.accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
@@ -249,12 +242,13 @@
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
-            this.pictureEdit1.Location = new System.Drawing.Point(13, 907);
+            this.pictureEdit1.Location = new System.Drawing.Point(12, 875);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
             this.pictureEdit1.Properties.ZoomPercent = 8D;
-            this.pictureEdit1.Size = new System.Drawing.Size(227, 65);
+            this.pictureEdit1.Size = new System.Drawing.Size(227, 89);
             this.pictureEdit1.TabIndex = 3;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 

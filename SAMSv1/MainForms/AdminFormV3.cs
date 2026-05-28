@@ -137,5 +137,10 @@ namespace SAMSv1.MainForms
         {
 
         }
+
+        private void pictureEdit4_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
