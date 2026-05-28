@@ -111,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CHCNetSDK.cs" />
+    <Compile Include="CtrlForms\AttendanceLogAvian.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\AttendanceLogAvian.Designer.cs">
+      <DependentUpon>AttendanceLogAvian.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlForms\AttendanceLogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,8 +147,10 @@
     <Compile Include="CtrlForms\UserManagementTestControl.Designer.cs">
       <DependentUpon>UserManagementTestControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\AttendanceRepository.cs" />
     <Compile Include="Data\StudentRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Helpers\DataTableExtensions.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,7 +196,9 @@
     </Compile>
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\AttendanceLogRow.cs" />
+    <Compile Include="Models\AttendanceReportRow.cs" />
     <Compile Include="Models\AttendanceSummary.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\PersonBase.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />
@@ -238,6 +248,9 @@
     <Content Include="HCNetSDK\zlib1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="CtrlForms\AttendanceLogAvian.resx">
+      <DependentUpon>AttendanceLogAvian.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\AttendanceLogControl.resx">
       <DependentUpon>AttendanceLogControl.cs</DependentUpon>
     </EmbeddedResource>
