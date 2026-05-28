@@ -10,25 +10,36 @@
     /// POLYMORPHISM:   Device is typed as AttendanceDevice (abstract base),
     ///                 not HikvisionDevice — callers don't know or care which brand.
     /// </summary>
+    // Services/DeviceManager.cs
     public static class DeviceManager
     {
+        // ENCAPSULATION: credentials are private — no UI control ever sees them
+        private const string IP = "192.168.1.65";
+        private const int Port = 8000;
+        private const string User = "admin";
+        private const string Pass = "DMC2026#";
+
         private static AttendanceDevice _device;
 
+        // POLYMORPHISM: typed as abstract — callers don't know it's Hikvision
         public static AttendanceDevice Device => _device;
 
-        /// <summary>
-        /// Call once at app startup (e.g. in your MainForm or Program.cs).
-        /// Pass in a fully constructed HikvisionDevice (or any future device).
-        /// </summary>
-        public static bool Initialize(AttendanceDevice device)
+        public static bool Initialize()
         {
-            _device = device;
+            _device = new HikvisionDevice(IP, Port, User, Pass);
             return _device.Connect();
+        }
+
+        public static void Disconnect()
+        {
+            _device?.Disconnect();
+            _device = null;
         }
 
         public static void Shutdown()
         {
             _device?.Disconnect();
+            HikvisionDevice.SDKCleanup(); // only call once on exit
             _device = null;
         }
     }

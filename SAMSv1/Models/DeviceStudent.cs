@@ -1,14 +1,13 @@
-﻿namespace SAMSv1.Models
+﻿// Models/DeviceStudent.cs
+namespace SAMSv1.Models
 {
     /// <summary>
-    /// Represents a user record returned by the Hikvision device's
+    /// Represents a user fetched from the Hikvision device's
     /// UserInfo/Search ISAPI endpoint.
-    /// IdNumber = device's employeeNo field.
+    /// INHERITANCE: Extends PersonBase — it's still a person, just from the device.
     /// </summary>
-    public class DeviceStudent
+    public class DeviceStudent : PersonBase
     {
-        public string IdNumber { get; private set; }
-        public string FullName { get; private set; }
         public string CardNo { get; private set; }
 
         public DeviceStudent(string idNumber, string fullName, string cardNo)

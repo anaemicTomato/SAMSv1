@@ -123,18 +123,6 @@
     <Compile Include="CtrlForms\RegisterStudentsV2.Designer.cs">
       <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
     </Compile>
-    <Compile Include="CtrlForms\Scan\ScanFace.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\Scan\ScanFace.Designer.cs">
-      <DependentUpon>ScanFace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CtrlForms\Scan\ScanRFID.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\Scan\ScanRFID.Designer.cs">
-      <DependentUpon>ScanRFID.cs</DependentUpon>
-    </Compile>
     <Compile Include="CtrlForms\StudentAttendanceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +187,9 @@
       <DependentUpon>LoginFormv2.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\AttendanceLogRow.cs" />
+    <Compile Include="Models\AttendanceSummary.cs" />
+    <Compile Include="Models\PersonBase.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
@@ -211,10 +202,9 @@
     </Compile>
     <Compile Include="Services\AttendanceDevice.cs" />
     <Compile Include="Services\DeviceManager.cs" />
-    <Compile Include="Services\DeviceStudent.cs" />
+    <Compile Include="Models\DeviceStudent.cs" />
     <Compile Include="Services\FaceService.cs" />
     <Compile Include="Services\HikvisionDevice.cs" />
-    <Compile Include="Services\Interfaces\IAttendanceDevice.cs" />
     <Content Include="HCNetSDK\HCCore.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -253,12 +243,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\RegisterStudentsV2.resx">
       <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\Scan\ScanFace.resx">
-      <DependentUpon>ScanFace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\Scan\ScanRFID.resx">
-      <DependentUpon>ScanRFID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\StudentAttendanceControl.resx">
       <DependentUpon>StudentAttendanceControl.cs</DependentUpon>

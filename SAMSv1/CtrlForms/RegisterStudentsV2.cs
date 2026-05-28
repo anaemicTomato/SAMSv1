@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SAMSv1.Models;
 
 namespace SAMSv1.CtrlForms
 {
@@ -120,13 +121,13 @@ namespace SAMSv1.CtrlForms
         private void RefreshGrid()
         {
             var students = FaceService.GetAllStudents();
-            var source = new BindingList<FaceService.StudentGridRow>(students);
+            var source = new BindingList<Student>(students);
 
-            Invoke((Action)(() =>
+            SafeInvoke(() =>
             {
                 gcRegisteredStudents.DataSource = source;
                 gcRegisteredStudents.RefreshDataSource();
-            }));
+            });
         }
 
         // ═════════════════════════════════════════════════════════
@@ -183,7 +184,7 @@ namespace SAMSv1.CtrlForms
                 // Refresh grid with new data
                 RefreshGrid();
 
-                Invoke((Action)(() =>
+                SafeInvoke(() =>
                 {
                     string msg = deviceOk
                         ? $"✓ {fullName} registered successfully.\n" +
@@ -207,11 +208,11 @@ namespace SAMSv1.CtrlForms
 
                     btnRegisterStudent.Enabled = true;
                     btnRegisterStudent.Text = "Register Student";
-                }));
+                });
             }
             catch (Exception ex)
             {
-                Invoke((Action)(() =>
+                SafeInvoke(() =>
                 {
                     DevExpress.XtraEditors.XtraMessageBox.Show(
                         "Error: " + ex.Message,
@@ -221,8 +222,23 @@ namespace SAMSv1.CtrlForms
 
                     btnRegisterStudent.Enabled = true;
                     btnRegisterStudent.Text = "Register Student";
-                }));
+                });
             }
+        }
+
+        // ================= SAFE INVOKE =================
+        private void SafeInvoke(Action action)
+        {
+            if (IsDisposed || !IsHandleCreated) return;
+            try { Invoke(action); }
+            catch { }
+        }
+
+        // ================= DESTROY =================
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+
         }
 
         // ═════════════════════════════════════════════════════════
