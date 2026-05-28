@@ -81,13 +81,6 @@ namespace SAMSv1.CtrlForms
         // ═════════════════════════════════════════════════════════
         private void SetupGrid()
         {
-            gridView1.Columns.Clear();
-            gridView1.OptionsBehavior.Editable = false;
-            gridView1.OptionsView.ShowGroupPanel = false;
-            gridView1.OptionsView.ShowAutoFilterRow = true;
-
-            gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
-            { FieldName = "StudentID", Caption = "#", Visible = true, Width = 50 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
             { FieldName = "IdNumber", Caption = "ID Number", Visible = true, Width = 130 });
             gridView1.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn
@@ -381,6 +374,11 @@ namespace SAMSv1.CtrlForms
         protected override void OnHandleDestroyed(EventArgs e)
         {
             base.OnHandleDestroyed(e);
+        }
+
+        private void btnClearFields_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

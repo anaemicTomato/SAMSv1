@@ -208,6 +208,7 @@
             this.btnClearFields.StyleController = this.layoutControl1;
             this.btnClearFields.TabIndex = 16;
             this.btnClearFields.Text = "Clear";
+            this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
             // 
             // labelControl3
             // 
@@ -245,7 +246,14 @@
             // 
             this.gridView1.GridControl = this.gcRegisteredStudents;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsCustomization.AllowFilter = false;
+            this.gridView1.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsFilter.AllowFilterEditor = false;
+            this.gridView1.OptionsFilter.AllowMRUFilterList = false;
+            this.gridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
             // 
             // cbAllYears
             // 

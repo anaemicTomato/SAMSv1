@@ -23,7 +23,7 @@ namespace SAMSv1.Data
             }
         }
 
-        // READ
+        // READ 
         public IEnumerable<User> GetAllUsers()
         {
             using (var conn = new SQLiteConnection(_connectionString))
