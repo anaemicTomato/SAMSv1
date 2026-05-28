@@ -116,20 +116,18 @@
             this.baseLayout.Controls.Add(this.headerPanel);
             this.baseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.baseLayout.Location = new System.Drawing.Point(0, 0);
-            this.baseLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.baseLayout.Name = "baseLayout";
             this.baseLayout.Root = this.Root;
-            this.baseLayout.Size = new System.Drawing.Size(1389, 855);
+            this.baseLayout.Size = new System.Drawing.Size(926, 585);
             this.baseLayout.TabIndex = 0;
             this.baseLayout.Text = "layoutControl1";
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.layoutControl1);
-            this.panelControl2.Location = new System.Drawing.Point(21, 366);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl2.Location = new System.Drawing.Point(11, 233);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1347, 470);
+            this.panelControl2.Size = new System.Drawing.Size(904, 341);
             this.panelControl2.TabIndex = 6;
             // 
             // layoutControl1
@@ -138,21 +136,20 @@
             this.layoutControl1.Controls.Add(this.sbUserList);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(2, 2);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.bottomLayout;
-            this.layoutControl1.Size = new System.Drawing.Size(1343, 466);
+            this.layoutControl1.Size = new System.Drawing.Size(900, 337);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcUsers
             // 
-            this.gcUsers.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gcUsers.Location = new System.Drawing.Point(21, 67);
+            this.gcUsers.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.gcUsers.Location = new System.Drawing.Point(11, 43);
             this.gcUsers.MainView = this.gvUsers;
-            this.gcUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gcUsers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gcUsers.Name = "gcUsers";
-            this.gcUsers.Size = new System.Drawing.Size(1301, 380);
+            this.gcUsers.Size = new System.Drawing.Size(878, 283);
             this.gcUsers.TabIndex = 15;
             this.gcUsers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUsers});
@@ -163,9 +160,11 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3});
+            this.gvUsers.DetailHeight = 239;
             this.gvUsers.GridControl = this.gcUsers;
             this.gvUsers.Name = "gvUsers";
             this.gvUsers.OptionsCustomization.AllowColumnMoving = false;
+            this.gvUsers.OptionsEditForm.PopupEditFormWidth = 533;
             this.gvUsers.OptionsFind.AllowFindPanel = false;
             this.gvUsers.OptionsView.ShowGroupPanel = false;
             this.gvUsers.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvUsers_FocusedRowChanged);
@@ -174,42 +173,36 @@
             // 
             this.gridColumn1.Caption = "ID";
             this.gridColumn1.FieldName = "UserID";
-            this.gridColumn1.MinWidth = 30;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 112;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Username";
             this.gridColumn2.FieldName = "Username";
-            this.gridColumn2.MinWidth = 30;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 112;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Role";
             this.gridColumn3.FieldName = "Role";
-            this.gridColumn3.MinWidth = 30;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 112;
             // 
             // sbUserList
             // 
-            this.sbUserList.Location = new System.Drawing.Point(21, 19);
-            this.sbUserList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.sbUserList.Location = new System.Drawing.Point(11, 11);
+            this.sbUserList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.sbUserList.Name = "sbUserList";
             this.sbUserList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.sbUserList.Properties.NullValuePrompt = "Search User";
-            this.sbUserList.Size = new System.Drawing.Size(1301, 40);
+            this.sbUserList.Size = new System.Drawing.Size(878, 28);
             this.sbUserList.StyleController = this.layoutControl1;
             this.sbUserList.TabIndex = 14;
             // 
@@ -221,7 +214,7 @@
             this.layoutControlItem12,
             this.layoutControlItem13});
             this.bottomLayout.Name = "bottomLayout";
-            this.bottomLayout.Size = new System.Drawing.Size(1343, 466);
+            this.bottomLayout.Size = new System.Drawing.Size(900, 337);
             this.bottomLayout.TextVisible = false;
             // 
             // layoutControlItem12
@@ -229,27 +222,26 @@
             this.layoutControlItem12.Control = this.sbUserList;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(1309, 48);
+            this.layoutControlItem12.Size = new System.Drawing.Size(882, 32);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.gcUsers;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(1309, 388);
+            this.layoutControlItem13.Size = new System.Drawing.Size(882, 287);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // topPanel
             // 
             this.topPanel.Controls.Add(this.topLayout);
-            this.topPanel.Location = new System.Drawing.Point(21, 104);
-            this.topPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.topPanel.MaximumSize = new System.Drawing.Size(0, 233);
+            this.topPanel.Location = new System.Drawing.Point(11, 68);
+            this.topPanel.MaximumSize = new System.Drawing.Size(0, 159);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1347, 229);
+            this.topPanel.Size = new System.Drawing.Size(904, 146);
             this.topPanel.TabIndex = 5;
             // 
             // topLayout
@@ -264,10 +256,9 @@
             this.topLayout.Controls.Add(this.labelControl2);
             this.topLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.topLayout.Location = new System.Drawing.Point(2, 2);
-            this.topLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.topLayout.Name = "topLayout";
             this.topLayout.Root = this.layoutControlGroup1;
-            this.topLayout.Size = new System.Drawing.Size(1343, 225);
+            this.topLayout.Size = new System.Drawing.Size(900, 142);
             this.topLayout.TabIndex = 0;
             this.topLayout.Text = "layoutControl1";
             // 
@@ -277,11 +268,11 @@
             this.btnClearFields.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearFields.Appearance.Options.UseBackColor = true;
             this.btnClearFields.Appearance.Options.UseFont = true;
-            this.btnClearFields.Location = new System.Drawing.Point(676, 147);
-            this.btnClearFields.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnClearFields.MinimumSize = new System.Drawing.Size(0, 59);
+            this.btnClearFields.Location = new System.Drawing.Point(452, 91);
+            this.btnClearFields.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnClearFields.MinimumSize = new System.Drawing.Size(0, 40);
             this.btnClearFields.Name = "btnClearFields";
-            this.btnClearFields.Size = new System.Drawing.Size(318, 59);
+            this.btnClearFields.Size = new System.Drawing.Size(216, 40);
             this.btnClearFields.StyleController = this.topLayout;
             this.btnClearFields.TabIndex = 13;
             this.btnClearFields.Text = "Clear";
@@ -293,11 +284,11 @@
             this.btnDeleteUser.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteUser.Appearance.Options.UseBackColor = true;
             this.btnDeleteUser.Appearance.Options.UseFont = true;
-            this.btnDeleteUser.Location = new System.Drawing.Point(1002, 147);
-            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDeleteUser.MinimumSize = new System.Drawing.Size(0, 59);
+            this.btnDeleteUser.Location = new System.Drawing.Point(672, 91);
+            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDeleteUser.MinimumSize = new System.Drawing.Size(0, 40);
             this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(320, 59);
+            this.btnDeleteUser.Size = new System.Drawing.Size(217, 40);
             this.btnDeleteUser.StyleController = this.topLayout;
             this.btnDeleteUser.TabIndex = 12;
             this.btnDeleteUser.Text = "Delete";
@@ -309,11 +300,11 @@
             this.btnUpdateUser.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateUser.Appearance.Options.UseBackColor = true;
             this.btnUpdateUser.Appearance.Options.UseFont = true;
-            this.btnUpdateUser.Location = new System.Drawing.Point(348, 147);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUpdateUser.MinimumSize = new System.Drawing.Size(0, 59);
+            this.btnUpdateUser.Location = new System.Drawing.Point(231, 91);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnUpdateUser.MinimumSize = new System.Drawing.Size(0, 40);
             this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(320, 59);
+            this.btnUpdateUser.Size = new System.Drawing.Size(217, 40);
             this.btnUpdateUser.StyleController = this.topLayout;
             this.btnUpdateUser.TabIndex = 11;
             this.btnUpdateUser.Text = "Update";
@@ -327,11 +318,11 @@
             this.btnAddUser.Appearance.Options.UseBackColor = true;
             this.btnAddUser.Appearance.Options.UseFont = true;
             this.btnAddUser.Appearance.Options.UseForeColor = true;
-            this.btnAddUser.Location = new System.Drawing.Point(21, 147);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAddUser.MinimumSize = new System.Drawing.Size(0, 59);
+            this.btnAddUser.Location = new System.Drawing.Point(11, 91);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnAddUser.MinimumSize = new System.Drawing.Size(0, 40);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(319, 59);
+            this.btnAddUser.Size = new System.Drawing.Size(216, 40);
             this.btnAddUser.StyleController = this.topLayout;
             this.btnAddUser.TabIndex = 10;
             this.btnAddUser.Text = "Add";
@@ -339,8 +330,8 @@
             // 
             // cbRole
             // 
-            this.cbRole.Location = new System.Drawing.Point(1072, 55);
-            this.cbRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRole.Location = new System.Drawing.Point(721, 34);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cbRole.Name = "cbRole";
             this.cbRole.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRole.Properties.Appearance.Options.UseFont = true;
@@ -351,35 +342,35 @@
             "SSG Officer"});
             this.cbRole.Properties.NullText = "Select Role";
             this.cbRole.Properties.NullValuePrompt = "Select Role";
-            this.cbRole.Size = new System.Drawing.Size(250, 48);
+            this.cbRole.Size = new System.Drawing.Size(168, 34);
             this.cbRole.StyleController = this.topLayout;
             this.cbRole.TabIndex = 7;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(544, 55);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPassword.MinimumSize = new System.Drawing.Size(0, 53);
+            this.txtPassword.Location = new System.Drawing.Point(365, 34);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtPassword.MinimumSize = new System.Drawing.Size(0, 36);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.NullText = "Password";
             this.txtPassword.Properties.NullValuePrompt = "Password";
-            this.txtPassword.Size = new System.Drawing.Size(507, 53);
+            this.txtPassword.Size = new System.Drawing.Size(342, 36);
             this.txtPassword.StyleController = this.topLayout;
             this.txtPassword.TabIndex = 6;
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(21, 55);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtUsername.MinimumSize = new System.Drawing.Size(0, 53);
+            this.txtUsername.Location = new System.Drawing.Point(11, 34);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtUsername.MinimumSize = new System.Drawing.Size(0, 36);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Properties.Appearance.Options.UseFont = true;
             this.txtUsername.Properties.NullText = "User Name";
             this.txtUsername.Properties.NullValuePrompt = "User Name";
-            this.txtUsername.Size = new System.Drawing.Size(502, 48);
+            this.txtUsername.Size = new System.Drawing.Size(340, 34);
             this.txtUsername.StyleController = this.topLayout;
             this.txtUsername.TabIndex = 5;
             // 
@@ -389,10 +380,9 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Gray;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(21, 19);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl2.Location = new System.Drawing.Point(11, 11);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(78, 28);
+            this.labelControl2.Size = new System.Drawing.Size(54, 19);
             this.labelControl2.StyleController = this.topLayout;
             this.labelControl2.TabIndex = 4;
             this.labelControl2.Text = "User List";
@@ -414,7 +404,7 @@
             this.layoutControlItem10,
             this.emptySpaceItem2});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1343, 225);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(900, 142);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
@@ -422,16 +412,16 @@
             this.layoutControlItem4.Control = this.labelControl2;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1309, 36);
+            this.layoutControlItem4.Size = new System.Drawing.Size(882, 23);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtUsername;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 36);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(510, 61);
+            this.layoutControlItem5.Size = new System.Drawing.Size(344, 40);
             this.layoutControlItem5.Text = "User Name";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -440,79 +430,79 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtPassword;
-            this.layoutControlItem6.Location = new System.Drawing.Point(523, 36);
+            this.layoutControlItem6.Location = new System.Drawing.Point(354, 23);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(515, 61);
+            this.layoutControlItem6.Size = new System.Drawing.Size(346, 40);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(510, 36);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(344, 23);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(13, 61);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(10, 40);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.cbRole;
-            this.layoutControlItem7.Location = new System.Drawing.Point(1051, 36);
+            this.layoutControlItem7.Location = new System.Drawing.Point(710, 23);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(258, 61);
+            this.layoutControlItem7.Size = new System.Drawing.Size(172, 40);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(1038, 36);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(700, 23);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(13, 61);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(10, 40);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnAddUser;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 128);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 80);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(327, 67);
+            this.layoutControlItem8.Size = new System.Drawing.Size(220, 44);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnUpdateUser;
-            this.layoutControlItem9.Location = new System.Drawing.Point(327, 128);
+            this.layoutControlItem9.Location = new System.Drawing.Point(220, 80);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(328, 67);
+            this.layoutControlItem9.Size = new System.Drawing.Size(221, 44);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnClearFields;
-            this.layoutControlItem11.Location = new System.Drawing.Point(655, 128);
+            this.layoutControlItem11.Location = new System.Drawing.Point(441, 80);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(326, 67);
+            this.layoutControlItem11.Size = new System.Drawing.Size(220, 44);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.btnDeleteUser;
-            this.layoutControlItem10.Location = new System.Drawing.Point(981, 128);
+            this.layoutControlItem10.Location = new System.Drawing.Point(661, 80);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(328, 67);
+            this.layoutControlItem10.Size = new System.Drawing.Size(221, 44);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 97);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 63);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(1309, 31);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(882, 17);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // headerPanel
@@ -521,12 +511,11 @@
             this.headerPanel.Appearance.Options.UseBackColor = true;
             this.headerPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.headerPanel.Controls.Add(this.labelControl1);
-            this.headerPanel.Location = new System.Drawing.Point(21, 19);
-            this.headerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.headerPanel.MaximumSize = new System.Drawing.Size(0, 77);
-            this.headerPanel.MinimumSize = new System.Drawing.Size(0, 77);
+            this.headerPanel.Location = new System.Drawing.Point(11, 11);
+            this.headerPanel.MaximumSize = new System.Drawing.Size(0, 53);
+            this.headerPanel.MinimumSize = new System.Drawing.Size(0, 53);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1347, 77);
+            this.headerPanel.Size = new System.Drawing.Size(904, 53);
             this.headerPanel.TabIndex = 4;
             // 
             // labelControl1
@@ -535,10 +524,9 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(19, 8);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl1.Location = new System.Drawing.Point(13, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(362, 57);
+            this.labelControl1.Size = new System.Drawing.Size(241, 38);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "User Management";
             // 
@@ -552,7 +540,7 @@
             this.layoutControlItem3,
             this.emptySpaceItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1389, 855);
+            this.Root.Size = new System.Drawing.Size(926, 585);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -560,44 +548,43 @@
             this.layoutControlItem1.Control = this.headerPanel;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1355, 85);
+            this.layoutControlItem1.Size = new System.Drawing.Size(908, 57);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.topPanel;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 85);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 57);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1355, 237);
+            this.layoutControlItem2.Size = new System.Drawing.Size(908, 150);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.panelControl2;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 347);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 222);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1355, 478);
+            this.layoutControlItem3.Size = new System.Drawing.Size(908, 345);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 322);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 207);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1355, 25);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(908, 15);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // UserManagementControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.baseLayout);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UserManagementControl";
-            this.Size = new System.Drawing.Size(1389, 855);
+            this.Size = new System.Drawing.Size(926, 585);
             ((System.ComponentModel.ISupportInitialize)(this.baseLayout)).EndInit();
             this.baseLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();

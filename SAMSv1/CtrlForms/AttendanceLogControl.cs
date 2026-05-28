@@ -1,38 +1,17 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
-using SAMSv1.Reports;
+using SAMSv1.Models;
 using SAMSv1.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SAMSv1.CtrlForms
 {
     public partial class AttendanceLogControl : DevExpress.XtraEditors.XtraUserControl
     {
-        private BindingList<AttendanceLogRow> _bindingList;
+        private BindingList<Student> _bindingList;
         private BindingSource _bindingSource;
-
-        public class AttendanceLogRow
-        {
-            public int AttendanceID { get; set; }
-            public string IdNumber { get; set; }
-            public string FullName { get; set; }
-            public string Course { get; set; }
-            public string YearLevel { get; set; }
-            public string EventName { get; set; }
-            public string Date { get; set; }
-            public string TimeIn { get; set; }
-            public string TimeOut { get; set; }
-            public string AttendanceType { get; set; }
-            public string Status { get; set; }
-        }
 
         public AttendanceLogControl()
         {
@@ -42,124 +21,87 @@ namespace SAMSv1.CtrlForms
         private void AttendanceLogControl_Load_1(object sender, EventArgs e)
         {
             InitGrid();
-            LoadEventComboBox();
-            LoadAttendanceLogs();
-            UpdateSummaryCounters();
-
-            // Wire up filters
-            cbSearchEvent.SelectedIndexChanged += (s, ev) => LoadAttendanceLogs();
-            searchStudent.EditValueChanged += (s, ev) => LoadAttendanceLogs();
-            comboBoxCourse.SelectedIndexChanged += (s, ev) => LoadAttendanceLogs();
-            comboBoxYears.SelectedIndexChanged += (s, ev) => LoadAttendanceLogs();
+            LoadStudents();
+            ResetCounters();
         }
 
-
-        // ================= GRID INIT =================
+        // ── GRID INIT ────────────────────────────────────────────
         private void InitGrid()
         {
-            _bindingList = new BindingList<AttendanceLogRow>();
+            _bindingList = new BindingList<Student>();
             _bindingSource = new BindingSource { DataSource = _bindingList };
-
             gcAttendanceLogs.DataSource = _bindingSource;
 
-            // Map columns to properties
-            gridColumnID.FieldName = nameof(AttendanceLogRow.IdNumber);
-            gridColumnName.FieldName = nameof(AttendanceLogRow.FullName);
-            gridColumnCourse.FieldName = nameof(AttendanceLogRow.Course);
-            gridColumnYearLevel.FieldName = nameof(AttendanceLogRow.YearLevel);
-            gridColumnTime.FieldName = nameof(AttendanceLogRow.EventName);
+            // Map your existing grid columns to Student fields
+            gridColumnID.FieldName = nameof(Student.IdNumber);
+            gridColumnName.FieldName = nameof(Student.FullName);
+            gridColumnCourse.FieldName = nameof(Student.Course);
+            gridColumnYearLevel.FieldName = nameof(Student.YearLevel);
+
+            // Hide attendance-specific columns that no longer apply
+            gridColumnDate.Visible = false;
+            gridColumnTimeIn.Visible = false;
+            gridColumnTimeOut.Visible = false;
+            gridColumnStatus.Visible = false;
+
+            // Wire row click
+            gridView2.FocusedRowChanged += GvAttendanceLogs_FocusedRowChanged;
         }
 
-        // ================= LOAD EVENTS INTO COMBOBOX =================
-        private void LoadEventComboBox()
+        // ── LOAD ALL STUDENTS ────────────────────────────────────
+        private void LoadStudents()
         {
             try
             {
-                var events = FaceService.GetAllEventNames();
-
-                cbSearchEvent.Properties.Items.Clear();
-                cbSearchEvent.Properties.Items.Add("All Events");
-
-                foreach (var ev in events)
-                    cbSearchEvent.Properties.Items.Add(ev);
-
-                cbSearchEvent.EditValue = "All Events";
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"[LoadEvents] {ex}");
-            }
-        }
-
-        // ================= LOAD / FILTER GRID =================
-        private void LoadAttendanceLogs()
-        {
-            try
-            {
-                string eventFilter = cbSearchEvent.EditValue?.ToString();
-                string nameFilter = searchStudent.Text?.Trim();
-                string courseFilter = comboBoxCourse.EditValue?.ToString();
-                string yearFilter = comboBoxYears.EditValue?.ToString();
-
-                if (eventFilter == "All Events") eventFilter = null;
-                if (courseFilter == "All Course") courseFilter = null;
-                if (yearFilter == "All Years") yearFilter = null;
-
-                var rows = FaceService.GetAttendanceLogs(
-                    eventFilter, nameFilter, courseFilter, yearFilter);
-
                 _bindingList.Clear();
-                foreach (var r in rows)
-                    _bindingList.Add(r);
+                var students = FaceService.GetAllStudents();
+                foreach (var s in students)
+                    _bindingList.Add(s);
 
                 _bindingSource.ResetBindings(false);
                 gcAttendanceLogs.RefreshDataSource();
-
-                UpdateSummaryCounters();
+                ResetCounters();
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[LoadLogs] {ex}");
+                System.Diagnostics.Debug.WriteLine($"[LoadStudents] {ex}");
             }
         }
 
-        // ================= SUMMARY COUNTERS =================
-        // labelTotalAttendance = total attendance records
-        //   (Complete row = 2, Time-In only or Time-Out only = 1)
-        // labelTotalPresent    = total present slots filled
-        //   (Complete = 2 present, single Time-In or Time-Out = 1 present)
-        // labelTotalAbsent     = total registered students
-        //   minus distinct students who appear in current filtered logs
-        private void UpdateSummaryCounters()
+        // ── ROW CLICK → UPDATE LABELS ────────────────────────────
+        private void GvAttendanceLogs_FocusedRowChanged(
+            object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             try
             {
-                string eventFilter = cbSearchEvent.EditValue?.ToString();
-                string courseFilter = comboBoxCourse.EditValue?.ToString();
-                string yearFilter = comboBoxYears.EditValue?.ToString();
+                var student = gridView2.GetFocusedRow() as Student;
+                if (student == null) { ResetCounters(); return; }
 
-                if (eventFilter == "All Events") eventFilter = null;
-                if (courseFilter == "All Course") courseFilter = null;
-                if (yearFilter == "All Years") yearFilter = null;
+                var (totalAttendance, totalPresent, totalAbsent) =
+                    FaceService.GetStudentSummary(student.StudentID);
 
-                var counts = FaceService.GetAttendanceSummary(
-                    eventFilter, courseFilter, yearFilter);
-
-                labelTotalAttendance.Text = counts.TotalAttendance.ToString("D2");
-                labelTotalPresent.Text = counts.TotalPresent.ToString("D2");
-                labelTotalAbsent.Text = counts.TotalAbsent.ToString("D2");
+                labelTotalAttendance.Text = totalAttendance.ToString("D2");
+                labelTotalPresent.Text = totalPresent.ToString("D2");
+                labelTotalAbsent.Text = totalAbsent.ToString("D2");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[Counters] {ex}");
+                System.Diagnostics.Debug.WriteLine($"[RowClick] {ex}");
             }
         }
-        private void btnGenerateReport_Click(object sender, EventArgs e)
+
+        // ── RESET COUNTERS ───────────────────────────────────────
+        private void ResetCounters()
         {
-            var report = new StudentRPT();
-            report.ShowPreviewDialog();
+            labelTotalAttendance.Text = "00";
+            labelTotalPresent.Text = "00";
+            labelTotalAbsent.Text = "00";
         }
 
-        
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            var report = new Reports.StudentRPT();
+            report.ShowPreviewDialog();
+        }
     }
 }

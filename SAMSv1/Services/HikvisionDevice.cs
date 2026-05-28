@@ -381,20 +381,14 @@ namespace SAMSv1.Services
                 if (asIdx >= 0)
                     rawStatus = ExtractValue(b, b.IndexOf(':', asIdx) + 1) ?? string.Empty;
 
-                // INHERITANCE: MapStatus() defined once in base class
-                string status = MapStatus(rawStatus);
+
 
                 result.Add(new Attendance(
-                    0,               // AttendanceID — not known yet
-                    0,               // StudentID    — not known yet
-                    date,
-                    timeIn,
-                    null,            // TimeOut      — not scanned out yet
-                    status,
-                    serialNo,
-                    string.Empty,    // FullName     — filled in by FaceService
-                    idNumber.Trim()
-                ));
+                          date: date,
+                          timeIn: timeIn,
+                          serialNo: serialNo,
+                          idNumber: idNumber.Trim()
+                           ));
             }
             return result;
         }

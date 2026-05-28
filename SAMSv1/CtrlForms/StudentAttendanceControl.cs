@@ -1,6 +1,7 @@
 ﻿using SAMSv1.Data;
 using SAMSv1.Services;
 using System;
+using SAMSv1.Models;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,19 +13,18 @@ namespace SAMSv1.CtrlForms
 {
     public partial class StudentAttendanceControl : DevExpress.XtraEditors.XtraUserControl
     {
-        private const string DEVICE_IP = "192.168.1.65";
-        private const int DEVICE_PORT = 8000;
-        private const string DEVICE_USER = "admin";
-        private const string DEVICE_PASS = "DMC2026#";
-
-        private AttendanceDevice _device;
-
+        
         private CancellationTokenSource _cts;
         private Task _worker;
-
         private long _lastSerialNo;
         private string _attendanceType;
         private int _currentEventId;
+        private string _session;
+        private string _eventDescription;
+        private string _semester;
+
+        // Static flag — survives control disposal, visible across the whole app
+        public static bool IsLiveRunning { get; private set; } = false;
 
         // ✅ FIX 1: ConcurrentDictionary instead of HashSet (thread-safe)
         private readonly ConcurrentDictionary<int, byte> _scanned =
@@ -36,15 +36,6 @@ namespace SAMSv1.CtrlForms
         private BindingList<AttendanceLogRow> _bindingList;
         private BindingSource _bindingSource;
         private System.Windows.Forms.Timer _uiTimer;
-
-        public class AttendanceLogRow
-        {
-            public string Time { get; set; }
-            public string IdNumber { get; set; }
-            public string FullName { get; set; }
-            public string Status { get; set; }
-            public string AttendanceType { get; set; }
-        }
 
         // ================= CONSTRUCTOR =================
         public StudentAttendanceControl()
@@ -68,18 +59,18 @@ namespace SAMSv1.CtrlForms
             _uiTimer.Tick += (s, e) => DrainQueueToUI();
         }
 
-        // ================= LOAD =================
-        private void StudentAttendanceControl_Load(object sender, EventArgs e)
-        {
-           
-        }
-
         // ================= START =================
         private async void btnStartAttendance_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEventName?.Text))
             {
                 Log("Enter event name");
+                return;
+            }
+
+            if (cbSemester.SelectedItem == null)
+            {
+                Log("Select a semester first");
                 return;
             }
 
@@ -90,23 +81,13 @@ namespace SAMSv1.CtrlForms
             }
 
             _attendanceType = cbAttendanceType.SelectedItem.ToString();
-
             string eventName = txtEventName.Text.Trim();
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             string time = DateTime.Now.ToString("HH:mm:ss");
-
-            try
-            {
-                _currentEventId =
-                    _attendanceType == "Time-In"
-                    ? FaceService.CreateEvent(eventName, date, time)
-                    : FaceService.GetOpenEventId(eventName, date);
-            }
-            catch (Exception ex)
-            {
-                Log("EVENT ERROR: " + ex.Message);
-                return;
-            }
+            _session = cbSession.SelectedItem?.ToString();
+            _semester = cbSemester.SelectedItem?.ToString(); // ← add this
+            _eventDescription = string.IsNullOrWhiteSpace(txtEventDescription?.Text)
+                                ? null : txtEventDescription.Text.Trim();
 
             _scanned.Clear();
             _bindingList.Clear();
@@ -114,15 +95,10 @@ namespace SAMSv1.CtrlForms
             btnStartAttendance.Enabled = false;
             Log("Connecting to device...");
 
-            // ── CONNECT ───────────────────────────────────────────
+            // ── CONNECT FIRST — event only created after successful connection ──
             bool connected = await Task.Run(() =>
             {
-                try
-                {
-                    _device?.Disconnect();
-                    _device = new HikvisionDevice(DEVICE_IP, DEVICE_PORT, DEVICE_USER, DEVICE_PASS);
-                    return _device.Connect();
-                }
+                try { return DeviceManager.Initialize(); }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine($"[Connect] {ex}");
@@ -134,13 +110,36 @@ namespace SAMSv1.CtrlForms
             {
                 Log("Device connection failed");
                 btnStartAttendance.Enabled = true;
+                return; // ← event NOT created, DB stays clean
+            }
+
+            // ── CONNECTION SUCCESS — NOW create or reuse event ──
+            try
+            {
+                if (_attendanceType == "Time-In")
+                {
+                    _currentEventId = FaceService.CreateEvent(eventName, date, time);
+                }
+                else
+                {
+                    _currentEventId = FaceService.GetOpenEventId(eventName, date);
+                    if (_currentEventId <= 0)
+                        _currentEventId = FaceService.CreateEvent(eventName, date, time);
+                }
+                Log($"Event ready — ID={_currentEventId} '{eventName}'");
+            }
+            catch (Exception ex)
+            {
+                Log("EVENT ERROR: " + ex.Message);
+                DeviceManager.Disconnect();
+                btnStartAttendance.Enabled = true;
                 return;
             }
 
             // ── BASELINE ──────────────────────────────────────────
             Log("Setting baseline — please wait...");
 
-            var deviceRef = _device;
+            var deviceRef = DeviceManager.Device;
             if (deviceRef == null)
             {
                 Log("Device lost after connect.");
@@ -148,7 +147,6 @@ namespace SAMSv1.CtrlForms
                 return;
             }
 
-            // ✅ FIX 2: Interlocked write for thread-safe long
             long baseline = await Task.Run(() =>
             {
                 try
@@ -156,7 +154,6 @@ namespace SAMSv1.CtrlForms
                     long max = 0;
                     var events = deviceRef.PollNewEvents(0);
                     if (events == null) return 0L;
-
                     foreach (var evt in events)
                     {
                         if (evt == null) continue;
@@ -173,15 +170,16 @@ namespace SAMSv1.CtrlForms
 
             Interlocked.Exchange(ref _lastSerialNo, baseline);
             System.Diagnostics.Debug.WriteLine($"[Baseline] _lastSerialNo = {_lastSerialNo}");
-            // ─────────────────────────────────────────────────────
 
             StartWorker();
 
             btnStartAttendance.Visible = false;
             btnStopAttendance.Visible = true;
+            IsLiveRunning = true;
 
             Log("STARTED [" + _attendanceType + "]");
         }
+
 
         // ================= WORKER LOOP =================
         private void StartWorker()
@@ -205,7 +203,7 @@ namespace SAMSv1.CtrlForms
         // ================= POLL =================
         private void PollDevice()
         {
-            var device = _device;
+            var device = DeviceManager.Device;
             if (device == null) return;
 
             // ✅ FIX 2: Interlocked read for thread-safe long
@@ -239,7 +237,11 @@ namespace SAMSv1.CtrlForms
                         DateTime.Now.ToString("yyyy-MM-dd"),
                         DateTime.Now.ToString("HH:mm:ss"),
                         _attendanceType,
-                        _currentEventId);
+                        _currentEventId,
+                        _session,
+                        _eventDescription,
+                        _semester          // ← add this
+                    );
                 }
                 catch (Exception ex)
                 {
@@ -250,7 +252,7 @@ namespace SAMSv1.CtrlForms
 
                 _queue.Enqueue(new AttendanceLogRow
                 {
-                    Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    ScanTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     IdNumber = evt.IdNumber,
                     FullName = name,
                     Status = _attendanceType == "Time-Out" ? "Complete" : "Present",
@@ -291,28 +293,36 @@ namespace SAMSv1.CtrlForms
             if (_worker != null)
                 await _worker.ContinueWith(_ => { });
 
-            _device?.Disconnect();
-            _device = null;
+            DeviceManager.Disconnect();
+
+            // ── Delete event if it has no attendance records ──
+            try
+            {
+                if (_currentEventId > 0)
+                {
+                    int count = FaceService.GetAttendanceCountForEvent(_currentEventId);
+                    if (count == 0)
+                    {
+                        FaceService.DeleteEvent(_currentEventId);
+                        Log($"Event ID={_currentEventId} deleted — no attendance recorded.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[DeleteOrphanEvent] {ex}");
+            }
 
             Interlocked.Exchange(ref _lastSerialNo, 0);
             _scanned.Clear();
+            _currentEventId = -1;
+            IsLiveRunning = false;
 
             btnStopAttendance.Visible = false;
             btnStartAttendance.Visible = true;
             btnStartAttendance.Enabled = true;
 
             Log("STOPPED");
-        }
-
-        // ================= DESTROY =================
-        protected override void OnHandleDestroyed(EventArgs e)
-        {
-            _uiTimer?.Stop();
-            _uiTimer?.Dispose();
-            _cts?.Cancel();
-            _device?.Disconnect();
-            _device = null;
-            base.OnHandleDestroyed(e);
         }
 
         // ================= COUNTERS =================
@@ -352,13 +362,22 @@ namespace SAMSv1.CtrlForms
             });
         }
 
-
         // ================= SAFE INVOKE =================
         private void SafeInvoke(Action action)
         {
             if (IsDisposed || !IsHandleCreated) return;
             try { Invoke(action); }
             catch { }
+        }
+
+// ================= DESTROY =================
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            IsLiveRunning = false;
+            _uiTimer?.Stop();
+            _uiTimer?.Dispose();
+            _cts?.Cancel();
+            base.OnHandleDestroyed(e);
         }
 
         private void StudentAttendanceControl_Load_1(object sender, EventArgs e)
@@ -369,5 +388,20 @@ namespace SAMSv1.CtrlForms
             UpdateCounters();
             Log("System Ready");
         }
+
+       
+        public async Task StopAsync()
+        {
+            if (!IsLiveRunning) return;
+
+            _uiTimer?.Stop();
+            _cts?.Cancel();
+
+            if (_worker != null)
+                await _worker.ContinueWith(_ => { });
+
+            IsLiveRunning = false;
+        }
+
     }
 }

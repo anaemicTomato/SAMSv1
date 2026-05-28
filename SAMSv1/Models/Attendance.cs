@@ -18,19 +18,26 @@ namespace SAMSv1.Models
         public string IdNumber  { get; private set; }
 
 
-        public Attendance(int attendanceID, int studentID, string date, string timeIn, string timeOut, string status, long serialNo, string fullName, string idNumber) 
+        public Attendance(
+            int attendanceID = 0,
+            int studentID = 0,
+            string date = "",
+            string timeIn = "",
+            string timeOut = null,
+            string status = "",
+            long serialNo = 0,
+            string fullName = "",
+            string idNumber = "")
         {
             AttendanceID = attendanceID;
             StudentID = studentID;
             Date = date;
             TimeIn = timeIn;
-            TimeOut = timeOut;  
+            TimeOut = timeOut;
             Status = status;
             SerialNo = serialNo;
             FullName = fullName;
             IdNumber = idNumber;
-
-        
         }
     }
 }

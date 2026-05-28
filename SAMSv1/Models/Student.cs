@@ -1,10 +1,10 @@
-﻿namespace SAMSv1.Models
+﻿// Models/Student.cs
+namespace SAMSv1.Models
 {
-    public class Student
+    public class Student : PersonBase
     {
-        public int Id { get; set; }
-        public string FullName { get; set; }
+        public int StudentID { get; set; }
         public string Course { get; set; }
-        public string IdNumber { get; set; }
+        public string YearLevel { get; set; }
     }
 }
