@@ -61,7 +61,7 @@ namespace SAMSv1.MainForms
         private void accordionControlElement1_Click_1(object sender, EventArgs e)
         {
             mainPanel.Controls.Clear();
-            AttendanceLogControl page = new AttendanceLogControl();
+            AttendanceLogAvian page = new AttendanceLogAvian();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
