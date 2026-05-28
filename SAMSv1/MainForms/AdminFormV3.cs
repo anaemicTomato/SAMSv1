@@ -76,7 +76,7 @@ namespace SAMSv1.MainForms
         {
             if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
-            AttendanceLogAvian page = new AttendanceLogAvian();
+            AttendanceLogControl page = new AttendanceLogControl();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
@@ -91,12 +91,22 @@ namespace SAMSv1.MainForms
             mainPanel.Controls.Add(page);
         }
 
+        private void acGenerateReport_Click(object sender, EventArgs e)
+        {
+            if (!CanSwitchModule()) return;
+            mainPanel.Controls.Clear();
+            AttendanceLogAvian page = new AttendanceLogAvian();
+            page.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(page);
+        }
+
         // ── Logout button ──────────────────────────────────────
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        
 
         private async void AdminFormV3_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -137,5 +147,7 @@ namespace SAMSv1.MainForms
         {
 
         }
+
+        
     }
 }

@@ -38,7 +38,7 @@
             this.accordionControlElement8 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.acGenerateReport = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -54,10 +54,10 @@
             // 
             this.mainPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(275, 0);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.mainPanel.Location = new System.Drawing.Point(354, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1423, 1058);
+            this.mainPanel.Size = new System.Drawing.Size(1590, 1056);
             this.mainPanel.TabIndex = 1;
             // 
             // btnLogout
@@ -68,10 +68,10 @@
             this.btnLogout.Appearance.Options.UseFont = true;
             this.btnLogout.Appearance.Options.UseForeColor = true;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
-            this.btnLogout.Location = new System.Drawing.Point(22, 969);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogout.Location = new System.Drawing.Point(28, 1151);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(217, 66);
+            this.btnLogout.Size = new System.Drawing.Size(279, 78);
             this.btnLogout.TabIndex = 2;
             this.btnLogout.Text = "Logout";
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -164,10 +164,10 @@
             this.ManageUsersModule,
             this.accordionControlElement1});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Padding = new System.Windows.Forms.Padding(50, 150, 50, 50);
-            this.accordionControl1.Size = new System.Drawing.Size(275, 1058);
+            this.accordionControl1.Padding = new System.Windows.Forms.Padding(64, 178, 64, 59);
+            this.accordionControl1.Size = new System.Drawing.Size(354, 1056);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Click += new System.EventHandler(this.accordionControl1_Click);
             // 
@@ -193,7 +193,7 @@
             this.accordionControlElement1.Appearance.Hovered.Options.UseForeColor = true;
             this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement5,
-            this.accordionControlElement6});
+            this.acGenerateReport});
             this.accordionControlElement1.Expanded = true;
             this.accordionControlElement1.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
@@ -214,13 +214,14 @@
             this.accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement5.Text = "View Attendance";
             // 
-            // accordionControlElement6
+            // acGenerateReport
             // 
-            this.accordionControlElement6.Appearance.Default.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Information;
-            this.accordionControlElement6.Appearance.Default.Options.UseForeColor = true;
-            this.accordionControlElement6.Name = "accordionControlElement6";
-            this.accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement6.Text = "Generate Report";
+            this.acGenerateReport.Appearance.Default.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Information;
+            this.acGenerateReport.Appearance.Default.Options.UseForeColor = true;
+            this.acGenerateReport.Name = "acGenerateReport";
+            this.acGenerateReport.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.acGenerateReport.Text = "Generate Report";
+            this.acGenerateReport.Click += new System.EventHandler(this.acGenerateReport_Click);
             // 
             // accordionControlElement2
             // 
@@ -242,41 +243,43 @@
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
-            this.pictureEdit1.Location = new System.Drawing.Point(12, 875);
+            this.pictureEdit1.Location = new System.Drawing.Point(15, 1039);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
             this.pictureEdit1.Properties.ZoomPercent = 8D;
-            this.pictureEdit1.Size = new System.Drawing.Size(227, 89);
+            this.pictureEdit1.Size = new System.Drawing.Size(292, 106);
             this.pictureEdit1.TabIndex = 3;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
             // pictureEdit2
             // 
             this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
-            this.pictureEdit2.Location = new System.Drawing.Point(12, 12);
+            this.pictureEdit2.Location = new System.Drawing.Point(15, 14);
+            this.pictureEdit2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit2.Properties.ZoomPercent = 9D;
-            this.pictureEdit2.Size = new System.Drawing.Size(240, 194);
+            this.pictureEdit2.Size = new System.Drawing.Size(309, 230);
             this.pictureEdit2.TabIndex = 4;
             // 
             // AdminFormV3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1698, 1058);
+            this.ClientSize = new System.Drawing.Size(1944, 1056);
             this.Controls.Add(this.pictureEdit2);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1700, 1018);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.MinimumSize = new System.Drawing.Size(1700, 1006);
             this.Name = "AdminFormV3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminFormV3";
@@ -304,7 +307,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acGenerateReport;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement8;
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
