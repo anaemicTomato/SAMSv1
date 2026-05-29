@@ -21,10 +21,7 @@ namespace SAMSv1.MainForms
 
         private void btnAttendance_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear(); // remove previous page
-            AttendanceControl page = new AttendanceControl();
-            page.Dock = DockStyle.Fill;
-            mainPanel.Controls.Add(page);
+
         }
 
         private void btnRegisterStudent_Click(object sender, EventArgs e)
@@ -37,10 +34,7 @@ namespace SAMSv1.MainForms
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear(); // remove previous page
-            ReportControl page = new ReportControl();
-            page.Dock = DockStyle.Fill;
-            mainPanel.Controls.Add(page);
+
         }
          
         public static implicit operator AdminFormv2(AdminForm v)

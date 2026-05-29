@@ -11,6 +11,7 @@ namespace SAMSv1.MainForms
     public partial class AdminFormV3 : DevExpress.XtraEditors.XtraForm
     {
         private User _currentUser; //para ni sa role detection.
+        private readonly FaceService _faceService = new FaceService();
 
         public AdminFormV3() { InitializeComponent(); } //temporary rani aron ma call ni nga form sa Program.cs kuhaon ra if ganahan namo mag login2
 
@@ -26,7 +27,6 @@ namespace SAMSv1.MainForms
         {
             try
             {
-                FaceService.Init(DBHelper.ConnectionString);
                 DeviceManager.Initialize();
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace SAMSv1.MainForms
         {
             if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
-            AttendanceLogAvian page = new AttendanceLogAvian();
+            ReportControl page = new ReportControl();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }

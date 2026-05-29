@@ -14,6 +14,8 @@ namespace SAMSv1.CtrlForms
         // Tracks which student is selected in the grid
         private int _selectedStudentID = -1;
         private string _selectedIdNumber = string.Empty;
+        private readonly FaceService _faceService = new FaceService();
+
 
         public RegisterStudentsV2()
         {
@@ -102,7 +104,7 @@ namespace SAMSv1.CtrlForms
                 {
                     var deviceStudents = _device.GetEnrolledStudents();
                     foreach (var s in deviceStudents)
-                        FaceService.SaveStudentFromDevice(s.IdNumber, s.FullName);
+                        _faceService.SaveStudentFromDevice(s.IdNumber, s.FullName);
                 }
             }
             catch { }
@@ -111,7 +113,7 @@ namespace SAMSv1.CtrlForms
 
         private void RefreshGrid()
         {
-            var students = FaceService.GetAllStudents();
+            var students = _faceService.GetAllStudents();
             var source = new BindingList<Student>(students);
 
             SafeInvoke(() =>
@@ -159,7 +161,7 @@ namespace SAMSv1.CtrlForms
                 if (_device != null)
                     deviceOk = _device.RegisterStudent(idNumber, fullName);
 
-                FaceService.SaveStudentFull(idNumber, fullName, course, yearLevel);
+                _faceService.SaveStudentFull(idNumber, fullName, course, yearLevel);
                 RefreshGrid();
 
                 SafeInvoke(() =>
@@ -237,7 +239,7 @@ namespace SAMSv1.CtrlForms
                 }
 
                 // Update in local DB
-                FaceService.UpdateStudent(newIdNumber, fullName, course, yearLevel, oldIdNumber);
+                _faceService.UpdateStudent(newIdNumber, fullName, course, yearLevel, oldIdNumber);
                 RefreshGrid();
 
                 SafeInvoke(() =>
@@ -310,7 +312,7 @@ namespace SAMSv1.CtrlForms
                 if (_device != null)
                     deviceOk = _device.DeleteStudent(idNumber);
 
-                FaceService.DeleteStudent(idNumber);
+                _faceService.DeleteStudent(idNumber);
                 RefreshGrid();
 
                 SafeInvoke(() =>

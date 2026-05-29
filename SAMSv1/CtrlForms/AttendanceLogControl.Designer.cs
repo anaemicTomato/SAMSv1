@@ -157,11 +157,12 @@
             this.btnBack.Appearance.Options.UseBorderColor = true;
             this.btnBack.Appearance.Options.UseFont = true;
             this.btnBack.Appearance.Options.UseForeColor = true;
-            this.btnBack.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btnBack.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBack.ImageOptions.SvgImage")));
             this.btnBack.Location = new System.Drawing.Point(31, 11);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(58, 50);
             this.btnBack.TabIndex = 0;
+            this.btnBack.Visible = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // panelControl2

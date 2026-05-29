@@ -12,10 +12,12 @@ namespace SAMSv1
 {
     public partial class AdminForm : DevExpress.XtraEditors.XtraForm
     {
+
+        private readonly FaceService _faceService = new FaceService();
         public AdminForm()
         {
             InitializeComponent();
-            FaceService.Init(DBHelper.ConnectionString);
+          //  _faceService.Init(DBHelper.ConnectionString);
             LoadFormDefaults();
         }
 
@@ -46,7 +48,7 @@ namespace SAMSv1
         private void LoadStudentCombo()
         {
             cbSTUDENTID.Properties.Items.Clear();
-            var students = FaceService.GetAllStudents();
+            var students = _faceService.GetAllStudents();
             foreach (var s in students)
                 cbSTUDENTID.Properties.Items.Add(new StudentItem(s.StudentID, s.FullName));
         }
@@ -80,7 +82,7 @@ namespace SAMSv1
 
             try
             {
-                FaceService.SaveStudentFull(
+                _faceService.SaveStudentFull(
                     idNumber: txtIDNUMBER.Text.Trim(),
                     fullName: txtSTUDENTNAME.Text.Trim(),
                     course: cbCOURSE.SelectedItem.ToString(),
@@ -119,7 +121,7 @@ namespace SAMSv1
                 string today = DateTime.Now.ToString("yyyy-MM-dd");
                 string startTime = DateTime.Now.ToString("HH:mm:ss");
 
-                int eventId = FaceService.CreateEvent(
+                int eventId = _faceService.CreateEvent(
                     eventName: txtEVENTNAME.Text.Trim(),
                     eventDate: today,
                     startTime: startTime
@@ -127,7 +129,7 @@ namespace SAMSv1
 
                 // Auto-close with +5 seconds as end time
                 string endTime = DateTime.Now.AddSeconds(5).ToString("HH:mm:ss");
-                FaceService.CloseEvent(eventId, endTime);
+                _faceService.CloseEvent(eventId, endTime);
 
                 XtraMessageBox.Show(
                     $"Event added!\nID: {eventId}\nDate: {today}\nStart: {startTime}\nEnd: {endTime}",
@@ -166,7 +168,7 @@ namespace SAMSv1
                 string desc = string.IsNullOrWhiteSpace(txtEVENTDESC.Text)
                                     ? null : txtEVENTDESC.Text.Trim();
 
-                FaceService.SaveAttendance(
+                _faceService.SaveAttendance(
                     studentId: studentItem.Id,
                     date: today,
                     time: now,
@@ -201,7 +203,6 @@ namespace SAMSv1
         // ── NAV BUTTONS ──────────────────────────────────────────
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            LoadControl(new AttendanceControl());
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -209,7 +210,6 @@ namespace SAMSv1
         }
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReportControl());
         }
         private void simpleButton4_Click(object sender, EventArgs e)
         {

@@ -16,6 +16,7 @@ namespace SAMSv1.CtrlForms
         // Tracks which mode the grid is in
         private bool _showingAttendance = false;
         private Student _selectedStudent = null;
+        private readonly FaceService _faceService = new FaceService();
 
         public AttendanceLogControl()
         {
@@ -50,10 +51,10 @@ namespace SAMSv1.CtrlForms
         // ═════════════════════════════════════════════════════════
         private void ShowStudentColumns()
         {
-            gridColumnID.FieldName = nameof(Student.IdNumber);
-            gridColumnName.FieldName = nameof(Student.FullName);
-            gridColumnCourse.FieldName = nameof(Student.Course);
-            gridColumnYearLevel.FieldName = nameof(Student.YearLevel);
+            gridColumnID.FieldName = "IdNumber";
+            gridColumnName.FieldName = "FullName";
+            gridColumnCourse.FieldName = "Course";
+            gridColumnYearLevel.FieldName = "YearLevel";
 
             gridColumnID.Caption = "ID Number";
             gridColumnName.Caption = "Full Name";
@@ -72,14 +73,14 @@ namespace SAMSv1.CtrlForms
 
         private void ShowAttendanceColumns()
         {
-            gridColumnID.FieldName = nameof(AttendanceLogRow.IdNumber);
-            gridColumnName.FieldName = nameof(AttendanceLogRow.FullName);
-            gridColumnCourse.FieldName = nameof(AttendanceLogRow.EventName);
-            gridColumnYearLevel.FieldName = nameof(AttendanceLogRow.AttendanceType);
-            gridColumnDate.FieldName = nameof(AttendanceLogRow.Date);
-            gridColumnTimeIn.FieldName = nameof(AttendanceLogRow.TimeIn);
-            gridColumnTimeOut.FieldName = nameof(AttendanceLogRow.TimeOut);
-            gridColumnStatus.FieldName = nameof(AttendanceLogRow.Status);
+            gridColumnID.FieldName = "IdNumber";
+            gridColumnName.FieldName = "FullName";
+            gridColumnCourse.FieldName = "EventName";      // ← key fix
+            gridColumnYearLevel.FieldName = "AttendanceType"; // ← key fix
+            gridColumnDate.FieldName = "Date";
+            gridColumnTimeIn.FieldName = "TimeIn";
+            gridColumnTimeOut.FieldName = "TimeOut";
+            gridColumnStatus.FieldName = "Status";
 
             gridColumnID.Caption = "ID Number";
             gridColumnName.Caption = "Full Name";
@@ -111,7 +112,7 @@ namespace SAMSv1.CtrlForms
                 _selectedStudent = null;
 
                 _studentList.Clear();
-                var students = FaceService.GetAllStudents();
+                var students = _faceService.GetAllStudents();
                 foreach (var s in students)
                     _studentList.Add(s);
 
@@ -132,6 +133,8 @@ namespace SAMSv1.CtrlForms
         // ═════════════════════════════════════════════════════════
         private void gcAttendanceLogs_DoubleClick(object sender, EventArgs e)
         {
+            btnBack.Visible = true;
+
             if (_showingAttendance)
             {
                 // Already showing attendance — double click goes back to student list
@@ -152,7 +155,7 @@ namespace SAMSv1.CtrlForms
             {
                 _showingAttendance = true;
 
-                var records = FaceService.GetAttendanceByStudent(student.StudentID);
+                var records = _faceService.GetAttendanceByStudent(student.StudentID);
 
                 _attendanceList.Clear();
                 foreach (var r in records)
@@ -164,7 +167,7 @@ namespace SAMSv1.CtrlForms
                 gcAttendanceLogs.RefreshDataSource();
 
                 var (totalAttendance, totalPresent, totalAbsent) =
-                    FaceService.GetStudentSummary(student.StudentID);
+                    _faceService.GetStudentSummary(student.StudentID);
 
                 labelTotalAttendance.Text = totalAttendance.ToString("D2"); // total events
                 labelTotalPresent.Text = totalPresent.ToString("D2");    // present slots filled
@@ -192,7 +195,7 @@ namespace SAMSv1.CtrlForms
                 if (student == null) { ResetCounters(); return; }
 
                 var (totalAttendance, totalPresent, totalAbsent) =
-                    FaceService.GetStudentSummary(student.StudentID);
+                    _faceService.GetStudentSummary(student.StudentID);
 
                 labelTotalAttendance.Text = totalAttendance.ToString("D2");
                 labelTotalPresent.Text = totalPresent.ToString("D2");
@@ -222,9 +225,12 @@ namespace SAMSv1.CtrlForms
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            btnBack.Visible = false;
             InitGrid();
             LoadStudents();
             ResetCounters();
+
         }
+
     }
 }
