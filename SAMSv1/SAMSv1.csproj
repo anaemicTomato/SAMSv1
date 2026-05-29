@@ -129,6 +129,12 @@
     <Compile Include="CtrlForms\RegisterStudentsV2.Designer.cs">
       <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlForms\ReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlForms\ReportControl.Designer.cs">
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlForms\StudentAttendanceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,16 +147,14 @@
     <Compile Include="CtrlForms\UserManagementControl.Designer.cs">
       <DependentUpon>UserManagementControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CtrlForms\UserManagementTestControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\UserManagementTestControl.Designer.cs">
-      <DependentUpon>UserManagementTestControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\AttendanceRepository.cs" />
+    <Compile Include="Data\BaseRepository.cs" />
+    <Compile Include="Data\EventRepository.cs" />
+    <Compile Include="Data\LiveAttendanceRepository.cs" />
     <Compile Include="Data\StudentRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Helpers\DataTableExtensions.cs" />
+    <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,18 +166,6 @@
     </Compile>
     <Compile Include="MainForms\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CtrlForms\AttendanceControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\AttendanceControl.Designer.cs">
-      <DependentUpon>AttendanceControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CtrlForms\ReportControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CtrlForms\ReportControl.Designer.cs">
-      <DependentUpon>ReportControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\DBHelper.cs" />
     <Compile Include="MainForms\AdminFormv2.cs">
@@ -257,26 +249,20 @@
     <EmbeddedResource Include="CtrlForms\RegisterStudentsV2.resx">
       <DependentUpon>RegisterStudentsV2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CtrlForms\ReportControl.resx">
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\StudentAttendanceControl.resx">
       <DependentUpon>StudentAttendanceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlForms\UserManagementControl.resx">
       <DependentUpon>UserManagementControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\UserManagementTestControl.resx">
-      <DependentUpon>UserManagementTestControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\AttendanceControl.resx">
-      <DependentUpon>AttendanceControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlForms\ReportControl.resx">
-      <DependentUpon>ReportControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\AdminFormv2.resx">
       <DependentUpon>AdminFormv2.cs</DependentUpon>

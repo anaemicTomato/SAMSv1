@@ -39,6 +39,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnGenerateReport = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -47,10 +48,8 @@
             this.lblDateRange = new DevExpress.XtraEditors.LabelControl();
             this.cbSemester = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbSession = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbAttendanceType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.scSearchStudent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbEvent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCourse.Properties)).BeginInit();
@@ -60,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSemester.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSession.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbAttendanceType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // scSearchStudent
@@ -148,7 +146,8 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn2});
+            this.gridColumn2,
+            this.gridColumn3});
             this.gridView1.GridControl = this.gcStudentTable;
             this.gridView1.Name = "gridView1";
             // 
@@ -171,6 +170,16 @@
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 112;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Status";
+            this.gridColumn3.FieldName = "Status";
+            this.gridColumn3.MinWidth = 30;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 112;
             // 
             // btnGenerateReport
             // 
@@ -232,7 +241,6 @@
             this.cbSemester.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbSemester.Properties.Items.AddRange(new object[] {
-            "All",
             "1st",
             "2nd"});
             this.cbSemester.Size = new System.Drawing.Size(245, 40);
@@ -253,20 +261,6 @@
             this.cbSession.Size = new System.Drawing.Size(258, 40);
             this.cbSession.TabIndex = 14;
             // 
-            // cbAttendanceType
-            // 
-            this.cbAttendanceType.EditValue = "Both";
-            this.cbAttendanceType.Location = new System.Drawing.Point(341, 267);
-            this.cbAttendanceType.Name = "cbAttendanceType";
-            this.cbAttendanceType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbAttendanceType.Properties.Items.AddRange(new object[] {
-            "Both",
-            "Time-In",
-            "Time-Out"});
-            this.cbAttendanceType.Size = new System.Drawing.Size(245, 40);
-            this.cbAttendanceType.TabIndex = 16;
-            // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(39, 143);
@@ -283,22 +277,12 @@
             this.labelControl6.TabIndex = 18;
             this.labelControl6.Text = "Semester";
             // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(341, 242);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(119, 19);
-            this.labelControl7.TabIndex = 19;
-            this.labelControl7.Text = "Attendance Type";
-            // 
             // AttendanceLogAvian
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.cbAttendanceType);
             this.Controls.Add(this.cbSemester);
             this.Controls.Add(this.cbSession);
             this.Controls.Add(this.btnSetStart);
@@ -326,7 +310,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSemester.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSession.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbAttendanceType.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,9 +336,8 @@
         private DevExpress.XtraEditors.SimpleButton btnSetEnd;
         private DevExpress.XtraEditors.ComboBoxEdit cbSemester;
         private DevExpress.XtraEditors.ComboBoxEdit cbSession;
-        private DevExpress.XtraEditors.ComboBoxEdit cbAttendanceType;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

@@ -22,6 +22,7 @@ namespace SAMSv1.CtrlForms
         private string _session;
         private string _eventDescription;
         private string _semester;
+        private readonly FaceService _faceService = new FaceService();
 
         // Static flag — survives control disposal, visible across the whole app
         public static bool IsLiveRunning { get; private set; } = false;
@@ -118,13 +119,13 @@ namespace SAMSv1.CtrlForms
             {
                 if (_attendanceType == "Time-In")
                 {
-                    _currentEventId = FaceService.CreateEvent(eventName, date, time);
+                    _currentEventId = _faceService.CreateEvent(eventName, date, time);
                 }
                 else
                 {
-                    _currentEventId = FaceService.GetOpenEventId(eventName, date);
+                    _currentEventId = _faceService.GetOpenEventId(eventName, date);
                     if (_currentEventId <= 0)
-                        _currentEventId = FaceService.CreateEvent(eventName, date, time);
+                        _currentEventId = _faceService.CreateEvent(eventName, date, time);
                 }
                 Log($"Event ready — ID={_currentEventId} '{eventName}'");
             }
@@ -222,7 +223,7 @@ namespace SAMSv1.CtrlForms
                     Interlocked.Exchange(ref _lastSerialNo, serial);
                 }
 
-                var student = FaceService.GetStudentByIdNumber(evt.IdNumber);
+                var student = _faceService.GetStudentByIdNumber(evt.IdNumber);
                 if (student.Equals(default((int, string)))) continue;
 
                 var (id, name) = student;
@@ -232,7 +233,7 @@ namespace SAMSv1.CtrlForms
 
                 try
                 {
-                    FaceService.SaveAttendance(
+                    _faceService.SaveAttendance(
                         id,
                         DateTime.Now.ToString("yyyy-MM-dd"),
                         DateTime.Now.ToString("HH:mm:ss"),
@@ -300,10 +301,10 @@ namespace SAMSv1.CtrlForms
             {
                 if (_currentEventId > 0)
                 {
-                    int count = FaceService.GetAttendanceCountForEvent(_currentEventId);
+                    int count = _faceService.GetAttendanceCountForEvent(_currentEventId);
                     if (count == 0)
                     {
-                        FaceService.DeleteEvent(_currentEventId);
+                        _faceService.DeleteEvent(_currentEventId);
                         Log($"Event ID={_currentEventId} deleted — no attendance recorded.");
                     }
                 }
@@ -330,9 +331,9 @@ namespace SAMSv1.CtrlForms
         {
             try
             {
-                int total = FaceService.GetTotalStudents();
-                int present = _currentEventId > 0 ? FaceService.GetPresentCount(_currentEventId) : 0;
-                int incomplete = _currentEventId > 0 ? FaceService.GetIncompleteCount(_currentEventId) : 0;
+                int total = _faceService.GetTotalStudents();
+                int present = _currentEventId > 0 ? _faceService.GetPresentCount(_currentEventId) : 0;
+                int incomplete = _currentEventId > 0 ? _faceService.GetIncompleteCount(_currentEventId) : 0;
                 int absent = Math.Max(0, total - present - incomplete);
 
                 labelTotal.Text = total.ToString("D2");

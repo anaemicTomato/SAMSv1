@@ -17,15 +17,14 @@ namespace SAMSv1.Reports
             string course,
             string yearLevel,
             string session,
-            string semester,
-            string attendanceType)
+            string semester)
         {
             InitializeComponent();
 
             var repo = new AttendanceRepository();
             var rows = repo.GetAttendance(
                 dates, eventId, course, yearLevel,
-                session, semester, attendanceType);
+                session, semester);
 
             this.DataSource = rows.ToDataTable();
         }

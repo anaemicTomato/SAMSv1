@@ -1,8 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using SAMSv1.CtrlForms;
 using SAMSv1.Data;
-using SAMSv1.Services;
+using SAMSv1.Login;
 using SAMSv1.Models;
+using SAMSv1.Services;
 using System;
 using System.Windows.Forms;
 
@@ -26,7 +27,6 @@ namespace SAMSv1.MainForms
         {
             try
             {
-                FaceService.Init(DBHelper.ConnectionString);
                 DeviceManager.Initialize();
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace SAMSv1.MainForms
         {
             if (!CanSwitchModule()) return;
             mainPanel.Controls.Clear();
-            AttendanceLogAvian page = new AttendanceLogAvian();
+            AttendanceLogControl page = new AttendanceLogControl();
             page.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(page);
         }
@@ -95,6 +95,7 @@ namespace SAMSv1.MainForms
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
 
@@ -116,6 +117,31 @@ namespace SAMSv1.MainForms
 
             e.Cancel = false;
             Application.Exit();
+        }
+
+        private void accordionContentContainer1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureEdit4_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

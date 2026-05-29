@@ -36,7 +36,7 @@ namespace SAMSv1.CtrlForms
             cbYearLevel.SelectedIndexChanged += (s, _) => RefreshGrid();
             cbSession.SelectedIndexChanged += (s, _) => RefreshGrid();
             cbSemester.SelectedIndexChanged += (s, _) => RefreshGrid();
-            cbAttendanceType.SelectedIndexChanged += (s, _) => RefreshGrid();
+            
 
             scSearchStudent.Properties.Client = gcStudentTable;
 
@@ -149,9 +149,6 @@ namespace SAMSv1.CtrlForms
         private string GetSelectedSemester()
             => cbSemester.SelectedItem?.ToString();
 
-        private string GetSelectedAttendanceType()
-            => cbAttendanceType.SelectedItem?.ToString();
-
         // ── Grid + Report ─────────────────────────────────────────────
 
         private void RefreshGrid()
@@ -162,8 +159,7 @@ namespace SAMSv1.CtrlForms
                 GetSelectedCourse(),
                 GetSelectedYearLevel(),
                 GetSelectedSession(),
-                GetSelectedSemester(),
-                GetSelectedAttendanceType()).ToList();
+                GetSelectedSemester());
         }
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
@@ -184,8 +180,7 @@ namespace SAMSv1.CtrlForms
                 GetSelectedCourse(),
                 GetSelectedYearLevel(),
                 GetSelectedSession(),
-                GetSelectedSemester(),
-                GetSelectedAttendanceType());
+                GetSelectedSemester());
 
             report.ShowPreviewDialog();
         }
