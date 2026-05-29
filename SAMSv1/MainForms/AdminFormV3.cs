@@ -1,8 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using SAMSv1.CtrlForms;
 using SAMSv1.Data;
-using SAMSv1.Services;
+using SAMSv1.Login;
 using SAMSv1.Models;
+using SAMSv1.Services;
 using System;
 using System.Windows.Forms;
 
@@ -11,7 +12,6 @@ namespace SAMSv1.MainForms
     public partial class AdminFormV3 : DevExpress.XtraEditors.XtraForm
     {
         private User _currentUser; //para ni sa role detection.
-        private readonly FaceService _faceService = new FaceService();
 
         public AdminFormV3() { InitializeComponent(); } //temporary rani aron ma call ni nga form sa Program.cs kuhaon ra if ganahan namo mag login2
 
@@ -91,22 +91,13 @@ namespace SAMSv1.MainForms
             mainPanel.Controls.Add(page);
         }
 
-        private void acGenerateReport_Click(object sender, EventArgs e)
-        {
-            if (!CanSwitchModule()) return;
-            mainPanel.Controls.Clear();
-            ReportControl page = new ReportControl();
-            page.Dock = DockStyle.Fill;
-            mainPanel.Controls.Add(page);
-        }
-
         // ── Logout button ──────────────────────────────────────
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
-        
 
         private async void AdminFormV3_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -148,6 +139,9 @@ namespace SAMSv1.MainForms
 
         }
 
-        
+        private void pictureEdit4_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

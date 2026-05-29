@@ -47,12 +47,17 @@
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
             this.labelTotalAbsent = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.cbSearchEvent = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl8 = new DevExpress.XtraEditors.PanelControl();
+            this.searchStudent = new DevExpress.XtraEditors.SearchControl();
             this.comboBoxYears = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxCourse = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.searchStudent = new DevExpress.XtraEditors.SearchControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.cbSearchEvent = new DevExpress.XtraEditors.ComboBoxEdit();
             this.gcAttendanceLogs = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,10 +95,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
+            this.panelControl9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl8)).BeginInit();
+            this.panelControl8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchStudent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxYears.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxCourse.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchStudent.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
+            this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAttendanceLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -126,6 +140,7 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.btnBack);
             this.panelControl1.Location = new System.Drawing.Point(16, 16);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1888, 68);
             this.panelControl1.TabIndex = 7;
@@ -138,7 +153,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(1555, 2);
+            this.labelControl1.Location = new System.Drawing.Point(1554, 2);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(320, 59);
@@ -149,7 +164,7 @@
             // 
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBack.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnBack.Appearance.BackColor = System.Drawing.Color.SeaGreen;
             this.btnBack.Appearance.BorderColor = System.Drawing.Color.Black;
             this.btnBack.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Appearance.ForeColor = System.Drawing.Color.DimGray;
@@ -157,12 +172,15 @@
             this.btnBack.Appearance.Options.UseBorderColor = true;
             this.btnBack.Appearance.Options.UseFont = true;
             this.btnBack.Appearance.Options.UseForeColor = true;
-            this.btnBack.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBack.ImageOptions.SvgImage")));
-            this.btnBack.Location = new System.Drawing.Point(31, 11);
+            this.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBack.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnBack.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.CommonPalette;
+            this.btnBack.ImageOptions.SvgImageSize = new System.Drawing.Size(50, 50);
+            this.btnBack.Location = new System.Drawing.Point(14, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(58, 50);
+            this.btnBack.Size = new System.Drawing.Size(70, 61);
             this.btnBack.TabIndex = 0;
-            this.btnBack.Visible = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // panelControl2
@@ -185,10 +203,10 @@
             this.panelControl7.Controls.Add(this.labelControl7);
             this.panelControl7.Controls.Add(this.pictureEdit1);
             this.panelControl7.Controls.Add(this.labelTotalPresent);
-            this.panelControl7.Location = new System.Drawing.Point(6, 643);
+            this.panelControl7.Location = new System.Drawing.Point(6, 582);
             this.panelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(452, 129);
+            this.panelControl7.Size = new System.Drawing.Size(451, 129);
             this.panelControl7.TabIndex = 2;
             // 
             // labelControl7
@@ -241,10 +259,10 @@
             this.panelControl4.Controls.Add(this.labelControl6);
             this.panelControl4.Controls.Add(this.pictureEdit2);
             this.panelControl4.Controls.Add(this.labelTotalAttendance);
-            this.panelControl4.Location = new System.Drawing.Point(6, 510);
+            this.panelControl4.Location = new System.Drawing.Point(6, 430);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(452, 129);
+            this.panelControl4.Size = new System.Drawing.Size(451, 129);
             this.panelControl4.TabIndex = 1;
             // 
             // labelControl6
@@ -257,7 +275,7 @@
             this.labelControl6.Location = new System.Drawing.Point(135, 76);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(171, 23);
+            this.labelControl6.Size = new System.Drawing.Size(172, 23);
             this.labelControl6.TabIndex = 13;
             this.labelControl6.Text = "Total Attendance";
             // 
@@ -301,10 +319,10 @@
             this.panelControl6.Controls.Add(this.labelControl8);
             this.panelControl6.Controls.Add(this.pictureEdit3);
             this.panelControl6.Controls.Add(this.labelTotalAbsent);
-            this.panelControl6.Location = new System.Drawing.Point(6, 776);
+            this.panelControl6.Location = new System.Drawing.Point(6, 731);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(452, 129);
+            this.panelControl6.Size = new System.Drawing.Size(451, 129);
             this.panelControl6.TabIndex = 1;
             // 
             // labelControl8
@@ -352,28 +370,128 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Appearance.BackColor = System.Drawing.Color.Honeydew;
+            this.panelControl3.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl3.Controls.Add(this.comboBoxYears);
-            this.panelControl3.Controls.Add(this.comboBoxCourse);
-            this.panelControl3.Controls.Add(this.searchStudent);
-            this.panelControl3.Controls.Add(this.labelControl9);
-            this.panelControl3.Controls.Add(this.labelControl2);
+            this.panelControl3.Controls.Add(this.comboBoxEdit1);
+            this.panelControl3.Controls.Add(this.dateEdit1);
             this.panelControl3.Controls.Add(this.cbSearchEvent);
+            this.panelControl3.Controls.Add(this.panelControl9);
+            this.panelControl3.Controls.Add(this.panelControl8);
+            this.panelControl3.Controls.Add(this.panelControl5);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(452, 504);
+            this.panelControl3.Size = new System.Drawing.Size(452, 414);
             this.panelControl3.TabIndex = 0;
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxEdit1.EditValue = "";
+            this.comboBoxEdit1.Location = new System.Drawing.Point(18, 349);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            ".",
+            "."});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(148, 34);
+            this.comboBoxEdit1.TabIndex = 13;
+            // 
+            // dateEdit1
+            // 
+            this.dateEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(172, 349);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Size = new System.Drawing.Size(139, 34);
+            this.dateEdit1.TabIndex = 12;
+            // 
+            // cbSearchEvent
+            // 
+            this.cbSearchEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbSearchEvent.EditValue = "Semester";
+            this.cbSearchEvent.Location = new System.Drawing.Point(18, 283);
+            this.cbSearchEvent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbSearchEvent.Name = "cbSearchEvent";
+            this.cbSearchEvent.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSearchEvent.Properties.Appearance.Options.UseFont = true;
+            this.cbSearchEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbSearchEvent.Properties.Items.AddRange(new object[] {
+            "Pasiklaban",
+            "Founders"});
+            this.cbSearchEvent.Size = new System.Drawing.Size(290, 36);
+            this.cbSearchEvent.TabIndex = 7;
+            // 
+            // panelControl9
+            // 
+            this.panelControl9.Appearance.BackColor = System.Drawing.Color.SeaGreen;
+            this.panelControl9.Appearance.Options.UseBackColor = true;
+            this.panelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl9.Controls.Add(this.labelControl9);
+            this.panelControl9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl9.Location = new System.Drawing.Point(0, 224);
+            this.panelControl9.Name = "panelControl9";
+            this.panelControl9.Size = new System.Drawing.Size(452, 46);
+            this.panelControl9.TabIndex = 11;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Appearance.Options.UseForeColor = true;
+            this.labelControl9.Location = new System.Drawing.Point(15, 4);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(204, 31);
+            this.labelControl9.TabIndex = 8;
+            this.labelControl9.Text = "Search by semester";
+            // 
+            // panelControl8
+            // 
+            this.panelControl8.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelControl8.Appearance.Options.UseBackColor = true;
+            this.panelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl8.Controls.Add(this.searchStudent);
+            this.panelControl8.Controls.Add(this.comboBoxYears);
+            this.panelControl8.Controls.Add(this.comboBoxCourse);
+            this.panelControl8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl8.Location = new System.Drawing.Point(0, 49);
+            this.panelControl8.Name = "panelControl8";
+            this.panelControl8.Size = new System.Drawing.Size(452, 175);
+            this.panelControl8.TabIndex = 10;
+            // 
+            // searchStudent
+            // 
+            this.searchStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchStudent.Location = new System.Drawing.Point(15, 40);
+            this.searchStudent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.searchStudent.Name = "searchStudent";
+            this.searchStudent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Repository.ClearButton(),
+            new DevExpress.XtraEditors.Repository.SearchButton()});
+            this.searchStudent.Size = new System.Drawing.Size(293, 34);
+            this.searchStudent.TabIndex = 0;
             // 
             // comboBoxYears
             // 
             this.comboBoxYears.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxYears.EditValue = "All Years";
-            this.comboBoxYears.Location = new System.Drawing.Point(17, 390);
+            this.comboBoxYears.Location = new System.Drawing.Point(162, 93);
             this.comboBoxYears.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBoxYears.Name = "comboBoxYears";
             this.comboBoxYears.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -385,7 +503,7 @@
             "2nd Year",
             "3rd Year",
             "4th Year"});
-            this.comboBoxYears.Size = new System.Drawing.Size(182, 36);
+            this.comboBoxYears.Size = new System.Drawing.Size(146, 36);
             this.comboBoxYears.TabIndex = 3;
             // 
             // comboBoxCourse
@@ -393,7 +511,7 @@
             this.comboBoxCourse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxCourse.EditValue = "All Course";
-            this.comboBoxCourse.Location = new System.Drawing.Point(16, 323);
+            this.comboBoxCourse.Location = new System.Drawing.Point(15, 93);
             this.comboBoxCourse.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBoxCourse.Name = "comboBoxCourse";
             this.comboBoxCourse.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -405,64 +523,35 @@
             "BSPH",
             "BSRT",
             "BSN"});
-            this.comboBoxCourse.Size = new System.Drawing.Size(182, 36);
+            this.comboBoxCourse.Size = new System.Drawing.Size(120, 36);
             this.comboBoxCourse.TabIndex = 2;
             // 
-            // searchStudent
+            // panelControl5
             // 
-            this.searchStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchStudent.Location = new System.Drawing.Point(16, 53);
-            this.searchStudent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.searchStudent.Name = "searchStudent";
-            this.searchStudent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Repository.ClearButton(),
-            new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchStudent.Size = new System.Drawing.Size(293, 34);
-            this.searchStudent.TabIndex = 0;
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(17, 176);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(135, 20);
-            this.labelControl9.TabIndex = 8;
-            this.labelControl9.Text = "Search by semester";
+            this.panelControl5.Appearance.BackColor = System.Drawing.Color.SeaGreen;
+            this.panelControl5.Appearance.Options.UseBackColor = true;
+            this.panelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl5.Controls.Add(this.labelControl2);
+            this.panelControl5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl5.Location = new System.Drawing.Point(0, 0);
+            this.panelControl5.Name = "panelControl5";
+            this.panelControl5.Size = new System.Drawing.Size(452, 49);
+            this.panelControl5.TabIndex = 9;
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(16, 23);
+            this.labelControl2.Location = new System.Drawing.Point(14, 10);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(149, 20);
+            this.labelControl2.Size = new System.Drawing.Size(227, 31);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Search by name or ID";
-            // 
-            // cbSearchEvent
-            // 
-            this.cbSearchEvent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbSearchEvent.EditValue = "Semester";
-            this.cbSearchEvent.Location = new System.Drawing.Point(17, 141);
-            this.cbSearchEvent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.cbSearchEvent.Name = "cbSearchEvent";
-            this.cbSearchEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbSearchEvent.Properties.Items.AddRange(new object[] {
-            "Pasiklaban",
-            "Founders"});
-            this.cbSearchEvent.Size = new System.Drawing.Size(293, 34);
-            this.cbSearchEvent.TabIndex = 7;
             // 
             // gcAttendanceLogs
             // 
@@ -494,10 +583,7 @@
             this.gridColumnDate});
             this.gridView2.GridControl = this.gcAttendanceLogs;
             this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsBehavior.ReadOnly = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.OptionsView.ShowIndicator = false;
             // 
             // gridColumnID
             // 
@@ -643,8 +729,7 @@
             // 
             // AttendanceLogControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.layoutControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "AttendanceLogControl";
@@ -671,11 +756,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
+            this.panelControl9.ResumeLayout(false);
+            this.panelControl9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl8)).EndInit();
+            this.panelControl8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.searchStudent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxYears.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxCourse.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchStudent.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSearchEvent.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
+            this.panelControl5.ResumeLayout(false);
+            this.panelControl5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcAttendanceLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -691,10 +786,6 @@
 
             private DevExpress.XtraLayout.LayoutControl layoutControl1;
             private DevExpress.XtraLayout.LayoutControlGroup Root;
-            private DevExpress.XtraEditors.SearchControl searchStudent;
-            private DevExpress.XtraEditors.LabelControl labelControl2;
-            private DevExpress.XtraEditors.ComboBoxEdit comboBoxYears;
-            private DevExpress.XtraEditors.ComboBoxEdit comboBoxCourse;
             private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
             private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
             private DevExpress.XtraGrid.GridControl gcAttendanceLogs;
@@ -707,9 +798,6 @@
             private DevExpress.XtraGrid.Columns.GridColumn gridColumnEventName;
             private DevExpress.XtraEditors.PanelControl panelControl2;
             private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-            private DevExpress.XtraEditors.PanelControl panelControl3;
-            private DevExpress.XtraEditors.ComboBoxEdit cbSearchEvent;
-            private DevExpress.XtraEditors.LabelControl labelControl9;
             private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnTimeIn;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnTimeOut;
@@ -733,5 +821,17 @@
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.PictureEdit pictureEdit3;
         private DevExpress.XtraEditors.LabelControl labelTotalAbsent;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.PanelControl panelControl5;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.SearchControl searchStudent;
+        private DevExpress.XtraEditors.ComboBoxEdit cbSearchEvent;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxCourse;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxYears;
+        private DevExpress.XtraEditors.PanelControl panelControl9;
+        private DevExpress.XtraEditors.PanelControl panelControl8;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
     }
     }

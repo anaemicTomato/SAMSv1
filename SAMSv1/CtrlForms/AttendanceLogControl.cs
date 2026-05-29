@@ -217,12 +217,6 @@ namespace SAMSv1.CtrlForms
             labelTotalAbsent.Text = "00";
         }
 
-        private void btnGenerateReport_Click(object sender, EventArgs e)
-        {
-            var report = new Reports.StudentRPT();
-            report.ShowPreviewDialog();
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             btnBack.Visible = false;
